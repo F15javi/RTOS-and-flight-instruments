@@ -12,7 +12,6 @@
 #include <time.h>
 #include <iostream>
 #include "../src/xplaneConnect.h"
-#include "SimpleSerial.h"
 
 #ifdef WIN32
 #include <Windows.h>
@@ -28,9 +27,14 @@ int main()
     unsigned short xpPort = 49007;  //default port number XPC listens on
     unsigned short port = 49003;    //port number to which X-Plane is set to send UDP packets
 
+    int integerValue = 00000000;
 
 
     while (1) {
+
+
+
+
         XPCSocket sock = aopenUDP(xpIP, xpPort, port); //docs seem to be outdated on these...
 
         // Read 2 rows of data
@@ -49,9 +53,38 @@ int main()
         closeUDP(sock);
 
 
-    }
-    //keep console open on Windows
 
+        HANDLE serial = CreateFile(L"COM4", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
+
+        if (serial != INVALID_HANDLE_VALUE) {
+            DCB dcbSerialParams = { 0 };
+            dcbSerialParams.DCBlength = sizeof(dcbSerialParams);
+
+            if (GetCommState(serial, &dcbSerialParams)) {
+                dcbSerialParams.BaudRate = CBR_115200;
+                dcbSerialParams.ByteSize = 8;
+                dcbSerialParams.StopBits = ONESTOPBIT;
+                dcbSerialParams.Parity = NOPARITY;
+
+                if (SetCommState(serial, &dcbSerialParams)) {
+                    DWORD bytesWritten;
+
+                    
+
+                    const char data[] = "Funciona?";
+                    WriteFile(serial, data, sizeof(data) - 1, &bytesWritten, NULL);
+
+                   
+                }
+            }
+
+            CloseHandle(serial);
+        }
+        printf("\n CreateFile failed with error %d.", GetLastError());
+
+        integerValue++;
+    }
+    
 
     return 0;
 }
