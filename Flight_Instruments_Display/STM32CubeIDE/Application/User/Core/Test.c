@@ -8,7 +8,7 @@
 
 TaskHandle_t taskHandler;
 
-volatile uint8_t receivedData[16];
+volatile uint8_t receivedData[9];
 
 void Serial_Test(void *pArg);
 
@@ -26,7 +26,7 @@ void CreateTestTask(){
 
 
 void Serial_Test(void *pArg){
-	HAL_UART_Receive_DMA(&huart1, receivedData, 16);
+	HAL_UART_Receive_DMA(&huart1, receivedData, 9);
 	while (1) {
 
 
@@ -38,7 +38,8 @@ void Serial_Test(void *pArg){
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	HAL_UART_Receive_DMA(&huart1, receivedData, 16);
+
+	HAL_UART_Receive_DMA(&huart1, receivedData, 9);
 
 }
 

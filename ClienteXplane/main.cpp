@@ -71,7 +71,7 @@ int main()
 
                     
 
-                    const char data[] = "Funciona?";
+                    const char data[] = "HolaJavi";
                     WriteFile(serial, data, sizeof(data) - 1, &bytesWritten, NULL);
 
                    
