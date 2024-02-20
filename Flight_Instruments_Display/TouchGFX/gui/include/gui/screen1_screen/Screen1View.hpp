@@ -11,6 +11,12 @@ public:
     virtual ~Screen1View() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+
+    virtual void Update_Speed_Text(uint8_t value);
+	virtual void Update_Altitude_Text(uint16_t value);
+	virtual void Update_Pitch_Text(uint8_t value);
+	virtual void Update_Roll_Text(uint8_t value);
+
 protected:
 };
 

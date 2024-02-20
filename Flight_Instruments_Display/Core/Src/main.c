@@ -98,6 +98,10 @@ const osThreadAttr_t videoTask_attributes = {
 };
 /* USER CODE BEGIN PV */
 static FMC_SDRAM_CommandTypeDef Command;
+extern __IO uint16_t altitude;
+extern __IO uint8_t speed;
+extern __IO uint8_t pitch;
+extern __IO uint8_t roll;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -236,8 +240,9 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+  CreateSerialTask();
   /* USER CODE END RTOS_THREADS */
-  CreateTestTask();
+
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
   /* USER CODE END RTOS_EVENTS */

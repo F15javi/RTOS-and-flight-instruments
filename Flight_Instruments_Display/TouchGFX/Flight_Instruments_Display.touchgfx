@@ -24,12 +24,46 @@
             "LockBitmapToCenter": true,
             "XBitmapPosition": 51.0,
             "YBitmapPosition": 51.0,
-            "Scale": 1.0,
+            "Scale": 1.4,
             "LockOrigoToCenter": true,
             "XOrigo": 76.0,
             "YOrigo": 76.0,
             "ZOrigo": 1000.0,
             "CameraDistance": 1000.0
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 10,
+            "Y": 212,
+            "Width": 100,
+            "Height": 24,
+            "TextId": "__SingleUse_KKMT",
+            "TextRotation": "0",
+            "Color": {
+              "Green": 255,
+              "Blue": 106
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_JBJZ",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea2",
+            "X": 370,
+            "Y": 212,
+            "Width": 100,
+            "Height": 24,
+            "TextId": "__SingleUse_CXO7",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_XSLJ",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
           }
         ],
         "Interactions": []

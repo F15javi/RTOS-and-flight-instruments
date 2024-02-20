@@ -4,6 +4,7 @@
 #include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
 #include <touchgfx/Color.hpp>
 #include <images/BitmapDatabase.hpp>
+#include <texts/TextKeysAndLanguages.hpp>
 
 Screen1ViewBase::Screen1ViewBase()
 {
@@ -20,13 +21,29 @@ Screen1ViewBase::Screen1ViewBase()
     textureMapper1.setWidth(152);
     textureMapper1.setHeight(152);
     textureMapper1.setBitmapPosition(51.0f, 51.0f);
-    textureMapper1.setScale(1.0f);
+    textureMapper1.setScale(1.4f);
     textureMapper1.setCameraDistance(1000.0f);
     textureMapper1.setOrigo(76.0f, 76.0f, 1000.0f);
     textureMapper1.setCamera(76.0f, 76.0f);
     textureMapper1.setAngles(0.0f, 0.0f, 0.0f);
     textureMapper1.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
     add(textureMapper1);
+
+    textArea1.setPosition(10, 212, 100, 24);
+    textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
+    textArea1.setLinespacing(0);
+    Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_JBJZ).getText());
+    textArea1.setWildcard(textArea1Buffer);
+    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_KKMT));
+    add(textArea1);
+
+    textArea2.setPosition(370, 212, 100, 24);
+    textArea2.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    textArea2.setLinespacing(0);
+    Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_XSLJ).getText());
+    textArea2.setWildcard(textArea2Buffer);
+    textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_CXO7));
+    add(textArea2);
 }
 
 Screen1ViewBase::~Screen1ViewBase()
