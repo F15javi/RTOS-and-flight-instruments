@@ -5,8 +5,8 @@
 
 extern __IO uint16_t altitude;
 extern __IO uint8_t speed;
-extern __IO uint8_t pitch;
-extern __IO uint8_t roll;
+extern __IO float pitch;
+extern __IO float roll;
 Model::Model() : modelListener(0)
 {
 

@@ -6,14 +6,15 @@
 #include "main.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 TaskHandle_t taskHandler;
 
 uint8_t receivedData[100];
 
 uint8_t speed;
-uint8_t pitch;
-uint8_t roll;
+float pitch;
+float roll;
 uint16_t altitude;
 
 const char delimiter[] = " ";
@@ -56,10 +57,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 		   speed = atoi(token);
 		   token = strtok(NULL, delimiter);
 		   if (token != NULL) {
-			   //var2 = atoi(token);
+			   pitch = atof(token);
 			   token = strtok(NULL, delimiter);
 			   if (token != NULL) {
-				   //var3 = atoi(token);
+				   roll = atof(token);
 				   token = strtok(NULL, delimiter);
 				   if (token != NULL) {
 					   altitude = atoi(token);

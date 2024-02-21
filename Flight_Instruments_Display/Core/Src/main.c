@@ -100,8 +100,8 @@ const osThreadAttr_t videoTask_attributes = {
 static FMC_SDRAM_CommandTypeDef Command;
 extern __IO uint16_t altitude;
 extern __IO uint8_t speed;
-extern __IO uint8_t pitch;
-extern __IO uint8_t roll;
+extern __IO float pitch;
+extern __IO float roll;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -784,8 +784,7 @@ void StartDefaultTask(void *argument)
 /* MPU Configuration */
 
 void MPU_Config(void)
-{
-  MPU_Region_InitTypeDef MPU_InitStruct = {0};
+{  MPU_Region_InitTypeDef MPU_InitStruct = {0};
 
   /* Disables the MPU */
   HAL_MPU_Disable();

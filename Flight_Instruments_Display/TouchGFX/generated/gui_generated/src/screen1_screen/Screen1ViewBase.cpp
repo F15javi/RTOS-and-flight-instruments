@@ -12,7 +12,7 @@ Screen1ViewBase::Screen1ViewBase()
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    image1.setXY(0, -104);
+    image1.setXY(1, -104);
     image1.setBitmap(touchgfx::Bitmap(BITMAP_HORIZONTE_ARTIFICIAL_V2_ID));
     add(image1);
 
@@ -21,7 +21,7 @@ Screen1ViewBase::Screen1ViewBase()
     textureMapper1.setWidth(152);
     textureMapper1.setHeight(152);
     textureMapper1.setBitmapPosition(51.0f, 51.0f);
-    textureMapper1.setScale(1.4f);
+    textureMapper1.setScale(1.1f);
     textureMapper1.setCameraDistance(1000.0f);
     textureMapper1.setOrigo(76.0f, 76.0f, 1000.0f);
     textureMapper1.setCamera(76.0f, 76.0f);
@@ -38,7 +38,7 @@ Screen1ViewBase::Screen1ViewBase()
     add(textArea1);
 
     textArea2.setPosition(370, 212, 100, 24);
-    textArea2.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    textArea2.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
     textArea2.setLinespacing(0);
     Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_XSLJ).getText());
     textArea2.setWildcard(textArea2Buffer);

@@ -49,7 +49,7 @@ int main()
 
         printf("\n pitch = %f, roll = %f, alt = %f", data[1][1], data[1][2], data[2][3]);
 
-        Sleep(500);
+        Sleep(15);
         closeUDP(sock);
 
         char telemetry[100];
