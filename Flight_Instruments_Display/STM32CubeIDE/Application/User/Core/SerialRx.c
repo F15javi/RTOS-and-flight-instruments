@@ -16,6 +16,7 @@ uint8_t speed;
 float pitch;
 float roll;
 uint16_t altitude;
+float heading;
 
 const char delimiter[] = " ";
 char *token;
@@ -63,7 +64,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				   roll = atof(token);
 				   token = strtok(NULL, delimiter);
 				   if (token != NULL) {
-					   altitude = atoi(token);
+				   		heading = atof(token);
+						token = strtok(NULL, delimiter);
+					   if (token != NULL) {
+						   altitude = atoi(token);
+					   }
 				   }
 			   }
 		   }

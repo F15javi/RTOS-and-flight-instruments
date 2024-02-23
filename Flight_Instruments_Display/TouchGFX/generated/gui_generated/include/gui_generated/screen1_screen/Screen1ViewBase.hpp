@@ -10,6 +10,7 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/TextureMapper.hpp>
+#include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
@@ -30,8 +31,11 @@ protected:
     touchgfx::Box __background;
     touchgfx::Image image1;
     touchgfx::TextureMapper textureMapper1;
+    touchgfx::BoxWithBorder boxWithBorder1;
     touchgfx::TextAreaWithOneWildcard textArea1;
     touchgfx::TextAreaWithOneWildcard textArea2;
+    touchgfx::Image image2;
+    touchgfx::Image image2_1;
 
     /*
      * Wildcard Buffers

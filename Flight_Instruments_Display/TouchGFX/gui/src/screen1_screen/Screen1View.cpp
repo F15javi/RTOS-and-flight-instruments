@@ -65,3 +65,7 @@ void Screen1View::Update_Roll_Text(float value){
 	textureMapper1.setZAngle(DegToRad(value));
 
 }
+void Screen1View::Update_Heading_Text(float value){
+
+
+}

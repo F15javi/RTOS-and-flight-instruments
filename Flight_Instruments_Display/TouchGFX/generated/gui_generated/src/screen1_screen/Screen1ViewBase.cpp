@@ -12,15 +12,15 @@ Screen1ViewBase::Screen1ViewBase()
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    image1.setXY(1, -104);
+    image1.setXY(-1, -105);
     image1.setBitmap(touchgfx::Bitmap(BITMAP_HORIZONTE_ARTIFICIAL_V2_ID));
     add(image1);
 
-    textureMapper1.setXY(164, 60);
-    textureMapper1.setBitmap(touchgfx::Bitmap(BITMAP_ARTIFICIAL_PLANE_ID));
+    textureMapper1.setXY(163, 62);
+    textureMapper1.setBitmap(touchgfx::Bitmap(BITMAP_ARTIFICIAL_PLANE_V2_ID));
     textureMapper1.setWidth(152);
     textureMapper1.setHeight(152);
-    textureMapper1.setBitmapPosition(51.0f, 51.0f);
+    textureMapper1.setBitmapPosition(26.0f, 26.0f);
     textureMapper1.setScale(1.1f);
     textureMapper1.setCameraDistance(1000.0f);
     textureMapper1.setOrigo(76.0f, 76.0f, 1000.0f);
@@ -29,7 +29,13 @@ Screen1ViewBase::Screen1ViewBase()
     textureMapper1.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
     add(textureMapper1);
 
-    textArea1.setPosition(10, 212, 100, 24);
+    boxWithBorder1.setPosition(-180, 28, 118, 24);
+    boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(3, 3, 3));
+    boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
+    boxWithBorder1.setBorderSize(1);
+    add(boxWithBorder1);
+
+    textArea1.setPosition(-1, 136, 100, 24);
     textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
     textArea1.setLinespacing(0);
     Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_JBJZ).getText());
@@ -37,13 +43,21 @@ Screen1ViewBase::Screen1ViewBase()
     textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_KKMT));
     add(textArea1);
 
-    textArea2.setPosition(370, 212, 100, 24);
+    textArea2.setPosition(386, 136, 100, 24);
     textArea2.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
     textArea2.setLinespacing(0);
     Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_XSLJ).getText());
     textArea2.setWildcard(textArea2Buffer);
     textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_CXO7));
     add(textArea2);
+
+    image2.setXY(5, 136);
+    image2.setBitmap(touchgfx::Bitmap(BITMAP_BOX_ID));
+    add(image2);
+
+    image2_1.setXY(392, 136);
+    image2_1.setBitmap(touchgfx::Bitmap(BITMAP_BOX_ID));
+    add(image2_1);
 }
 
 Screen1ViewBase::~Screen1ViewBase()

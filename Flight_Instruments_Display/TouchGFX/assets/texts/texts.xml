@@ -6,17 +6,17 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_XSLJ" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">0</Translation>
-      </Text>
       <Text Id="__SingleUse_JBJZ" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_CXO7" Alignment="Right" TypographyId="Default">
-        <Translation Language="GB">&lt;value&gt; ft</Translation>
+      <Text Id="__SingleUse_KKMT" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt; </Translation>
       </Text>
-      <Text Id="__SingleUse_KKMT" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">&lt;value&gt; kt</Translation>
+      <Text Id="__SingleUse_XSLJ" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_CXO7" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt; </Translation>
       </Text>
     </TextGroup>
   </Texts>

@@ -102,6 +102,8 @@ extern __IO uint16_t altitude;
 extern __IO uint8_t speed;
 extern __IO float pitch;
 extern __IO float roll;
+extern __IO float heading;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

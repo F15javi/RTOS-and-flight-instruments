@@ -7,7 +7,7 @@
           {
             "Type": "Image",
             "Name": "image1",
-            "X": 1,
+            "X": -1,
             "Y": -104,
             "Width": 480,
             "Height": 480,
@@ -16,15 +16,15 @@
           {
             "Type": "TextureMapper",
             "Name": "textureMapper1",
-            "X": 164,
-            "Y": 60,
+            "X": 163,
+            "Y": 62,
             "Width": 152,
             "Height": 152,
             "RenderingAlgorithm": "Nearest-neighbor",
-            "FileNameImage": "Artificial_plane.png",
+            "FileNameImage": "Artificial_plane_v2.png",
             "LockBitmapToCenter": true,
-            "XBitmapPosition": 51.0,
-            "YBitmapPosition": 51.0,
+            "XBitmapPosition": 26.0,
+            "YBitmapPosition": 26.0,
             "Scale": 1.1,
             "LockOrigoToCenter": true,
             "XOrigo": 76.0,
@@ -35,8 +35,8 @@
           {
             "Type": "TextArea",
             "Name": "textArea1",
-            "X": 10,
-            "Y": 212,
+            "X": -1,
+            "Y": 136,
             "Width": 100,
             "Height": 24,
             "TextId": "__SingleUse_KKMT",
@@ -54,8 +54,8 @@
           {
             "Type": "TextArea",
             "Name": "textArea2",
-            "X": 370,
-            "Y": 212,
+            "X": 386,
+            "Y": 136,
             "Width": 100,
             "Height": 24,
             "TextId": "__SingleUse_CXO7",
@@ -69,6 +69,24 @@
               "UseBuffer": true,
               "BufferSize": 20
             }
+          },
+          {
+            "Type": "Image",
+            "Name": "image2",
+            "X": 5,
+            "Y": 136,
+            "Width": 82,
+            "Height": 26,
+            "RelativeFilename": "Box.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "image2_1",
+            "X": 392,
+            "Y": 136,
+            "Width": 82,
+            "Height": 26,
+            "RelativeFilename": "Box.png"
           }
         ],
         "Interactions": []

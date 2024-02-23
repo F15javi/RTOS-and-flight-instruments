@@ -47,13 +47,13 @@ int main()
 
         printf("\nVtas: %f,", data[0][2]);
 
-        printf("\n pitch = %f, roll = %f, alt = %f", data[1][1], data[1][2], data[2][3]);
+        printf("\n pitch = %f, roll = %f, heading = %f, alt = %f", data[1][1], data[1][2], data[1][3], data[2][3]);
 
         Sleep(15);
         closeUDP(sock);
 
         char telemetry[100];
-        sprintf_s(telemetry, "%f %f %f %f", data[0][2], data[1][1], data[1][2], data[2][3]);
+        sprintf_s(telemetry, "%f %f %f %f %f", data[0][2], data[1][1], data[1][2], data[1][3], data[2][3]);
 
 
         HANDLE serial = CreateFile(L"COM4", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);

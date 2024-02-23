@@ -35,3 +35,7 @@ void Screen1Presenter::Update_Roll_Text(float value){
 	view.Update_Roll_Text(value);
 
 }
+void Screen1Presenter::Update_Heading_Text(float value){
+	view.Update_Heading_Text(value);
+
+}

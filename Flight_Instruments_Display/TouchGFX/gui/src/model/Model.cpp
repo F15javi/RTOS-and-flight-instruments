@@ -7,6 +7,8 @@ extern __IO uint16_t altitude;
 extern __IO uint8_t speed;
 extern __IO float pitch;
 extern __IO float roll;
+extern __IO float heading;
+
 Model::Model() : modelListener(0)
 {
 
@@ -18,6 +20,7 @@ void Model::tick()
 	modelListener->Update_Altitude_Text(altitude);
 	modelListener->Update_Pitch_Text(pitch);
 	modelListener->Update_Roll_Text(roll);
+	modelListener->Update_Heading_Text(heading);
 
 
 }
