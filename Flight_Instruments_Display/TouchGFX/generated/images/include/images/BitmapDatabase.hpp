@@ -6,10 +6,12 @@
 #include <touchgfx/hal/Types.hpp>
 #include <touchgfx/Bitmap.hpp>
 
-const uint16_t BITMAP_ARTIFICIAL_PLANE_ID = 0;
-const uint16_t BITMAP_ARTIFICIAL_PLANE_V2_ID = 1;
-const uint16_t BITMAP_BOX_ID = 2;
-const uint16_t BITMAP_HORIZONTE_ARTIFICIAL_V2_ID = 3;
+const uint16_t BITMAP_ARTIFICIAL_PLANE_V2_ID = 0;
+const uint16_t BITMAP_BOX_ID = 1;
+const uint16_t BITMAP_HORIZONTE_ARTIFICIAL_BACK_V5_ID = 2;
+const uint16_t BITMAP_HORIZONTE_ARTIFICIAL_FRONT_V1_ID = 3;
+const uint16_t BITMAP_HORIZONTE_ARTIFICIAL_FRONT_V2_ID = 4;
+const uint16_t BITMAP_HORIZONTE_ARTIFICIAL_V4_ID = 5;
 
 namespace BitmapDatabase
 {

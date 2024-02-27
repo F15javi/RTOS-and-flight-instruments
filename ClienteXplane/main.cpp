@@ -76,6 +76,7 @@ int main()
                     //const char data[] = "Hello There";
 
                     WriteFile(serial, telemetry, 100, &bytesWritten, NULL);
+                    printf("\n CreateFile failed with error %d.", GetLastError());
 
                    
                 }

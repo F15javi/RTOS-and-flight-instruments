@@ -18,7 +18,7 @@ void Model::tick()
 {
 	modelListener->Update_Speed_Text(speed);
 	modelListener->Update_Altitude_Text(altitude);
-	modelListener->Update_Pitch_Text(pitch);
+	modelListener->Update_Horizon(pitch, roll);
 	modelListener->Update_Roll_Text(roll);
 	modelListener->Update_Heading_Text(heading);
 

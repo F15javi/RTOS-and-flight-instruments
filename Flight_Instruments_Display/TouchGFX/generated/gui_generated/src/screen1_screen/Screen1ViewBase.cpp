@@ -12,28 +12,18 @@ Screen1ViewBase::Screen1ViewBase()
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    image1.setXY(-1, -105);
-    image1.setBitmap(touchgfx::Bitmap(BITMAP_HORIZONTE_ARTIFICIAL_V2_ID));
-    add(image1);
-
-    textureMapper1.setXY(163, 62);
-    textureMapper1.setBitmap(touchgfx::Bitmap(BITMAP_ARTIFICIAL_PLANE_V2_ID));
-    textureMapper1.setWidth(152);
-    textureMapper1.setHeight(152);
-    textureMapper1.setBitmapPosition(26.0f, 26.0f);
-    textureMapper1.setScale(1.1f);
-    textureMapper1.setCameraDistance(1000.0f);
-    textureMapper1.setOrigo(76.0f, 76.0f, 1000.0f);
-    textureMapper1.setCamera(76.0f, 76.0f);
-    textureMapper1.setAngles(0.0f, 0.0f, 0.0f);
-    textureMapper1.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
-    add(textureMapper1);
-
-    boxWithBorder1.setPosition(-180, 28, 118, 24);
-    boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(3, 3, 3));
-    boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
-    boxWithBorder1.setBorderSize(1);
-    add(boxWithBorder1);
+    textureMapper2.setXY(-60, -364);
+    textureMapper2.setBitmap(touchgfx::Bitmap(BITMAP_HORIZONTE_ARTIFICIAL_FRONT_V2_ID));
+    textureMapper2.setWidth(599);
+    textureMapper2.setHeight(1000);
+    textureMapper2.setBitmapPosition(-0.5f, 0.0f);
+    textureMapper2.setScale(1.0f);
+    textureMapper2.setCameraDistance(1000.0f);
+    textureMapper2.setOrigo(299.5f, 500.0f, 1000.0f);
+    textureMapper2.setCamera(299.5f, 500.0f);
+    textureMapper2.setAngles(0.0f, 0.0f, 0.0f);
+    textureMapper2.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
+    add(textureMapper2);
 
     textArea1.setPosition(-1, 136, 100, 24);
     textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
@@ -55,9 +45,13 @@ Screen1ViewBase::Screen1ViewBase()
     image2.setBitmap(touchgfx::Bitmap(BITMAP_BOX_ID));
     add(image2);
 
-    image2_1.setXY(392, 136);
+    image2_1.setXY(395, 136);
     image2_1.setBitmap(touchgfx::Bitmap(BITMAP_BOX_ID));
     add(image2_1);
+
+    image3.setXY(189, 86);
+    image3.setBitmap(touchgfx::Bitmap(BITMAP_ARTIFICIAL_PLANE_V2_ID));
+    add(image3);
 }
 
 Screen1ViewBase::~Screen1ViewBase()

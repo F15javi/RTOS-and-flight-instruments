@@ -659,11 +659,6 @@
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/SVGDatabase.cpp</locationURI>
 		</link>
 		<link>
-			<name>Application/User/generated/image_Artificial_plane.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Artificial_plane.cpp</locationURI>
-		</link>
-		<link>
 			<name>Application/User/generated/image_Artificial_plane_v2.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Artificial_plane_v2.cpp</locationURI>
@@ -674,9 +669,24 @@
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Box.cpp</locationURI>
 		</link>
 		<link>
-			<name>Application/User/generated/image_Horizonte_artificial_v2.cpp</name>
+			<name>Application/User/generated/image_Horizonte_artificial_back_v5.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Horizonte_artificial_v2.cpp</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Horizonte_artificial_back_v5.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_Horizonte_artificial_front_v1.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Horizonte_artificial_front_v1.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_Horizonte_artificial_front_v2.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Horizonte_artificial_front_v2.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_Horizonte_artificial_v4.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Horizonte_artificial_v4.cpp</locationURI>
 		</link>
 		<link>
 			<name>Application/User/generated/LanguageGb.cpp</name>

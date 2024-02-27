@@ -27,8 +27,8 @@ void Screen1Presenter::Update_Altitude_Text(uint16_t value){
 	view.Update_Altitude_Text(value);
 
 }
-void Screen1Presenter::Update_Pitch_Text(float value){
-	view.Update_Pitch_Text(value);
+void Screen1Presenter::Update_Horizon(float value, float value2){
+	view.Update_Horizon(value, value2);
 
 }
 void Screen1Presenter::Update_Roll_Text(float value){

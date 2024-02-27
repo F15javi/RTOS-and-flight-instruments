@@ -14,7 +14,7 @@ public:
 
     virtual void Update_Speed_Text(uint8_t value);
 	virtual void Update_Altitude_Text(uint16_t value);
-	virtual void Update_Pitch_Text(float value);
+	virtual void Update_Horizon(float value, float value2);
 	virtual void Update_Roll_Text(float value);
 	virtual void Update_Heading_Text(float value);
 protected:

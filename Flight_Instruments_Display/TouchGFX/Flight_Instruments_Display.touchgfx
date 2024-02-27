@@ -5,30 +5,31 @@
         "Name": "Screen1",
         "Components": [
           {
-            "Type": "Image",
-            "Name": "image1",
-            "X": -1,
-            "Y": -104,
+            "Type": "Box",
+            "Name": "box1",
             "Width": 480,
-            "Height": 480,
-            "RelativeFilename": "Horizonte artificial_v2.png"
+            "Height": 272,
+            "Color": {
+              "Red": 107,
+              "Green": 129,
+              "Blue": 255
+            }
           },
           {
             "Type": "TextureMapper",
-            "Name": "textureMapper1",
-            "X": 163,
-            "Y": 62,
-            "Width": 152,
-            "Height": 152,
+            "Name": "textureMapper2",
+            "X": -60,
+            "Y": -364,
+            "Width": 599,
+            "Height": 1000,
             "RenderingAlgorithm": "Nearest-neighbor",
-            "FileNameImage": "Artificial_plane_v2.png",
+            "FileNameImage": "Horizonte_artificial_front_v3.png",
             "LockBitmapToCenter": true,
-            "XBitmapPosition": 26.0,
-            "YBitmapPosition": 26.0,
-            "Scale": 1.1,
+            "XBitmapPosition": -0.5,
+            "Scale": 1.0,
             "LockOrigoToCenter": true,
-            "XOrigo": 76.0,
-            "YOrigo": 76.0,
+            "XOrigo": 299.5,
+            "YOrigo": 500.0,
             "ZOrigo": 1000.0,
             "CameraDistance": 1000.0
           },
@@ -82,11 +83,20 @@
           {
             "Type": "Image",
             "Name": "image2_1",
-            "X": 392,
+            "X": 395,
             "Y": 136,
             "Width": 82,
             "Height": 26,
             "RelativeFilename": "Box.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "image3",
+            "X": 189,
+            "Y": 86,
+            "Width": 100,
+            "Height": 100,
+            "RelativeFilename": "Artificial_plane_v2.png"
           }
         ],
         "Interactions": []
