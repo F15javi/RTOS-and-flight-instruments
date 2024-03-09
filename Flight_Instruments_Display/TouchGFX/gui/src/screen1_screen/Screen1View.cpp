@@ -29,16 +29,18 @@ void Screen1View::Update_Speed_Text(uint8_t value){
 
 
 }
-void Screen1View::Update_Altitude_Text(uint16_t value){
-	Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%d", value);
-	textArea2.invalidate();
-
-}
 float DegToRad(float angle){
 
 	return (angle) * M_PI / 180.0;
 
 }
+
+void Screen1View::Update_Altitude_Text(uint16_t value){
+	Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%d", value);
+	textArea2.invalidate();
+
+}
+
 void Screen1View::Update_Horizon(float value, float value2){
 
 //-104 es el centro de la imagen de fondo

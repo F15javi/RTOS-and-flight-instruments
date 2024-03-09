@@ -11,6 +11,8 @@
 #include <touchgfx/widgets/TextureMapper.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/containers/SlideMenu.hpp>
+#include <touchgfx/widgets/ButtonWithLabel.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -28,12 +30,15 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
+    touchgfx::Box box1;
     touchgfx::TextureMapper textureMapper2;
     touchgfx::TextAreaWithOneWildcard textArea1;
     touchgfx::TextAreaWithOneWildcard textArea2;
     touchgfx::Image image2;
     touchgfx::Image image2_1;
     touchgfx::Image image3;
+    touchgfx::SlideMenu slideMenu1_1;
+    touchgfx::ButtonWithLabel NAV;
 
     /*
      * Wildcard Buffers
@@ -44,6 +49,16 @@ protected:
     touchgfx::Unicode::UnicodeChar textArea2Buffer[TEXTAREA2_SIZE];
 
 private:
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<Screen1ViewBase, const touchgfx::AbstractButton&> buttonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

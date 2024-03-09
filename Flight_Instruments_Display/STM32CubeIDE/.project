@@ -569,6 +569,16 @@
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/screen1_screen/Screen1View.cpp</locationURI>
 		</link>
 		<link>
+			<name>Application/User/gui/Screen2Presenter.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/screen2_screen/Screen2Presenter.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/gui/Screen2View.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/gui/src/screen2_screen/Screen2View.cpp</locationURI>
+		</link>
+		<link>
 			<name>Application/User/generated/ApplicationFontProvider.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/fonts/src/ApplicationFontProvider.cpp</locationURI>
@@ -649,6 +659,11 @@
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/gui_generated/src/screen1_screen/Screen1ViewBase.cpp</locationURI>
 		</link>
 		<link>
+			<name>Application/User/generated/Screen2ViewBase.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/gui_generated/src/screen2_screen/Screen2ViewBase.cpp</locationURI>
+		</link>
+		<link>
 			<name>Application/User/generated/BitmapDatabase.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/BitmapDatabase.cpp</locationURI>
@@ -669,6 +684,11 @@
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Box.cpp</locationURI>
 		</link>
 		<link>
+			<name>Application/User/generated/image_Compass.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Compass.cpp</locationURI>
+		</link>
+		<link>
 			<name>Application/User/generated/image_Horizonte_artificial_back_v5.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Horizonte_artificial_back_v5.cpp</locationURI>
@@ -684,9 +704,39 @@
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Horizonte_artificial_front_v2.cpp</locationURI>
 		</link>
 		<link>
+			<name>Application/User/generated/image_Horizonte_artificial_front_v3.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Horizonte_artificial_front_v3.cpp</locationURI>
+		</link>
+		<link>
 			<name>Application/User/generated/image_Horizonte_artificial_v4.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Horizonte_artificial_v4.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_airplane.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_airplane.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_left_slide_menu_background.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_left_slide_menu_background.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_left_slide_menu_button.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_left_slide_menu_button.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_menu_toggle_button_01.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_menu_toggle_button_01.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_menu_toggle_button_selected_01.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_menu_toggle_button_selected_01.cpp</locationURI>
 		</link>
 		<link>
 			<name>Application/User/generated/LanguageGb.cpp</name>

@@ -6,14 +6,19 @@
 #include <images/BitmapDatabase.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 
-Screen1ViewBase::Screen1ViewBase()
+Screen1ViewBase::Screen1ViewBase() :
+    buttonCallback(this, &Screen1ViewBase::buttonCallbackHandler)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
+    box1.setPosition(0, 0, 480, 272);
+    box1.setColor(touchgfx::Color::getColorFromRGB(107, 129, 255));
+    add(box1);
+
     textureMapper2.setXY(-60, -364);
-    textureMapper2.setBitmap(touchgfx::Bitmap(BITMAP_HORIZONTE_ARTIFICIAL_FRONT_V2_ID));
+    textureMapper2.setBitmap(touchgfx::Bitmap(BITMAP_HORIZONTE_ARTIFICIAL_FRONT_V3_ID));
     textureMapper2.setWidth(599);
     textureMapper2.setHeight(1000);
     textureMapper2.setBitmapPosition(-0.5f, 0.0f);
@@ -52,6 +57,28 @@ Screen1ViewBase::Screen1ViewBase()
     image3.setXY(189, 86);
     image3.setBitmap(touchgfx::Bitmap(BITMAP_ARTIFICIAL_PLANE_V2_ID));
     add(image3);
+
+    slideMenu1_1.setXY(0, 0);
+    slideMenu1_1.setup(touchgfx::SlideMenu::EAST,
+        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BACKGROUND_ID),
+        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BUTTON_ID),
+        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BUTTON_ID),
+        0, 0, 50, 5);
+    slideMenu1_1.setState(touchgfx::SlideMenu::COLLAPSED);
+    slideMenu1_1.setVisiblePixelsWhenCollapsed(25);
+    slideMenu1_1.setHiddenPixelsWhenExpanded(0);
+    slideMenu1_1.setAnimationEasingEquation(touchgfx::EasingEquations::cubicEaseInOut);
+    slideMenu1_1.setAnimationDuration(18);
+    slideMenu1_1.setExpandedStateTimeout(180);
+    NAV.setXY(-1, 0);
+    NAV.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
+    NAV.setLabelText(touchgfx::TypedText(T___SINGLEUSE_2K4S));
+    NAV.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    NAV.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    NAV.setAction(buttonCallback);
+    slideMenu1_1.add(NAV);
+
+    add(slideMenu1_1);
 }
 
 Screen1ViewBase::~Screen1ViewBase()
@@ -62,4 +89,19 @@ Screen1ViewBase::~Screen1ViewBase()
 void Screen1ViewBase::setupScreen()
 {
 
+}
+
+void Screen1ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
+{
+    if (&src == &NAV)
+    {
+        //Interaction1
+        //When NAV clicked change screen to Screen2
+        //Go to Screen2 with screen transition towards North
+        application().gotoScreen2ScreenCoverTransitionNorth();
+        //Interaction2
+        //When NAV clicked reset timer slideMenu1_1
+        //reset expanded state timer on slideMenu1_1
+        slideMenu1_1.resetExpandedStateTimer();
+    }
 }
