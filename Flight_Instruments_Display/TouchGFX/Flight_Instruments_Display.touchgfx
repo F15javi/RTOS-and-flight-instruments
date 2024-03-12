@@ -399,7 +399,7 @@
             "Pressed": "__generated\\dark_theme_images_widgets_button_icon_rounded_micro_fill_pressed.png",
             "Released": "__generated\\icon_theme_images_action_arrow_circle_up_36_36_FFFFFF.svg.png",
             "Delay": 200,
-            "Interval": 100
+            "Interval": 25
           },
           {
             "Type": "RepeatButton",
@@ -411,7 +411,7 @@
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_micro_fill_pressed.png",
             "Released": "__generated\\icon_theme_images_action_arrow_circle_down_36_36_FFFFFF.svg.png",
             "Delay": 200,
-            "Interval": 100
+            "Interval": 25
           }
         ],
         "Interactions": [
