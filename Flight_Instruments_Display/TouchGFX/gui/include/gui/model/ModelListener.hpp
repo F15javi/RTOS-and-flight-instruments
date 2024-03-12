@@ -21,6 +21,7 @@ public:
     virtual void Update_Roll_Text(float value) {}
     virtual void Update_Heading_Text(float value) {}
 
+
 protected:
     Model* model;
 };

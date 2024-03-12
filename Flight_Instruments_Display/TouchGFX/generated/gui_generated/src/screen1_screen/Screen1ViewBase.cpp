@@ -58,7 +58,7 @@ Screen1ViewBase::Screen1ViewBase() :
     image3.setBitmap(touchgfx::Bitmap(BITMAP_ARTIFICIAL_PLANE_V2_ID));
     add(image3);
 
-    slideMenu1_1.setXY(0, 0);
+    slideMenu1_1.setXY(-3, 0);
     slideMenu1_1.setup(touchgfx::SlideMenu::EAST,
         touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BACKGROUND_ID),
         touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BUTTON_ID),
