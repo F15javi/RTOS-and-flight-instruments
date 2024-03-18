@@ -11,6 +11,8 @@
 TaskHandle_t taskHandler;
 
 uint8_t receivedData[100];
+uint8_t tx_buffer[100];
+
 
 uint8_t speed;
 float pitch;
@@ -23,6 +25,7 @@ char *token;
 
 
 void Serial_RX(void *pArg);
+void CDC_SendMessage(void *pArg);
 
 
 void CreateSerialTask(){
@@ -31,6 +34,7 @@ void CreateSerialTask(){
 	//Check Serial output
 
 	xTaskCreate(Serial_RX, "Serial_Rx", 128, NULL, 1, NULL);
+	//xTaskCreate(CDC_SendMessage, "CDC_SendMessage", 128, NULL, 1, NULL);
 
 
 }
@@ -48,10 +52,20 @@ void Serial_RX(void *pArg){
 
 	}
 }
+void CDC_SendMessage(void *pArg) {
 
+	char* msg = "Hello, world!\r\n";
+
+    int len = snprintf((char*)tx_buffer, 100, "%s", msg);
+    if (len > 0) {
+        //CDC_Transmit_FS(tx_buffer, len);
+    }
+}
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
+	  char *data = "Hello there\n";
 
+	  CDC_Transmit_FS((uint8_t *) data, strlen(data));
 
 
 	HAL_UART_Receive_DMA(&huart1, receivedData, 100);
