@@ -18,7 +18,80 @@
 #define sleep(n) Sleep(n * 1000)
 #endif
 
+char dataRx[100];
 
+
+void Serial_TX(char telemetry[100]) {
+    HANDLE serial = CreateFile(L"COM4", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
+
+    if (serial != INVALID_HANDLE_VALUE) {
+        DCB dcbSerialParams = { 0 };
+        dcbSerialParams.DCBlength = sizeof(dcbSerialParams);
+
+        if (GetCommState(serial, &dcbSerialParams)) {
+            dcbSerialParams.BaudRate = CBR_115200;
+            dcbSerialParams.ByteSize = 8;
+            dcbSerialParams.StopBits = ONESTOPBIT;
+            dcbSerialParams.Parity = NOPARITY;
+
+            if (SetCommState(serial, &dcbSerialParams)) {
+                DWORD bytesWritten;
+
+
+
+                //const char data[] = "Hello There";
+
+                WriteFile(serial, telemetry, 100, &bytesWritten, NULL);
+                printf("\n CreateFile failed with error %d.", GetLastError());
+
+
+            }
+        }
+
+        CloseHandle(serial);
+    }
+    else {
+        printf("\n CreateFile failed with error %d.", GetLastError());
+    }
+
+}
+
+
+void Serial_RX(void) {
+
+    HANDLE serial = CreateFile(L"COM6", GENERIC_READ, 0, NULL, OPEN_EXISTING, 0, NULL);
+    if (serial != INVALID_HANDLE_VALUE) {
+        DCB dcbSerialParams = { 0 };
+        dcbSerialParams.DCBlength = sizeof(dcbSerialParams);
+
+        if (GetCommState(serial, &dcbSerialParams)) {
+            dcbSerialParams.BaudRate = CBR_9600;
+            dcbSerialParams.ByteSize = 8;
+            dcbSerialParams.StopBits = ONESTOPBIT;
+            dcbSerialParams.Parity = NOPARITY;
+
+            if (SetCommState(serial, &dcbSerialParams)) {
+                DWORD bytesRead;
+
+
+
+                //const char data[] = "Hello There";
+
+                if (ReadFile(serial, &dataRx, 100, &bytesRead, NULL)) {
+                    std::cout << "Read " << bytesRead << " bytes: " << dataRx << std::endl;
+                }
+                else {
+                    CloseHandle(serial);
+                    printf("\n CreateFile failed with error %d.", GetLastError());
+                }
+
+            }
+        }
+
+        CloseHandle(serial);
+    }
+    
+}
 
 int main()
 {
@@ -29,7 +102,7 @@ int main()
     unsigned short xpPort = 49007;  //default port number XPC listens on
     unsigned short port = 49003;    //port number to which X-Plane is set to send UDP packets
 
-
+    
 
     while (1) {
 
@@ -54,39 +127,10 @@ int main()
 
         char telemetry[100];
         sprintf_s(telemetry, "%f %f %f %f %f", data[0][2], data[1][1], data[1][2], data[1][3], data[2][3]);
+        
+        Serial_TX(telemetry);
+        Serial_RX();
 
-
-        HANDLE serial = CreateFile(L"COM4", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
-
-        if (serial != INVALID_HANDLE_VALUE) {
-            DCB dcbSerialParams = { 0 };
-            dcbSerialParams.DCBlength = sizeof(dcbSerialParams);
-
-            if (GetCommState(serial, &dcbSerialParams)) {
-                dcbSerialParams.BaudRate = CBR_115200;
-                dcbSerialParams.ByteSize = 8;
-                dcbSerialParams.StopBits = ONESTOPBIT;
-                dcbSerialParams.Parity = NOPARITY;
-
-                if (SetCommState(serial, &dcbSerialParams)) {
-                    DWORD bytesWritten;
-
-                    
-
-                    //const char data[] = "Hello There";
-
-                    WriteFile(serial, telemetry, 100, &bytesWritten, NULL);
-                    printf("\n CreateFile failed with error %d.", GetLastError());
-
-                   
-                }
-            }
-
-            CloseHandle(serial);
-        }
-        else {
-            printf("\n CreateFile failed with error %d.", GetLastError());
-        }
         
 
     }
