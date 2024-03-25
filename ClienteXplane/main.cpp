@@ -18,6 +18,7 @@
 #define sleep(n) Sleep(n * 1000)
 #endif
 
+char dataRx[100];
 
 
 void Serial_TX(char telemetry[100]) {
@@ -50,79 +51,59 @@ void Serial_TX(char telemetry[100]) {
         CloseHandle(serial);
     }
     else {
-        printf("\n writeFile failed with error %d.", GetLastError());
+        printf("\n CreateFile failed with error %d.", GetLastError());
     }
 
 }
 
 
-void Serial_RX() {
+void Serial_RX(void) {
 
-    HANDLE serial2 = CreateFile(L"COM6", GENERIC_READ, 0, NULL, OPEN_EXISTING, 0, NULL);
-    if (serial2 != INVALID_HANDLE_VALUE) {
+    HANDLE serial = CreateFile(L"COM6", GENERIC_READ, 0, NULL, OPEN_EXISTING, 0, NULL);
+    if (serial != INVALID_HANDLE_VALUE) {
         DCB dcbSerialParams = { 0 };
+        COMMTIMEOUTS timeouts;
+
         dcbSerialParams.DCBlength = sizeof(dcbSerialParams);
 
-        if (GetCommState(serial2, &dcbSerialParams)) {
+        if (GetCommState(serial, &dcbSerialParams)) {
             dcbSerialParams.BaudRate = CBR_9600;
             dcbSerialParams.ByteSize = 8;
             dcbSerialParams.StopBits = ONESTOPBIT;
             dcbSerialParams.Parity = NOPARITY;
 
-            if (SetCommState(serial2, &dcbSerialParams)) {
-                DWORD bytesRead;
 
-                char dataRx[100];
+            timeouts.ReadIntervalTimeout = 0;
+            timeouts.ReadTotalTimeoutMultiplier = 0;
+            timeouts.ReadTotalTimeoutConstant = 15;
+            timeouts.WriteTotalTimeoutMultiplier = 0;
+            timeouts.WriteTotalTimeoutConstant = 0;
+            if (SetCommTimeouts(serial, &timeouts)){
 
-
-                //const char data[] = "Hello There";
-
-                ReadFile(serial2, dataRx, 100, &bytesRead, NULL);
-
-
-                printf("\n ReadFile failed with error %d.", GetLastError());
+                if(SetCommState(serial, &dcbSerialParams)) {
+                    DWORD bytesRead;
 
 
+
+                    //const char data[] = "Hello There";
+
+                    if (ReadFile(serial, &dataRx, 11, &bytesRead, NULL)) {
+                        printf("\n RX: %s.", dataRx);
+                    }
+                    else {
+                        CloseHandle(serial);
+                        printf("\n CreateFile failed with error %d.", GetLastError());
+                    }
+
+                }
             }
         }
 
-        CloseHandle(serial2);
+        CloseHandle(serial);
     }
 
 }
-void aircraft_control(const char* xpIP, unsigned short xpPort, unsigned short port) {
 
-
-
-    XPCSocket sock = aopenUDP(xpIP, xpPort, port); //docs seem to be outdated on these...
-    int ac = 0;
-    int size = 6;
-    float values[] = {
-        1.0F, // Latitudinal Stick [-1,1]
-        1.0F, // Longitudinal Stick [-1,1]
-        -1.0F, // Rudder Pedals [-1, 1]
-        0.0F, // Throttle [0, 1]
-        0.0F, // Gear (0=up, 1=down)
-        0.0F  // Flaps [0, 1]
-
-
-    };
-    //sendDATA(sock,)
-
-
-
-
-
-
-
-
-
-
-
-    closeUDP(sock);
-
-
-}
 int main()
 {
     printf("XPlaneConnect Example: readDATA()\n\n");
@@ -159,8 +140,8 @@ int main()
         sprintf_s(telemetry, "%f %f %f %f %f", data[0][2], data[1][1], data[1][2], data[1][3], data[2][3]);
 
         Serial_TX(telemetry);
-        //Serial_RX();
-        //aircraft_control(xpIP, xpPort, port);
+        Serial_RX();
+
 
 
     }
