@@ -10,7 +10,7 @@ extern TaskHandle_t taskHandler;
 
 
 void Serial_RX(void *pArg);
-void CDC_SendMessage(void *pArg);
+void Serial_TX(void *pArg);
 
 void CreateSerialTask();
 #endif /* SRC_SERIALTASK_H_ */

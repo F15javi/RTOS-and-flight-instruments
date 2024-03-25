@@ -462,23 +462,6 @@
             }
           }
         ]
-      },
-      {
-        "Name": "Screen3",
-        "Components": [
-          {
-            "Type": "Box",
-            "Name": "box1",
-            "Width": 480,
-            "Height": 272,
-            "Color": {
-              "Red": 79,
-              "Green": 78,
-              "Blue": 77
-            }
-          }
-        ],
-        "Interactions": []
       }
     ],
     "CustomContainerDefinitions": [],

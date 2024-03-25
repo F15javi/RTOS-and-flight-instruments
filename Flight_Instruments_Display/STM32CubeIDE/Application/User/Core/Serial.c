@@ -11,8 +11,6 @@
 TaskHandle_t taskHandler;
 
 uint8_t receivedData[100];
-uint8_t tx_buffer[100];
-
 
 uint8_t speed;
 float pitch;
@@ -25,7 +23,6 @@ char *token;
 
 
 void Serial_RX(void *pArg);
-void CDC_SendMessage(void *pArg);
 
 
 void CreateSerialTask(){
@@ -34,64 +31,82 @@ void CreateSerialTask(){
 	//Check Serial output
 
 	xTaskCreate(Serial_RX, "Serial_Rx", 128, NULL, 1, NULL);
-	//xTaskCreate(CDC_SendMessage, "CDC_SendMessage", 128, NULL, 1, NULL);
+	xTaskCreate(Serial_TX, "Serial_Tx", 128, NULL, 1, NULL);
 
 
 }
-
 
 
 void Serial_RX(void *pArg){
-	HAL_UART_Receive_DMA(&huart1, receivedData, 100);
 	while (1) {
+		HAL_UART_Receive_DMA(&huart1, receivedData, 100);
 
-
-
-
-		//vTaskDelay(200);
-
-	}
-}
-void CDC_SendMessage(void *pArg) {
-
-	char* msg = "Hello, world!\r\n";
-
-    int len = snprintf((char*)tx_buffer, 100, "%s", msg);
-    if (len > 0) {
-        //CDC_Transmit_FS(tx_buffer, len);
-    }
-}
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-
-	  char *data = "Hello there\n";
-
-	  CDC_Transmit_FS((uint8_t *) data, strlen(data));
-
-
-	HAL_UART_Receive_DMA(&huart1, receivedData, 100);
-	char *s = receivedData;
-	   token = strtok(s, delimiter);
-	   if (token != NULL) {
-		   speed = atoi(token);
-		   token = strtok(NULL, delimiter);
-		   if (token != NULL) {
-			   pitch = atof(token);
-			   token = strtok(NULL, delimiter);
+			char *s = receivedData;
+			   token = strtok(s, delimiter);
 			   if (token != NULL) {
-				   roll = atof(token);
+				   speed = atoi(token);
 				   token = strtok(NULL, delimiter);
 				   if (token != NULL) {
-				   		heading = atof(token);
-						token = strtok(NULL, delimiter);
+					   pitch = atof(token);
+					   token = strtok(NULL, delimiter);
 					   if (token != NULL) {
-						   altitude = atoi(token);
+						   roll = atof(token);
+						   token = strtok(NULL, delimiter);
+						   if (token != NULL) {
+						   		heading = atof(token);
+								token = strtok(NULL, delimiter);
+							   if (token != NULL) {
+								   altitude = atoi(token);
+							   }
+						   }
 					   }
 				   }
 			   }
-		   }
-	   }
+
+
+	}
 }
 
+void Serial_TX(void *pArg){
+	while (1) {
+
+	   char *data = "Hello there\n";
+
+	   CDC_Transmit_FS((uint8_t *) data, strlen(data));
+	   vTaskDelay(100);
+
+	}
+}
+
+//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+//
+//
+//
+//
+//	HAL_UART_Receive_DMA(&huart1, receivedData, 100);
+//	char *s = receivedData;
+//	   token = strtok(s, delimiter);
+//	   if (token != NULL) {
+//		   speed = atoi(token);
+//		   token = strtok(NULL, delimiter);
+//		   if (token != NULL) {
+//			   pitch = atof(token);
+//			   token = strtok(NULL, delimiter);
+//			   if (token != NULL) {
+//				   roll = atof(token);
+//				   token = strtok(NULL, delimiter);
+//				   if (token != NULL) {
+//				   		heading = atof(token);
+//						token = strtok(NULL, delimiter);
+//					   if (token != NULL) {
+//						   altitude = atoi(token);
+//					   }
+//				   }
+//			   }
+//		   }
+//	   }
+//}
+//
 
 
 
