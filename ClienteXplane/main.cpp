@@ -79,20 +79,20 @@ void Serial_RX() {
 
                 ReadFile(serial2, dataRx, 100, &bytesRead, NULL);
 
-                    
+
                 printf("\n ReadFile failed with error %d.", GetLastError());
-                
+
 
             }
         }
 
         CloseHandle(serial2);
     }
-    
+
 }
 void aircraft_control(const char* xpIP, unsigned short xpPort, unsigned short port) {
-    
-    
+
+
 
     XPCSocket sock = aopenUDP(xpIP, xpPort, port); //docs seem to be outdated on these...
     int ac = 0;
@@ -132,7 +132,7 @@ int main()
     unsigned short xpPort = 49007;  //default port number XPC listens on
     unsigned short port = 49003;    //port number to which X-Plane is set to send UDP packets
 
-    
+
 
     while (1) {
 
@@ -146,7 +146,7 @@ int main()
         float data[rows][9]; //data[0] is dataset index number, data[1] to data[9] are the contents of the dataset
         readDATA(sock, data, rows);
 
-       
+
 
         printf("\nVtas: %f,", data[0][2]);
 
@@ -157,14 +157,14 @@ int main()
 
         char telemetry[100];
         sprintf_s(telemetry, "%f %f %f %f %f", data[0][2], data[1][1], data[1][2], data[1][3], data[2][3]);
-        
+
         Serial_TX(telemetry);
         //Serial_RX();
         //aircraft_control(xpIP, xpPort, port);
-        
+
 
     }
-    
+
 
     return 0;
 }
