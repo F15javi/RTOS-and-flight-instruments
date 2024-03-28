@@ -1,0 +1,8 @@
+﻿  xplaneConnect.c
+C:\Users\f15ja\OneDrive\Escritorio\TFG\src\xplaneConnect.c(214,31): warning C4244: 'función': conversión de 'SOCKET' a 'int'; posible pérdida de datos
+C:\Users\f15ja\OneDrive\Escritorio\TFG\src\xplaneConnect.c(397,17): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\f15ja\OneDrive\Escritorio\TFG\src\xplaneConnect.c(452,10): warning C4267: '+=': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\f15ja\OneDrive\Escritorio\TFG\src\xplaneConnect.c(907,28): warning C4267: 'función': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\f15ja\OneDrive\Escritorio\TFG\src\xplaneConnect.c(986,16): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+  main.cpp
+  ClienteXplane.vcxproj -> C:\Users\f15ja\OneDrive\Escritorio\TFG\ClienteXplane\x64\Debug\ClienteXplane.exe

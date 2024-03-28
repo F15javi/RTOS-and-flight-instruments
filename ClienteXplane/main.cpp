@@ -62,6 +62,13 @@ void Serial_RX() {
     if (serial2 != INVALID_HANDLE_VALUE) {
         DCB dcbSerialParams = { 0 };
         dcbSerialParams.DCBlength = sizeof(dcbSerialParams);
+        COMMTIMEOUTS timeout;
+
+        timeout.ReadIntervalTimeout = 0;
+        timeout.ReadTotalTimeoutMultiplier = 0;
+        timeout.ReadTotalTimeoutConstant = 15;
+        timeout.WriteTotalTimeoutMultiplier = 0;
+        timeout.WriteTotalTimeoutConstant = 0;
 
         if (GetCommState(serial2, &dcbSerialParams)) {
             dcbSerialParams.BaudRate = CBR_9600;
