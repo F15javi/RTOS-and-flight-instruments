@@ -6,8 +6,7 @@
 #include <images/BitmapDatabase.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 
-Screen1ViewBase::Screen1ViewBase() :
-    buttonCallback(this, &Screen1ViewBase::buttonCallbackHandler)
+Screen1ViewBase::Screen1ViewBase()
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -17,68 +16,46 @@ Screen1ViewBase::Screen1ViewBase() :
     box1.setColor(touchgfx::Color::getColorFromRGB(107, 129, 255));
     add(box1);
 
-    textureMapper2.setXY(-60, -364);
-    textureMapper2.setBitmap(touchgfx::Bitmap(BITMAP_HORIZONTE_ARTIFICIAL_FRONT_V3_ID));
-    textureMapper2.setWidth(599);
-    textureMapper2.setHeight(1000);
-    textureMapper2.setBitmapPosition(-0.5f, 0.0f);
-    textureMapper2.setScale(1.0f);
-    textureMapper2.setCameraDistance(1000.0f);
-    textureMapper2.setOrigo(299.5f, 500.0f, 1000.0f);
-    textureMapper2.setCamera(299.5f, 500.0f);
-    textureMapper2.setAngles(0.0f, 0.0f, 0.0f);
-    textureMapper2.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
-    add(textureMapper2);
+    textureMapper1.setXY(-60, -364);
+    textureMapper1.setBitmap(touchgfx::Bitmap(BITMAP_HORIZONTE_ARTIFICIAL_FRONT_V3_ID));
+    textureMapper1.setWidth(600);
+    textureMapper1.setHeight(1000);
+    textureMapper1.setBitmapPosition(0.0f, 0.0f);
+    textureMapper1.setScale(1.0f);
+    textureMapper1.setCameraDistance(1000.0f);
+    textureMapper1.setOrigo(300.0f, 500.0f, 1000.0f);
+    textureMapper1.setCamera(300.0f, 500.0f);
+    textureMapper1.setAngles(0.0f, 0.0f, 0.0f);
+    textureMapper1.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
+    add(textureMapper1);
 
-    textArea1.setPosition(-1, 136, 100, 24);
-    textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
-    textArea1.setLinespacing(0);
-    Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_JBJZ).getText());
-    textArea1.setWildcard(textArea1Buffer);
-    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_KKMT));
-    add(textArea1);
-
-    textArea2.setPosition(386, 136, 100, 24);
-    textArea2.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
-    textArea2.setLinespacing(0);
-    Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_XSLJ).getText());
-    textArea2.setWildcard(textArea2Buffer);
-    textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_CXO7));
-    add(textArea2);
+    image1.setXY(190, 86);
+    image1.setBitmap(touchgfx::Bitmap(BITMAP_ARTIFICIAL_PLANE_V2_ID));
+    add(image1);
 
     image2.setXY(5, 136);
     image2.setBitmap(touchgfx::Bitmap(BITMAP_BOX_ID));
     add(image2);
 
-    image2_1.setXY(395, 136);
-    image2_1.setBitmap(touchgfx::Bitmap(BITMAP_BOX_ID));
-    add(image2_1);
-
-    image3.setXY(189, 86);
-    image3.setBitmap(touchgfx::Bitmap(BITMAP_ARTIFICIAL_PLANE_V2_ID));
+    image3.setXY(395, 136);
+    image3.setBitmap(touchgfx::Bitmap(BITMAP_BOX_ID));
     add(image3);
 
-    slideMenu1_1.setXY(-3, 0);
-    slideMenu1_1.setup(touchgfx::SlideMenu::EAST,
-        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BACKGROUND_ID),
-        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BUTTON_ID),
-        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BUTTON_ID),
-        0, 0, 50, 5);
-    slideMenu1_1.setState(touchgfx::SlideMenu::COLLAPSED);
-    slideMenu1_1.setVisiblePixelsWhenCollapsed(25);
-    slideMenu1_1.setHiddenPixelsWhenExpanded(0);
-    slideMenu1_1.setAnimationEasingEquation(touchgfx::EasingEquations::cubicEaseInOut);
-    slideMenu1_1.setAnimationDuration(18);
-    slideMenu1_1.setExpandedStateTimeout(180);
-    NAV.setXY(-1, 0);
-    NAV.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
-    NAV.setLabelText(touchgfx::TypedText(T___SINGLEUSE_2K4S));
-    NAV.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    NAV.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    NAV.setAction(buttonCallback);
-    slideMenu1_1.add(NAV);
+    textArea1.setPosition(-4, 137, 100, 24);
+    textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
+    textArea1.setLinespacing(0);
+    Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_3GMH).getText());
+    textArea1.setWildcard(textArea1Buffer);
+    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_N6R5));
+    add(textArea1);
 
-    add(slideMenu1_1);
+    textArea2.setPosition(386, 137, 100, 24);
+    textArea2.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
+    textArea2.setLinespacing(0);
+    Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_1R7G).getText());
+    textArea2.setWildcard(textArea2Buffer);
+    textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_V4AE));
+    add(textArea2);
 }
 
 Screen1ViewBase::~Screen1ViewBase()
@@ -89,19 +66,4 @@ Screen1ViewBase::~Screen1ViewBase()
 void Screen1ViewBase::setupScreen()
 {
 
-}
-
-void Screen1ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
-{
-    if (&src == &NAV)
-    {
-        //Interaction1
-        //When NAV clicked change screen to Screen2
-        //Go to Screen2 with screen transition towards North
-        application().gotoScreen2ScreenCoverTransitionNorth();
-        //Interaction2
-        //When NAV clicked reset timer slideMenu1_1
-        //reset expanded state timer on slideMenu1_1
-        slideMenu1_1.resetExpandedStateTimer();
-    }
 }

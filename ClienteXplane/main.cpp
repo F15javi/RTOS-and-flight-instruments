@@ -38,7 +38,7 @@ void Serial_TX(char telemetry[100]) {
 
 
 
-                //const char data[] = "Hello There";
+                const char data[] = "111.11111 111.11111";
 
                 WriteFile(serial, telemetry, 100, &bytesWritten, NULL);
                 printf("\n CreateFile failed with error %d.", GetLastError());
@@ -149,7 +149,7 @@ int main()
         XPCSocket sock = aopenUDP(xpIP, xpPort, port); //docs seem to be outdated on these...
 
         // Read 2 rows of data
-        const int rows = 3;
+        const int rows = 9;
         float data[rows][9]; //data[0] is dataset index number, data[1] to data[9] are the contents of the dataset
         readDATA(sock, data, rows);
 
@@ -159,13 +159,14 @@ int main()
 
         printf("\n pitch = %f, roll = %f, heading = %f, alt = %f", data[1][1], data[1][2], data[1][3], data[2][3]);
 
-        Sleep(15);
+        
         closeUDP(sock);
 
         char telemetry[100];
         sprintf_s(telemetry, "%f %f %f %f %f", data[0][2], data[1][1], data[1][2], data[1][3], data[2][3]);
 
         Serial_TX(telemetry);
+        Sleep(15);
         //Serial_RX();
         //aircraft_control(xpIP, xpPort, port);
 

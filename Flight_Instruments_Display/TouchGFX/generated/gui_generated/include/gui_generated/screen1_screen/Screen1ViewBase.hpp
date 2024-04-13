@@ -9,10 +9,8 @@
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextureMapper.hpp>
-#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/Image.hpp>
-#include <touchgfx/containers/SlideMenu.hpp>
-#include <touchgfx/widgets/ButtonWithLabel.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -31,14 +29,12 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box box1;
-    touchgfx::TextureMapper textureMapper2;
+    touchgfx::TextureMapper textureMapper1;
+    touchgfx::Image image1;
+    touchgfx::Image image2;
+    touchgfx::Image image3;
     touchgfx::TextAreaWithOneWildcard textArea1;
     touchgfx::TextAreaWithOneWildcard textArea2;
-    touchgfx::Image image2;
-    touchgfx::Image image2_1;
-    touchgfx::Image image3;
-    touchgfx::SlideMenu slideMenu1_1;
-    touchgfx::ButtonWithLabel NAV;
 
     /*
      * Wildcard Buffers
@@ -49,16 +45,6 @@ protected:
     touchgfx::Unicode::UnicodeChar textArea2Buffer[TEXTAREA2_SIZE];
 
 private:
-
-    /*
-     * Callback Declarations
-     */
-    touchgfx::Callback<Screen1ViewBase, const touchgfx::AbstractButton&> buttonCallback;
-
-    /*
-     * Callback Handler Declarations
-     */
-    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

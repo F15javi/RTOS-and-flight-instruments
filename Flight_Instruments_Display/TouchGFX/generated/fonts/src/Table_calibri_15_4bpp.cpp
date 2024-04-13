@@ -4,7 +4,6 @@
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_calibri_15_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
-    {     0, 0x0020,   0,   0,   0,   0,   3,   0,   0, 0x00 },
     {     0, 0x0021,   2,  10,  10,   2,   5,   0,   0, 0x00 },
     {    10, 0x0022,   4,   4,  10,   1,   6,   0,   0, 0x00 },
     {    18, 0x0023,   8,   9,   9,   0,   7,   0,   0, 0x00 },
@@ -98,8 +97,7 @@ KEEP extern const touchgfx::GlyphNode glyphs_calibri_15_4bpp[] FONT_TABLE_LOCATI
     {  2741, 0x007B,   5,  13,  10,   0,   5,   0,   0, 0x00 },
     {  2780, 0x007C,   2,  13,  10,   2,   7,   0,   0, 0x00 },
     {  2793, 0x007D,   5,  13,  10,   0,   5,   0,   0, 0x00 },
-    {  2832, 0x007E,   7,   3,   9,   0,   7,   0,   0, 0x00 },
-    {  2844, 0x00B0,   5,   4,  10,   0,   5,   0,   0, 0x00 }
+    {  2832, 0x007E,   7,   3,   9,   0,   7,   0,   0, 0x00 }
 };
 
 // calibri_15_4bpp
@@ -273,6 +271,6 @@ touchgfx::GeneratedFont& getFont_calibri_15_4bpp();
 
 touchgfx::GeneratedFont& getFont_calibri_15_4bpp()
 {
-    static touchgfx::GeneratedFont calibri_15_4bpp(glyphs_calibri_15_4bpp, 96, 18, 15, 0, 0, 4, 1, 1, 1, unicodes_calibri_15_4bpp, kerning_calibri_15_4bpp, 63, 0, 0, &calibri_contextualFormsTable);
+    static touchgfx::GeneratedFont calibri_15_4bpp(glyphs_calibri_15_4bpp, 94, 18, 15, 0, 0, 4, 1, 1, 1, unicodes_calibri_15_4bpp, kerning_calibri_15_4bpp, 63, 0, 0, &calibri_contextualFormsTable);
     return calibri_15_4bpp;
 }

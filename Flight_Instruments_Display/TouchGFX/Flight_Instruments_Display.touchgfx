@@ -17,59 +17,28 @@
           },
           {
             "Type": "TextureMapper",
-            "Name": "textureMapper2",
+            "Name": "textureMapper1",
             "X": -60,
             "Y": -364,
-            "Width": 599,
+            "Width": 600,
             "Height": 1000,
             "RenderingAlgorithm": "Nearest-neighbor",
             "FileNameImage": "Horizonte_artificial_front_v3.png",
-            "LockBitmapToCenter": true,
-            "XBitmapPosition": -0.5,
             "Scale": 1.0,
             "LockOrigoToCenter": true,
-            "XOrigo": 299.5,
+            "XOrigo": 300.0,
             "YOrigo": 500.0,
             "ZOrigo": 1000.0,
             "CameraDistance": 1000.0
           },
           {
-            "Type": "TextArea",
-            "Name": "textArea1",
-            "X": -1,
-            "Y": 136,
+            "Type": "Image",
+            "Name": "image1",
+            "X": 190,
+            "Y": 86,
             "Width": 100,
-            "Height": 24,
-            "TextId": "__SingleUse_KKMT",
-            "TextRotation": "0",
-            "Color": {
-              "Green": 255,
-              "Blue": 106
-            },
-            "Wildcard1": {
-              "TextId": "__SingleUse_JBJZ",
-              "UseBuffer": true,
-              "BufferSize": 20
-            }
-          },
-          {
-            "Type": "TextArea",
-            "Name": "textArea2",
-            "X": 386,
-            "Y": 136,
-            "Width": 100,
-            "Height": 24,
-            "TextId": "__SingleUse_CXO7",
-            "TextRotation": "0",
-            "Color": {
-              "Green": 255,
-              "Blue": 106
-            },
-            "Wildcard1": {
-              "TextId": "__SingleUse_XSLJ",
-              "UseBuffer": true,
-              "BufferSize": 20
-            }
+            "Height": 100,
+            "RelativeFilename": "Artificial_plane_v2.png"
           },
           {
             "Type": "Image",
@@ -82,7 +51,7 @@
           },
           {
             "Type": "Image",
-            "Name": "image2_1",
+            "Name": "image3",
             "X": 395,
             "Y": 136,
             "Width": 82,
@@ -90,378 +59,45 @@
             "RelativeFilename": "Box.png"
           },
           {
-            "Type": "Image",
-            "Name": "image3",
-            "X": 189,
-            "Y": 86,
-            "Width": 100,
-            "Height": 100,
-            "RelativeFilename": "Artificial_plane_v2.png"
-          },
-          {
-            "Type": "SlideMenu",
-            "Name": "slideMenu1_1",
-            "X": -3,
-            "Width": 74,
-            "Height": 272,
-            "FileNameBackground": "left_slide_menu_background.png",
-            "UseButton": true,
-            "FileNameButtonPressed": "left_slide_menu_button.png",
-            "FileNameButtonReleased": "left_slide_menu_button.png",
-            "ButtonX": 50,
-            "ButtonY": 5,
-            "State": "Collapsed",
-            "ExpandDirection": "East",
-            "Easing": "Cubic",
-            "EasingOption": "InOut",
-            "AnimationDuration": 300,
-            "VisiblePixelsWhenCollapsed": 25,
-            "ExpandedStateTimeout": 3000,
-            "Components": [
-              {
-                "Type": "ButtonWithLabel",
-                "Name": "NAV",
-                "X": -1,
-                "Width": 50,
-                "Height": 50,
-                "Pressed": "menu_toggle_button_01.png",
-                "Released": "menu_toggle_button_01.png",
-                "TextId": "__SingleUse_2K4S",
-                "ReleasedColor": {
-                  "Red": 255,
-                  "Green": 255,
-                  "Blue": 255
-                },
-                "PressedColor": {
-                  "Red": 255,
-                  "Green": 255,
-                  "Blue": 255
-                },
-                "TextRotation": "0"
-              }
-            ]
-          }
-        ],
-        "Interactions": [
-          {
-            "InteractionName": "Interaction1",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "NAV"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionCover",
-              "ScreenTransitionDirection": "North",
-              "ActionComponent": "Screen2"
-            }
-          },
-          {
-            "InteractionName": "Interaction2",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "NAV"
-            },
-            "Action": {
-              "Type": "ActionResetTimer",
-              "ActionComponent": "slideMenu1_1"
-            }
-          }
-        ]
-      },
-      {
-        "Name": "Screen2",
-        "CanvasBufferSize": 7200,
-        "Components": [
-          {
-            "Type": "Box",
-            "Name": "box1",
-            "Width": 480,
-            "Height": 272,
-            "Color": {
-              "Red": 79,
-              "Green": 78,
-              "Blue": 77
-            }
-          },
-          {
-            "Type": "Circle",
-            "Name": "circle1",
-            "X": 202,
-            "Width": 272,
-            "Height": 272,
-            "CenterX": 135.4,
-            "CenterY": 136.3,
-            "Radius": 135.0,
-            "EndAngle": 360.0,
-            "CapPrecision": "Butt"
-          },
-          {
-            "Type": "TextureMapper",
-            "Name": "compass",
-            "X": 202,
-            "Width": 271,
-            "Height": 271,
-            "RenderingAlgorithm": "Nearest-neighbor",
-            "FileNameImage": "Compass.png",
-            "LockBitmapToCenter": true,
-            "XBitmapPosition": -0.5,
-            "YBitmapPosition": -0.5,
-            "Scale": 1.0,
-            "LockOrigoToCenter": true,
-            "XOrigo": 135.5,
-            "YOrigo": 135.5,
-            "ZOrigo": 1000.0,
-            "CameraDistance": 1000.0
-          },
-          {
-            "Type": "TextureMapper",
-            "Name": "heading",
-            "X": 203,
-            "Width": 271,
-            "Height": 271,
-            "RenderingAlgorithm": "Nearest-neighbor",
-            "FileNameImage": "HDG.png",
-            "LockBitmapToCenter": true,
-            "Scale": 1.0,
-            "LockOrigoToCenter": true,
-            "XOrigo": 135.5,
-            "YOrigo": 135.5,
-            "ZOrigo": 1000.0,
-            "CameraDistance": 1000.0
-          },
-          {
-            "Type": "Image",
-            "Name": "image1",
-            "X": 307,
-            "Y": 106,
-            "Width": 60,
-            "Height": 60,
-            "RelativeFilename": "airplane.png"
-          },
-          {
             "Type": "TextArea",
             "Name": "textArea1",
-            "X": 313,
-            "Y": 81,
-            "Width": 50,
-            "Height": 25,
-            "TextId": "__SingleUse_3XSI",
+            "X": -4,
+            "Y": 137,
+            "Width": 100,
+            "Height": 24,
+            "TextId": "__SingleUse_N6R5",
             "TextRotation": "0",
             "Color": {
               "Green": 255,
               "Blue": 106
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_6SRL",
+              "TextId": "__SingleUse_3GMH",
               "UseBuffer": true,
               "BufferSize": 20
             }
-          },
-          {
-            "Type": "Shape",
-            "Name": "shape1",
-            "X": 298,
-            "Y": 57,
-            "Width": 80,
-            "Height": 13,
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "Points": [
-              {
-                "X": 40.0
-              },
-              {
-                "X": 80.0,
-                "Y": 80.0
-              },
-              {
-                "Y": 80.0
-              }
-            ],
-            "XScale": 1.0,
-            "YScale": 1.0
-          },
-          {
-            "Type": "SlideMenu",
-            "Name": "slideMenu1",
-            "Width": 74,
-            "Height": 272,
-            "FileNameBackground": "left_slide_menu_background.png",
-            "UseButton": true,
-            "FileNameButtonPressed": "left_slide_menu_button.png",
-            "FileNameButtonReleased": "left_slide_menu_button.png",
-            "ButtonX": 50,
-            "ButtonY": 5,
-            "State": "Collapsed",
-            "ExpandDirection": "East",
-            "Easing": "Cubic",
-            "EasingOption": "InOut",
-            "AnimationDuration": 300,
-            "VisiblePixelsWhenCollapsed": 25,
-            "ExpandedStateTimeout": 3000,
-            "Components": [
-              {
-                "Type": "ButtonWithLabel",
-                "Name": "HOR",
-                "X": -1,
-                "Width": 50,
-                "Height": 50,
-                "Pressed": "menu_toggle_button_01.png",
-                "Released": "menu_toggle_button_01.png",
-                "TextId": "__SingleUse_W11F",
-                "ReleasedColor": {
-                  "Red": 255,
-                  "Green": 255,
-                  "Blue": 255
-                },
-                "PressedColor": {
-                  "Red": 255,
-                  "Green": 255,
-                  "Blue": 255
-                },
-                "TextRotation": "0"
-              }
-            ]
-          },
-          {
-            "Type": "BoxWithBorder",
-            "Name": "boxWithBorder1_1",
-            "X": 19,
-            "Y": 119,
-            "Width": 36,
-            "Height": 36,
-            "Color": {
-              "Red": 61,
-              "Green": 32,
-              "Blue": 32
-            },
-            "BorderSize": 1
-          },
-          {
-            "Type": "BoxWithBorder",
-            "Name": "boxWithBorder1",
-            "X": 19,
-            "Y": 75,
-            "Width": 36,
-            "Height": 36,
-            "Color": {
-              "Red": 46,
-              "Green": 42,
-              "Blue": 42
-            },
-            "BorderSize": 1
-          },
-          {
-            "Type": "BoxWithBorder",
-            "Name": "boxWithBorder2",
-            "X": 64,
-            "Y": 105,
-            "Width": 75,
-            "Height": 22,
-            "BorderColor": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "BorderSize": 1
           },
           {
             "Type": "TextArea",
             "Name": "textArea2",
-            "X": 70,
-            "Y": 106,
-            "Width": 62,
-            "Height": 18,
-            "TextId": "__SingleUse_ZJ2T",
+            "X": 386,
+            "Y": 137,
+            "Width": 100,
+            "Height": 24,
+            "TextId": "__SingleUse_V4AE",
             "TextRotation": "0",
             "Color": {
               "Green": 255,
               "Blue": 106
             },
-            "AutoSize": true,
             "Wildcard1": {
-              "TextId": "__SingleUse_95FV",
+              "TextId": "__SingleUse_1R7G",
               "UseBuffer": true,
               "BufferSize": 20
             }
-          },
-          {
-            "Type": "RepeatButton",
-            "Name": "button_up",
-            "X": 19,
-            "Y": 75,
-            "Width": 36,
-            "Height": 36,
-            "Pressed": "__generated\\dark_theme_images_widgets_button_icon_rounded_micro_fill_pressed.png",
-            "Released": "__generated\\icon_theme_images_action_arrow_circle_up_36_36_FFFFFF.svg.png",
-            "Delay": 200,
-            "Interval": 25
-          },
-          {
-            "Type": "RepeatButton",
-            "Name": "button_down",
-            "X": 19,
-            "Y": 119,
-            "Width": 36,
-            "Height": 36,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_micro_fill_pressed.png",
-            "Released": "__generated\\icon_theme_images_action_arrow_circle_down_36_36_FFFFFF.svg.png",
-            "Delay": 200,
-            "Interval": 25
           }
         ],
-        "Interactions": [
-          {
-            "InteractionName": "Interaction1",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "HOR"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionCover",
-              "ScreenTransitionDirection": "South",
-              "ActionComponent": "Screen1"
-            }
-          },
-          {
-            "InteractionName": "Interaction2",
-            "Trigger": {
-              "Type": "TriggerSlideMenuStateChanged",
-              "TriggerComponent": "slideMenu1"
-            },
-            "Action": {
-              "Type": "ActionResetTimer",
-              "ActionComponent": "slideMenu1"
-            }
-          },
-          {
-            "InteractionName": "Interaction3",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button_up"
-            },
-            "Action": {
-              "Type": "ActionCustom",
-              "FunctionName": "up_hdg"
-            }
-          },
-          {
-            "InteractionName": "Interaction4",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button_down"
-            },
-            "Action": {
-              "Type": "ActionCustom",
-              "FunctionName": "down_hdg"
-            }
-          }
-        ]
+        "Interactions": []
       }
     ],
     "CustomContainerDefinitions": [],
@@ -505,6 +141,7 @@
     "RunSimulatorCommand": "build\\bin\\simulator.exe",
     "CompileTargetCommand": "make -f ../gcc/Makefile -j8",
     "FlashTargetCommand": "make -f ../gcc/Makefile flash -j8",
+    "FlashTargetIntCommandOverride": "make -f ../gcc/Makefile intflash -j8",
     "LandscapeSkinX": 0,
     "LandscapeSkinY": 0,
     "PortraitSkinX": 0,
@@ -518,10 +155,11 @@
     "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
     "OptionalComponents": [],
     "AdditionalFeatures": [
-      "Vector",
+      "CWRVector",
+      "VectorFonts",
       "Video"
     ]
   },
-  "Version": "4.22.1",
-  "CreatedBy": "4.22.1"
+  "Version": "4.23.2",
+  "CreatedBy": "4.23.2"
 }

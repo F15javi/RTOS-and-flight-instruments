@@ -2,12 +2,26 @@
 #include <gui/model/ModelListener.hpp>
 
 #include "stm32f7xx_hal.h"
+#include "cmsis_os.h"
+#include "main.h"
 
-extern __IO uint16_t altitude;
-extern __IO uint8_t speed;
-extern __IO float pitch;
-extern __IO float roll;
-extern __IO float heading;
+
+
+typedef struct{
+				uint16_t speed;
+				float pitch;
+				float roll;
+				uint16_t altitude;
+				float heading;
+			}RX_Data;
+
+extern "C"{
+
+	extern osMessageQueueId_t DataToDisplayHandle;
+
+
+	}
+
 
 Model::Model() : modelListener(0)
 {
@@ -16,12 +30,19 @@ Model::Model() : modelListener(0)
 
 void Model::tick()
 {
-	modelListener->Update_Speed_Text(speed);
-	modelListener->Update_Altitude_Text(altitude);
-	modelListener->Update_Horizon(pitch, roll);
-	modelListener->Update_Roll_Text(roll);
-	modelListener->Update_Heading_Text(heading);
+	RX_Data Telemetry;
 
+	//Get data from the Display queue
+	if (osMessageQueueGet(DataToDisplayHandle, &Telemetry, 0U, 0) == osOK)
+		{
+		// send data to presenter
+			modelListener->Update_Speed(Telemetry.speed);
+			modelListener->Update_Altitude(Telemetry.altitude);
+			modelListener->Update_Horizon(Telemetry.pitch, Telemetry.roll);
+			modelListener->Update_Roll(Telemetry.pitch);
+			modelListener->Update_Heading(Telemetry.heading);
+
+		}
 
 
 }

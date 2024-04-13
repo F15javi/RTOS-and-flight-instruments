@@ -24,9 +24,10 @@
     "OptionalComponents": [
     ],
     "AdditionalFeatures": [
-      "Vector",
+      "CWRVector",
+      "VectorFonts",
       "Video"
     ]
   },
-  "Version": "4.22.1"
+  "Version": "4.23.2"
 }

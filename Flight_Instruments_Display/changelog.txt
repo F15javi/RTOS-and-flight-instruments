@@ -1,5 +1,15 @@
+3.0.20
+- Updated to STM32CubeMX 6.11.0
+
+3.0.19
+- Updated to TouchGFX 4.23.0
+- Updated to STM32CubeMX 6.10.0
+- Enabled support for vector fonts
+- Option to flash internal (code) added in TouchGFX Designer
+- Disable semi-hosting functionality for Keil 6 project, to allow execution without a debugger connected
+
 3.0.18
-- Updated to CubeMX 6.9.1
+- Updated to STM32CubeMX 6.9.1
 
 3.0.17
 - Upgraded to TouchGFX 4.22.0
@@ -30,7 +40,7 @@
 
 3.0.10
 - Upgraded to TouchGFX 4.18.1
-- Upgraded to CubeMX 6.4.0
+- Upgraded to STM32CubeMX 6.4.0
 - Upgraded to Firmware Package FW_F7 1.16.2
 
 3.0.9
@@ -43,7 +53,7 @@
 - Bugfix for IAR
 
 3.0.7
-- Upgraded to CubeMX 6.3.0
+- Upgraded to STM32CubeMX 6.3.0
 
 3.0.6
 - Updated the project's Drivers folder structure

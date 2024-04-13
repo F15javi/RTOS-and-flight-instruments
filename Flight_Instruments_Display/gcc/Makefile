@@ -354,7 +354,7 @@ $(binary_output_path)/$(target_executable): $(object_files) $(object_asm_files)
 	@echo "  intflash.elf - Internal flash, elf debug"
 	@$(objcopy) --remove-section=ExtFlashSection $@ $(@D)/intflash.elf 2>/dev/null
 	@echo "  intflash.hex - Internal flash, hex"
-	@$(objcopy) -O ihex --remove-section=ExtFlashSection $@ $(@D)/intflash.hex
+	@$(objcopy) -O ihex --remove-section=ExtFlashSection --remove-section=FontFlashSection --remove-section=TextFlashSection $@ $(@D)/intflash.hex
 	# re-enable if extflash binaries are required in your workflow
 	# @echo "  extflash.bin - External flash, binary"
 	# @$(objcopy) -O binary --only-section=*FlashSection $@ $(@D)/extflash.bin

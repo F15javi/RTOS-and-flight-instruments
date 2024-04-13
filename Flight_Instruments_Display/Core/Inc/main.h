@@ -32,7 +32,6 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-extern UART_HandleTypeDef huart1;
 
 /* USER CODE END Includes */
 
@@ -43,6 +42,7 @@ extern UART_HandleTypeDef huart1;
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
+extern UART_HandleTypeDef huart2;
 
 /* USER CODE END EC */
 
