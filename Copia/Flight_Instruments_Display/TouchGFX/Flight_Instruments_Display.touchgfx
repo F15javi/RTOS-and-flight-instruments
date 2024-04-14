@@ -673,9 +673,9 @@
           {
             "Type": "TextArea",
             "Name": "textArea2",
-            "X": 427,
+            "X": 410,
             "Y": 12,
-            "Width": 8,
+            "Width": 50,
             "Height": 18,
             "TextId": "__SingleUse_2CY6",
             "TextRotation": "0",
@@ -683,7 +683,6 @@
               "Green": 255,
               "Blue": 106
             },
-            "AutoSize": true,
             "Wildcard1": {
               "TextId": "__SingleUse_XWJ5",
               "UseBuffer": true,
@@ -693,9 +692,9 @@
           {
             "Type": "TextArea",
             "Name": "textArea4",
-            "X": 427,
+            "X": 410,
             "Y": 96,
-            "Width": 8,
+            "Width": 50,
             "Height": 18,
             "TextId": "__SingleUse_GZ6D",
             "TextRotation": "0",
@@ -703,7 +702,6 @@
               "Green": 255,
               "Blue": 106
             },
-            "AutoSize": true,
             "Wildcard1": {
               "TextId": "__SingleUse_X7R4",
               "UseBuffer": true,
@@ -713,9 +711,9 @@
           {
             "Type": "TextArea",
             "Name": "textArea5",
-            "X": 427,
+            "X": 410,
             "Y": 138,
-            "Width": 8,
+            "Width": 50,
             "Height": 18,
             "TextId": "__SingleUse_T567",
             "TextRotation": "0",
@@ -723,7 +721,6 @@
               "Green": 255,
               "Blue": 106
             },
-            "AutoSize": true,
             "Wildcard1": {
               "TextId": "__SingleUse_SMIE",
               "UseBuffer": true,
@@ -733,9 +730,9 @@
           {
             "Type": "TextArea",
             "Name": "textArea3",
-            "X": 427,
+            "X": 410,
             "Y": 54,
-            "Width": 8,
+            "Width": 50,
             "Height": 18,
             "TextId": "__SingleUse_OP2Z",
             "TextRotation": "0",
@@ -743,7 +740,6 @@
               "Green": 255,
               "Blue": 106
             },
-            "AutoSize": true,
             "Wildcard1": {
               "TextId": "__SingleUse_EOFK",
               "UseBuffer": true,
@@ -790,7 +786,7 @@
             "Type": "Image",
             "Name": "Tank1_Arrow",
             "X": 241,
-            "Y": 200,
+            "Y": 199,
             "Width": 23,
             "Height": 12,
             "RelativeFilename": "Arrow.png"

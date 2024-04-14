@@ -66,39 +66,35 @@ Screen3ViewBase::Screen3ViewBase() :
 
     add(slideMenu1);
 
-    textArea2.setXY(427, 12);
+    textArea2.setPosition(410, 12, 50, 18);
     textArea2.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
     textArea2.setLinespacing(0);
     Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_XWJ5).getText());
     textArea2.setWildcard(textArea2Buffer);
-    textArea2.resizeToCurrentText();
     textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2CY6));
     add(textArea2);
 
-    textArea4.setXY(427, 96);
+    textArea4.setPosition(410, 96, 50, 18);
     textArea4.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
     textArea4.setLinespacing(0);
     Unicode::snprintf(textArea4Buffer, TEXTAREA4_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_X7R4).getText());
     textArea4.setWildcard(textArea4Buffer);
-    textArea4.resizeToCurrentText();
     textArea4.setTypedText(touchgfx::TypedText(T___SINGLEUSE_GZ6D));
     add(textArea4);
 
-    textArea5.setXY(427, 138);
+    textArea5.setPosition(410, 138, 50, 18);
     textArea5.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
     textArea5.setLinespacing(0);
     Unicode::snprintf(textArea5Buffer, TEXTAREA5_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_SMIE).getText());
     textArea5.setWildcard(textArea5Buffer);
-    textArea5.resizeToCurrentText();
     textArea5.setTypedText(touchgfx::TypedText(T___SINGLEUSE_T567));
     add(textArea5);
 
-    textArea3.setXY(427, 54);
+    textArea3.setPosition(410, 54, 50, 18);
     textArea3.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
     textArea3.setLinespacing(0);
     Unicode::snprintf(textArea3Buffer, TEXTAREA3_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_EOFK).getText());
     textArea3.setWildcard(textArea3Buffer);
-    textArea3.resizeToCurrentText();
     textArea3.setTypedText(touchgfx::TypedText(T___SINGLEUSE_OP2Z));
     add(textArea3);
 
@@ -118,7 +114,7 @@ Screen3ViewBase::Screen3ViewBase() :
     Eng_Arrow.setBitmap(touchgfx::Bitmap(BITMAP_ARROW_ID));
     add(Eng_Arrow);
 
-    Tank1_Arrow.setXY(241, 200);
+    Tank1_Arrow.setXY(241, 199);
     Tank1_Arrow.setBitmap(touchgfx::Bitmap(BITMAP_ARROW_ID));
     add(Tank1_Arrow);
 

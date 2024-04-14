@@ -26,11 +26,11 @@ void Screen3View::Update_Rpm(uint16_t value){
 }
 void Screen3View::Update_Fuel_Flow(float value){
 
-	uint16_t x = (value*342)/12;
+	uint16_t x = (value*342)/12+241;
 
 
 	Fuel_Arrow.setX(x);
-	Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%f", value);
+	Unicode::snprintfFloat(textArea2Buffer, TEXTAREA2_SIZE, "%2.1f", value);
 
 
 	textArea2.invalidate();
@@ -39,7 +39,7 @@ void Screen3View::Update_Fuel_Flow(float value){
 }
 void Screen3View::Update_Engine_Temp(uint16_t value){
 
-	uint16_t x = (value*425)/2000;
+	uint16_t x = (value*186)/2000+241;
 
 
 	Eng_Arrow.setX(x);
@@ -53,7 +53,7 @@ void Screen3View::Update_Engine_Temp(uint16_t value){
 }
 void Screen3View::Update_Oil_Pressure(uint16_t value){
 
-	uint16_t x = (value*425)/140;
+	uint16_t x = (value*186)/140+241;
 
 
 	OilP_Arrow.setX(x);
@@ -61,13 +61,13 @@ void Screen3View::Update_Oil_Pressure(uint16_t value){
 
 
 	textArea3.invalidate();
-	Eng_Arrow.invalidate();
+	OilP_Arrow.invalidate();
 
 
 }
 void Screen3View::Update_Oil_Temp(uint16_t value){
 
-	uint16_t x = (value*425)/140;
+	uint16_t x = (value*186)/140+241;
 
 
 	OilF_Arrow.setX(x);
@@ -79,12 +79,22 @@ void Screen3View::Update_Oil_Temp(uint16_t value){
 
 }
 void Screen3View::Update_Fuel_Tank1(float value){
+	uint16_t x = (value*186)/30+241;
 
+
+	Tank1_Arrow.setX(x);
+
+	Tank1_Arrow.invalidate();
 
 
 }
 void Screen3View::Update_Fuel_Tank2(float value){
+	uint16_t x = (value*186)/30+241;
 
+
+	Tank2_Arrow.setX(x);
+
+	Tank2_Arrow.invalidate();
 
 
 }
