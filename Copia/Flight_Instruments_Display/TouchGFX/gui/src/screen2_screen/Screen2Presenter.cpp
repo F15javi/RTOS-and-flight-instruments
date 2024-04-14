@@ -17,8 +17,8 @@ void Screen2Presenter::deactivate()
 
 }
 
-void Screen2Presenter::Update_Heading_Text(float value){
-	view.Update_Heading_Text(value);
+void Screen2Presenter::Update_Heading(float value){
+	view.Update_Heading(value);
 
 }
 //void Screen2Presenter::up_hdg(){

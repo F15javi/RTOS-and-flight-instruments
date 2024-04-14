@@ -78,12 +78,12 @@ Screen2ViewBase::Screen2ViewBase() :
     shape1.setShape(shape1Points);
     add(shape1);
 
-    slideMenu1.setXY(0, 0);
+    slideMenu1.setXY(0, -1);
     slideMenu1.setup(touchgfx::SlideMenu::EAST,
         touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BACKGROUND_ID),
         touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BUTTON_ID),
         touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BUTTON_ID),
-        0, 0, 50, 5);
+        0, 0, 50, 0);
     slideMenu1.setState(touchgfx::SlideMenu::COLLAPSED);
     slideMenu1.setVisiblePixelsWhenCollapsed(25);
     slideMenu1.setHiddenPixelsWhenExpanded(0);
@@ -98,6 +98,14 @@ Screen2ViewBase::Screen2ViewBase() :
     HOR.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
     HOR.setAction(buttonCallback);
     slideMenu1.add(HOR);
+
+    ENG.setXY(-1, 50);
+    ENG.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
+    ENG.setLabelText(touchgfx::TypedText(T___SINGLEUSE_35L4));
+    ENG.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    ENG.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    ENG.setAction(buttonCallback);
+    slideMenu1.add(ENG);
 
     add(slideMenu1);
 
@@ -119,7 +127,7 @@ Screen2ViewBase::Screen2ViewBase() :
     boxWithBorder2.setBorderSize(1);
     add(boxWithBorder2);
 
-    textArea2.setXY(70, 106);
+    textArea2.setXY(70, 105);
     textArea2.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
     textArea2.setLinespacing(0);
     Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_95FV).getText());
@@ -175,6 +183,17 @@ void Screen2ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //When button_down clicked call virtual function
         //Call down_hdg
         down_hdg();
+    }
+    if (&src == &ENG)
+    {
+        //Interaction5
+        //When ENG clicked change screen to Screen3
+        //Go to Screen3 with screen transition towards North
+        application().gotoScreen3ScreenSlideTransitionNorth();
+        //Interaction6
+        //When ENG clicked reset timer slideMenu1
+        //reset expanded state timer on slideMenu1
+        slideMenu1.resetExpandedStateTimer();
     }
 }
 

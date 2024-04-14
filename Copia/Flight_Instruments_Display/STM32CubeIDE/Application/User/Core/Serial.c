@@ -8,16 +8,46 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "cmsis_os.h"
 
 TaskHandle_t taskHandler;
 
-uint8_t receivedData[100];
 
-uint8_t speed;
+uint8_t rx_buffer[100];
+
+
+uint16_t speed;
 float pitch;
 float roll;
 uint16_t altitude;
 float heading;
+uint16_t rpm;
+float Fuel_flow;
+uint16_t ENG_temp;
+uint16_t Oil_p;
+uint16_t Oil_t;
+float Fuel_tank1;
+float Fuel_Tank2;
+
+
+typedef struct{
+		uint16_t speed;
+		float pitch;
+		float roll;
+		uint16_t altitude;
+		float heading;
+		uint16_t rpm;
+		float Fuel_flow;
+		uint16_t ENG_temp;
+		uint16_t Oil_p;
+		uint16_t Oil_t;
+		float Fuel_tank1;
+		float Fuel_Tank2;
+
+
+	}RX_Data;
+
+RX_Data Telemetry;
 
 const char delimiter[] = " ";
 char *token;
@@ -27,8 +57,16 @@ void Serial_RX(void *pArg);
 void Serial_TX(void *pArg);
 
 
+//osMessageQueueId_t DataToDisplayHandle;
+//	const osMessageQueueAttr_t DataToDisplay_attributes = {
+//	  .name = "DataToDisplay"
+//	};
+
+
+
 void CreateSerialTask(){
 
+	//DataToDisplayHandle = osMessageQueueNew (1, sizeof(RX_Data), &DataToDisplay_attributes);
 
 	//Check Serial output
 
@@ -48,7 +86,7 @@ void Serial_TX(void *pArg){
 
 
 void Serial_RX(void *pArg){
-	HAL_UART_Receive_DMA(&huart1, receivedData, 100);
+	HAL_UART_Receive_DMA(&huart1, rx_buffer, 100);
 	while (1) {
 
 
@@ -64,8 +102,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 
 
-	HAL_UART_Receive_DMA(&huart1, receivedData, 100);
-	char *s = receivedData;
+	HAL_UART_Receive_DMA(&huart1, rx_buffer, 100);
+	char *s = rx_buffer;
 	   token = strtok(s, delimiter);
 	   if (token != NULL) {
 		   speed = atoi(token);
@@ -77,15 +115,45 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				   roll = atof(token);
 				   token = strtok(NULL, delimiter);
 				   if (token != NULL) {
-				   		heading = atof(token);
+					   heading = atof(token);
 						token = strtok(NULL, delimiter);
 					   if (token != NULL) {
 						   altitude = atoi(token);
+							token = strtok(NULL, delimiter);
+							if (token != NULL) {
+								rpm = atoi(token);
+								token = strtok(NULL, delimiter);
+								if (token != NULL) {
+									Fuel_flow = atof(token);
+									token = strtok(NULL, delimiter);
+									if (token != NULL) {
+										ENG_temp = atoi(token);
+										token = strtok(NULL, delimiter);
+										if (token != NULL) {
+											Oil_p = atoi(token);
+											token = strtok(NULL, delimiter);
+											if (token != NULL) {
+												Oil_t = atoi(token);
+												token = strtok(NULL, delimiter);
+												if (token != NULL) {
+													Fuel_tank1 = atof(token);
+													token = strtok(NULL, delimiter);
+													if (token != NULL) {
+														Fuel_Tank2 = atof(token);
+													}
+												}
+											}
+										}
+									}
+								}
+							}
 					   }
 				   }
 			   }
 		   }
 	   }
+	   //osMessageQueuePut(DataToDisplayHandle, &Telemetry, 0, 0);
+
 }
 
 

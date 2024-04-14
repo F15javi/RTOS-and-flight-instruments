@@ -729,9 +729,19 @@
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/__generated/image_icon_theme_images_action_arrow_circle_up_36_36_FFFFFF.svg.cpp</locationURI>
 		</link>
 		<link>
+			<name>Application/User/generated/image_Arrow.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Arrow.cpp</locationURI>
+		</link>
+		<link>
 			<name>Application/User/generated/image_Artificial_plane_v2.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Artificial_plane_v2.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_BackGround3.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_BackGround3.cpp</locationURI>
 		</link>
 		<link>
 			<name>Application/User/generated/image_Box.cpp</name>
@@ -744,6 +754,11 @@
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Compass.cpp</locationURI>
 		</link>
 		<link>
+			<name>Application/User/generated/image_Gauge_RPM.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Gauge_RPM.cpp</locationURI>
+		</link>
+		<link>
 			<name>Application/User/generated/image_HDG.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_HDG.cpp</locationURI>
@@ -752,6 +767,11 @@
 			<name>Application/User/generated/image_Horizonte_artificial_front_v3.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Horizonte_artificial_front_v3.cpp</locationURI>
+		</link>
+		<link>
+			<name>Application/User/generated/image_Needle.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/TouchGFX/generated/images/src/image_Needle.cpp</locationURI>
 		</link>
 		<link>
 			<name>Application/User/generated/image_airplane.cpp</name>

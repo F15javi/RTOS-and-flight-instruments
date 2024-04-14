@@ -16,26 +16,26 @@ void Screen1Presenter::deactivate()
 {
 
 }
-void Screen1Presenter::Update_Speed_Text(uint8_t value){
+void Screen1Presenter::Update_Speed(uint16_t value){
 
-	view.Update_Speed_Text(value);
+	view.Update_Speed(value);
 
 }
 
 
-void Screen1Presenter::Update_Altitude_Text(uint16_t value){
-	view.Update_Altitude_Text(value);
+void Screen1Presenter::Update_Altitude(uint16_t value){
+	view.Update_Altitude(value);
 
 }
 void Screen1Presenter::Update_Horizon(float value, float value2){
 	view.Update_Horizon(value, value2);
 
 }
-void Screen1Presenter::Update_Roll_Text(float value){
-	view.Update_Roll_Text(value);
+void Screen1Presenter::Update_Roll(float value){
+	view.Update_Roll(value);
 
 }
-void Screen1Presenter::Update_Heading_Text(float value){
-	view.Update_Heading_Text(value);
+void Screen1Presenter::Update_Heading(float value){
+	view.Update_Heading(value);
 
 }

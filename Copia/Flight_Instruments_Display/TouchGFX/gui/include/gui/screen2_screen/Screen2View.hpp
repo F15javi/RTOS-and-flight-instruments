@@ -13,7 +13,7 @@ public:
     virtual void tearDownScreen();
 
 
-	virtual void Update_Heading_Text(float value);
+	virtual void Update_Heading(float value);
 	virtual void down_hdg();
 	virtual void up_hdg();
 

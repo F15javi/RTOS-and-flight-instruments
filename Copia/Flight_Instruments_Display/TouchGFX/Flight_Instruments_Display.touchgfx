@@ -100,8 +100,7 @@
           },
           {
             "Type": "SlideMenu",
-            "Name": "slideMenu1_1",
-            "X": -3,
+            "Name": "slideMenu1",
             "Width": 74,
             "Height": 272,
             "FileNameBackground": "left_slide_menu_background.png",
@@ -109,7 +108,6 @@
             "FileNameButtonPressed": "left_slide_menu_button.png",
             "FileNameButtonReleased": "left_slide_menu_button.png",
             "ButtonX": 50,
-            "ButtonY": 5,
             "State": "Collapsed",
             "ExpandDirection": "East",
             "Easing": "Cubic",
@@ -127,6 +125,28 @@
                 "Pressed": "menu_toggle_button_01.png",
                 "Released": "menu_toggle_button_01.png",
                 "TextId": "__SingleUse_2K4S",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0"
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "ENG",
+                "X": -1,
+                "Y": 50,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "menu_toggle_button_01.png",
+                "Released": "menu_toggle_button_01.png",
+                "TextId": "__SingleUse_6JJE",
                 "ReleasedColor": {
                   "Red": 255,
                   "Green": 255,
@@ -164,7 +184,31 @@
             },
             "Action": {
               "Type": "ActionResetTimer",
-              "ActionComponent": "slideMenu1_1"
+              "ActionComponent": "slideMenu1"
+            }
+          },
+          {
+            "InteractionName": "Interaction3",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "ENG"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "North",
+              "ActionComponent": "Screen3"
+            }
+          },
+          {
+            "InteractionName": "Interaction4",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "ENG"
+            },
+            "Action": {
+              "Type": "ActionResetTimer",
+              "ActionComponent": "slideMenu1"
             }
           }
         ]
@@ -288,6 +332,7 @@
           {
             "Type": "SlideMenu",
             "Name": "slideMenu1",
+            "Y": -1,
             "Width": 74,
             "Height": 272,
             "FileNameBackground": "left_slide_menu_background.png",
@@ -295,7 +340,6 @@
             "FileNameButtonPressed": "left_slide_menu_button.png",
             "FileNameButtonReleased": "left_slide_menu_button.png",
             "ButtonX": 50,
-            "ButtonY": 5,
             "State": "Collapsed",
             "ExpandDirection": "East",
             "Easing": "Cubic",
@@ -313,6 +357,28 @@
                 "Pressed": "menu_toggle_button_01.png",
                 "Released": "menu_toggle_button_01.png",
                 "TextId": "__SingleUse_W11F",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0"
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "ENG",
+                "X": -1,
+                "Y": 50,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "menu_toggle_button_01.png",
+                "Released": "menu_toggle_button_01.png",
+                "TextId": "__SingleUse_35L4",
                 "ReleasedColor": {
                   "Red": 255,
                   "Green": 255,
@@ -373,7 +439,7 @@
             "Type": "TextArea",
             "Name": "textArea2",
             "X": 70,
-            "Y": 106,
+            "Y": 105,
             "Width": 62,
             "Height": 18,
             "TextId": "__SingleUse_ZJ2T",
@@ -460,13 +526,359 @@
               "Type": "ActionCustom",
               "FunctionName": "down_hdg"
             }
+          },
+          {
+            "InteractionName": "Interaction5",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "ENG"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "North",
+              "ActionComponent": "Screen3"
+            }
+          },
+          {
+            "InteractionName": "Interaction6",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "ENG"
+            },
+            "Action": {
+              "Type": "ActionResetTimer",
+              "ActionComponent": "slideMenu1"
+            }
           }
         ]
       },
       {
         "Name": "Screen3",
-        "Components": [],
-        "Interactions": []
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "image1",
+            "Width": 480,
+            "Height": 272,
+            "RelativeFilename": "BackGround3.png"
+          },
+          {
+            "Type": "Gauge",
+            "Name": "gauge1",
+            "X": 23,
+            "Y": 36,
+            "Width": 200,
+            "Height": 200,
+            "FileNameBackground": "Gauge_RPM.png",
+            "RotationCenterX": 100.0,
+            "RotationCenterY": 100.0,
+            "StartAngle": 69.0,
+            "EndAngle": 300.0,
+            "RangeMax": 3300.0,
+            "Easing": "Linear",
+            "EasingOption": "In",
+            "FileNameNeedle": "Needle.png",
+            "NeedleMovingRenderingAlgorithm": "Bilinear Interpolation",
+            "NeedleSteadyRenderingAlgorithm": "Bilinear Interpolation",
+            "ArcColor": {
+              "Red": 20,
+              "Green": 151,
+              "Blue": 197
+            },
+            "ArcCapStyle": "Butt"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 96,
+            "Y": 188,
+            "Width": 54,
+            "Height": 24,
+            "TextId": "__SingleUse_SW4K",
+            "TextRotation": "0",
+            "Color": {
+              "Green": 255,
+              "Blue": 106
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_K13B",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "SlideMenu",
+            "Name": "slideMenu1",
+            "Width": 74,
+            "Height": 272,
+            "FileNameBackground": "left_slide_menu_background.png",
+            "UseButton": true,
+            "FileNameButtonPressed": "left_slide_menu_button.png",
+            "FileNameButtonReleased": "left_slide_menu_button.png",
+            "ButtonX": 50,
+            "State": "Collapsed",
+            "ExpandDirection": "East",
+            "Easing": "Cubic",
+            "EasingOption": "InOut",
+            "AnimationDuration": 300,
+            "VisiblePixelsWhenCollapsed": 25,
+            "ExpandedStateTimeout": 3000,
+            "Components": [
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "HOR",
+                "X": -1,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "menu_toggle_button_01.png",
+                "Released": "menu_toggle_button_01.png",
+                "TextId": "__SingleUse_RM21",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0"
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "NAV",
+                "X": -1,
+                "Y": 50,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "menu_toggle_button_01.png",
+                "Released": "menu_toggle_button_01.png",
+                "TextId": "__SingleUse_VUZB",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0"
+              }
+            ]
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea2",
+            "X": 427,
+            "Y": 12,
+            "Width": 8,
+            "Height": 18,
+            "TextId": "__SingleUse_2CY6",
+            "TextRotation": "0",
+            "Color": {
+              "Green": 255,
+              "Blue": 106
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_XWJ5",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea4",
+            "X": 427,
+            "Y": 96,
+            "Width": 8,
+            "Height": 18,
+            "TextId": "__SingleUse_GZ6D",
+            "TextRotation": "0",
+            "Color": {
+              "Green": 255,
+              "Blue": 106
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_X7R4",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea5",
+            "X": 427,
+            "Y": 138,
+            "Width": 8,
+            "Height": 18,
+            "TextId": "__SingleUse_T567",
+            "TextRotation": "0",
+            "Color": {
+              "Green": 255,
+              "Blue": 106
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_SMIE",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea3",
+            "X": 427,
+            "Y": 54,
+            "Width": 8,
+            "Height": 18,
+            "TextId": "__SingleUse_OP2Z",
+            "TextRotation": "0",
+            "Color": {
+              "Green": 255,
+              "Blue": 106
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_EOFK",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "Image",
+            "Name": "Fuel_Arrow",
+            "X": 342,
+            "Y": 30,
+            "Width": 23,
+            "Height": 12,
+            "RelativeFilename": "Arrow.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "OilP_Arrow",
+            "X": 241,
+            "Y": 72,
+            "Width": 23,
+            "Height": 12,
+            "RelativeFilename": "Arrow.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "OilF_Arrow",
+            "X": 241,
+            "Y": 114,
+            "Width": 23,
+            "Height": 12,
+            "RelativeFilename": "Arrow.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "Eng_Arrow",
+            "X": 241,
+            "Y": 156,
+            "Width": 23,
+            "Height": 12,
+            "RelativeFilename": "Arrow.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "Tank1_Arrow",
+            "X": 241,
+            "Y": 200,
+            "Width": 23,
+            "Height": 12,
+            "RelativeFilename": "Arrow.png"
+          },
+          {
+            "Type": "TextureMapper",
+            "Name": "Tank2_Arrow",
+            "X": 241,
+            "Y": 212,
+            "Width": 23,
+            "Height": 12,
+            "RenderingAlgorithm": "Nearest-neighbor",
+            "FileNameImage": "Arrow.png",
+            "LockBitmapToCenter": true,
+            "ZAngle": 3.142,
+            "Scale": 1.0,
+            "LockOrigoToCenter": true,
+            "XOrigo": 11.5,
+            "YOrigo": 6.0,
+            "ZOrigo": 1000.0,
+            "CameraDistance": 1000.0
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea6",
+            "X": 109,
+            "Y": 170,
+            "Width": 29,
+            "Height": 18,
+            "TextId": "__SingleUse_B1H7",
+            "TextRotation": "0",
+            "Color": {
+              "Green": 255,
+              "Blue": 106
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "HOR"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "South",
+              "ActionComponent": "Screen1"
+            }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "NAV"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "South",
+              "ActionComponent": "Screen2"
+            }
+          },
+          {
+            "InteractionName": "Interaction3",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "HOR"
+            },
+            "Action": {
+              "Type": "ActionResetTimer",
+              "ActionComponent": "slideMenu1"
+            }
+          },
+          {
+            "InteractionName": "Interaction4",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "NAV"
+            },
+            "Action": {
+              "Type": "ActionResetTimer",
+              "ActionComponent": "slideMenu1"
+            }
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],

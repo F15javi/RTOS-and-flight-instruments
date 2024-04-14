@@ -26,7 +26,7 @@ public:
     virtual void deactivate();
 
     virtual ~Screen2Presenter() {}
-    virtual void Update_Heading_Text(float value);
+    virtual void Update_Heading(float value);
 //    virtual void up_hdg();
 //    virtual void down_hdg();
 

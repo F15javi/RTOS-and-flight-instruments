@@ -3,12 +3,143 @@
 /*********************************************************************************/
 #include <gui_generated/screen3_screen/Screen3ViewBase.hpp>
 #include <touchgfx/Color.hpp>
+#include <images/BitmapDatabase.hpp>
+#include <texts/TextKeysAndLanguages.hpp>
 
-Screen3ViewBase::Screen3ViewBase()
+Screen3ViewBase::Screen3ViewBase() :
+    buttonCallback(this, &Screen3ViewBase::buttonCallbackHandler)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
+
+    image1.setXY(0, 0);
+    image1.setBitmap(touchgfx::Bitmap(BITMAP_BACKGROUND3_ID));
+    add(image1);
+
+    gauge1.setBackground(touchgfx::Bitmap(BITMAP_GAUGE_RPM_ID));
+    gauge1.setPosition(23, 36, 200, 200);
+    gauge1.setCenter(100, 100);
+    gauge1.setStartEndAngle(69, 300);
+    gauge1.setRange(0, 3300);
+    gauge1.setValue(0);
+    gauge1.setNeedle(BITMAP_NEEDLE_ID, 0, 0);
+    gauge1.setMovingNeedleRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
+    gauge1.setSteadyNeedleRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
+    add(gauge1);
+
+    textArea1.setPosition(96, 188, 54, 24);
+    textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
+    textArea1.setLinespacing(0);
+    Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_K13B).getText());
+    textArea1.setWildcard(textArea1Buffer);
+    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SW4K));
+    add(textArea1);
+
+    slideMenu1.setXY(0, 0);
+    slideMenu1.setup(touchgfx::SlideMenu::EAST,
+        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BACKGROUND_ID),
+        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BUTTON_ID),
+        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BUTTON_ID),
+        0, 0, 50, 0);
+    slideMenu1.setState(touchgfx::SlideMenu::COLLAPSED);
+    slideMenu1.setVisiblePixelsWhenCollapsed(25);
+    slideMenu1.setHiddenPixelsWhenExpanded(0);
+    slideMenu1.setAnimationEasingEquation(touchgfx::EasingEquations::cubicEaseInOut);
+    slideMenu1.setAnimationDuration(18);
+    slideMenu1.setExpandedStateTimeout(180);
+    HOR.setXY(-1, 0);
+    HOR.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
+    HOR.setLabelText(touchgfx::TypedText(T___SINGLEUSE_RM21));
+    HOR.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    HOR.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    HOR.setAction(buttonCallback);
+    slideMenu1.add(HOR);
+
+    NAV.setXY(-1, 50);
+    NAV.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
+    NAV.setLabelText(touchgfx::TypedText(T___SINGLEUSE_VUZB));
+    NAV.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    NAV.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    NAV.setAction(buttonCallback);
+    slideMenu1.add(NAV);
+
+    add(slideMenu1);
+
+    textArea2.setXY(427, 12);
+    textArea2.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
+    textArea2.setLinespacing(0);
+    Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_XWJ5).getText());
+    textArea2.setWildcard(textArea2Buffer);
+    textArea2.resizeToCurrentText();
+    textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2CY6));
+    add(textArea2);
+
+    textArea4.setXY(427, 96);
+    textArea4.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
+    textArea4.setLinespacing(0);
+    Unicode::snprintf(textArea4Buffer, TEXTAREA4_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_X7R4).getText());
+    textArea4.setWildcard(textArea4Buffer);
+    textArea4.resizeToCurrentText();
+    textArea4.setTypedText(touchgfx::TypedText(T___SINGLEUSE_GZ6D));
+    add(textArea4);
+
+    textArea5.setXY(427, 138);
+    textArea5.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
+    textArea5.setLinespacing(0);
+    Unicode::snprintf(textArea5Buffer, TEXTAREA5_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_SMIE).getText());
+    textArea5.setWildcard(textArea5Buffer);
+    textArea5.resizeToCurrentText();
+    textArea5.setTypedText(touchgfx::TypedText(T___SINGLEUSE_T567));
+    add(textArea5);
+
+    textArea3.setXY(427, 54);
+    textArea3.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
+    textArea3.setLinespacing(0);
+    Unicode::snprintf(textArea3Buffer, TEXTAREA3_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_EOFK).getText());
+    textArea3.setWildcard(textArea3Buffer);
+    textArea3.resizeToCurrentText();
+    textArea3.setTypedText(touchgfx::TypedText(T___SINGLEUSE_OP2Z));
+    add(textArea3);
+
+    Fuel_Arrow.setXY(342, 30);
+    Fuel_Arrow.setBitmap(touchgfx::Bitmap(BITMAP_ARROW_ID));
+    add(Fuel_Arrow);
+
+    OilP_Arrow.setXY(241, 72);
+    OilP_Arrow.setBitmap(touchgfx::Bitmap(BITMAP_ARROW_ID));
+    add(OilP_Arrow);
+
+    OilF_Arrow.setXY(241, 114);
+    OilF_Arrow.setBitmap(touchgfx::Bitmap(BITMAP_ARROW_ID));
+    add(OilF_Arrow);
+
+    Eng_Arrow.setXY(241, 156);
+    Eng_Arrow.setBitmap(touchgfx::Bitmap(BITMAP_ARROW_ID));
+    add(Eng_Arrow);
+
+    Tank1_Arrow.setXY(241, 200);
+    Tank1_Arrow.setBitmap(touchgfx::Bitmap(BITMAP_ARROW_ID));
+    add(Tank1_Arrow);
+
+    Tank2_Arrow.setXY(241, 212);
+    Tank2_Arrow.setBitmap(touchgfx::Bitmap(BITMAP_ARROW_ID));
+    Tank2_Arrow.setWidth(23);
+    Tank2_Arrow.setHeight(12);
+    Tank2_Arrow.setBitmapPosition(0.0f, 0.0f);
+    Tank2_Arrow.setScale(1.0f);
+    Tank2_Arrow.setCameraDistance(1000.0f);
+    Tank2_Arrow.setOrigo(11.5f, 6.0f, 1000.0f);
+    Tank2_Arrow.setCamera(11.5f, 6.0f);
+    Tank2_Arrow.setAngles(0.0f, 0.0f, 3.142f);
+    Tank2_Arrow.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
+    add(Tank2_Arrow);
+
+    textArea6.setXY(109, 170);
+    textArea6.setColor(touchgfx::Color::getColorFromRGB(0, 255, 106));
+    textArea6.setLinespacing(0);
+    textArea6.setTypedText(touchgfx::TypedText(T___SINGLEUSE_B1H7));
+    add(textArea6);
 }
 
 Screen3ViewBase::~Screen3ViewBase()
@@ -19,4 +150,30 @@ Screen3ViewBase::~Screen3ViewBase()
 void Screen3ViewBase::setupScreen()
 {
 
+}
+
+void Screen3ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
+{
+    if (&src == &HOR)
+    {
+        //Interaction1
+        //When HOR clicked change screen to Screen1
+        //Go to Screen1 with screen transition towards South
+        application().gotoScreen1ScreenSlideTransitionSouth();
+        //Interaction3
+        //When HOR clicked reset timer slideMenu1
+        //reset expanded state timer on slideMenu1
+        slideMenu1.resetExpandedStateTimer();
+    }
+    if (&src == &NAV)
+    {
+        //Interaction2
+        //When NAV clicked change screen to Screen2
+        //Go to Screen2 with screen transition towards South
+        application().gotoScreen2ScreenSlideTransitionSouth();
+        //Interaction4
+        //When NAV clicked reset timer slideMenu1
+        //reset expanded state timer on slideMenu1
+        slideMenu1.resetExpandedStateTimer();
+    }
 }

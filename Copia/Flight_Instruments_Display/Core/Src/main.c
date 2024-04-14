@@ -204,7 +204,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_CRC_Init();
   MX_TouchGFX_Init();
-  /* Call PreOsInit function */
+  /* Call  	PreOsInit function */
   MX_TouchGFX_PreOSInit();
   /* USER CODE BEGIN 2 */
 

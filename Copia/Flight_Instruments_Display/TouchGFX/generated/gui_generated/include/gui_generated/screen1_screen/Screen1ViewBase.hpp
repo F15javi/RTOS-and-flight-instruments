@@ -37,8 +37,9 @@ protected:
     touchgfx::Image image2;
     touchgfx::Image image2_1;
     touchgfx::Image image3;
-    touchgfx::SlideMenu slideMenu1_1;
+    touchgfx::SlideMenu slideMenu1;
     touchgfx::ButtonWithLabel NAV;
+    touchgfx::ButtonWithLabel ENG;
 
     /*
      * Wildcard Buffers

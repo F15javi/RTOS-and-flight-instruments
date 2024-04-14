@@ -162,8 +162,23 @@ int main()
         
         closeUDP(sock);
 
+        int speed = (int)data[0][2];
+        int altitude = (int)data[2][3];
+        int rpm = (int)data[3][1];
+        int temp = (int)data[5][1];
+        int OilP = (int)data[6][1];
+        int OilT = (int)data[7][1];
         char telemetry[100];
-        sprintf_s(telemetry, "%f %f %f %f %f", data[0][2], data[1][1], data[1][2], data[1][3], data[2][3]);
+        sprintf_s(telemetry, "%d %f %f %f %d %d %f %d %d %d %f %f", 
+            speed,
+            data[1][1], data[1][2], data[1][3],
+            altitude,
+            rpm,
+            data[4][1], 
+            temp,
+            OilP,
+            OilT,
+            data[8][1], data[8][2]);
 
         Serial_TX(telemetry);
         Sleep(15);

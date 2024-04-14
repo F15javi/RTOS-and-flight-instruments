@@ -21,7 +21,7 @@ void Screen1View::tearDownScreen()
 {
     Screen1ViewBase::tearDownScreen();
 }
-void Screen1View::Update_Speed_Text(uint8_t value){
+void Screen1View::Update_Speed(uint16_t value){
 
 	Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%d", value);
 
@@ -35,7 +35,7 @@ float DegToRad(float angle){
 
 }
 
-void Screen1View::Update_Altitude_Text(uint16_t value){
+void Screen1View::Update_Altitude(uint16_t value){
 	Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%d", value);
 	textArea2.invalidate();
 
@@ -71,12 +71,12 @@ void Screen1View::Update_Horizon(float value, float value2){
 
 }
 
-void Screen1View::Update_Roll_Text(float value){
+void Screen1View::Update_Roll(float value){
 
 	//textureMapper1.setZAngle(DegToRad(value));
 
 }
-void Screen1View::Update_Heading_Text(float value){
+void Screen1View::Update_Heading(float value){
 
 
 }

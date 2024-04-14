@@ -68,7 +68,7 @@ void Screen2View::down_hdg(){
 
 
 }
-void Screen2View::Update_Heading_Text(float value){
+void Screen2View::Update_Heading(float value){
 
 	dir = value;
 

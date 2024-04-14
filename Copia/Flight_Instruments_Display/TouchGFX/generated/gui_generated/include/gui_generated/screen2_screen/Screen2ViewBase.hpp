@@ -58,6 +58,7 @@ protected:
     touchgfx::PainterRGB565 shape1Painter;
     touchgfx::SlideMenu slideMenu1;
     touchgfx::ButtonWithLabel HOR;
+    touchgfx::ButtonWithLabel ENG;
     touchgfx::BoxWithBorder boxWithBorder1_1;
     touchgfx::BoxWithBorder boxWithBorder1;
     touchgfx::BoxWithBorder boxWithBorder2;

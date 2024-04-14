@@ -26,6 +26,14 @@ public:
     virtual void deactivate();
 
     virtual ~Screen3Presenter() {}
+    virtual void Update_Rpm(uint16_t value);
+    virtual void Update_Fuel_Flow(float value);
+    virtual void Update_Engine_Temp(uint16_t value);
+    virtual void Update_Oil_Pressure(uint16_t value);
+    virtual void Update_Oil_Temp(uint16_t value);
+    virtual void Update_Fuel_Tank1(float value);
+    virtual void Update_Fuel_Tank2(float value);
+
 
 private:
     Screen3Presenter();

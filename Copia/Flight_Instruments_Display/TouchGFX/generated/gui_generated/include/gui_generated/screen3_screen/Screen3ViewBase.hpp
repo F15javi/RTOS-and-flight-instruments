@@ -8,6 +8,13 @@
 #include <mvp/View.hpp>
 #include <gui/screen3_screen/Screen3Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/widgets/Gauge.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/SlideMenu.hpp>
+#include <touchgfx/widgets/ButtonWithLabel.hpp>
+#include <touchgfx/widgets/TextureMapper.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
 
 class Screen3ViewBase : public touchgfx::View<Screen3Presenter>
 {
@@ -25,8 +32,49 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
+    touchgfx::Image image1;
+    touchgfx::Gauge gauge1;
+    touchgfx::TextAreaWithOneWildcard textArea1;
+    touchgfx::SlideMenu slideMenu1;
+    touchgfx::ButtonWithLabel HOR;
+    touchgfx::ButtonWithLabel NAV;
+    touchgfx::TextAreaWithOneWildcard textArea2;
+    touchgfx::TextAreaWithOneWildcard textArea4;
+    touchgfx::TextAreaWithOneWildcard textArea5;
+    touchgfx::TextAreaWithOneWildcard textArea3;
+    touchgfx::Image Fuel_Arrow;
+    touchgfx::Image OilP_Arrow;
+    touchgfx::Image OilF_Arrow;
+    touchgfx::Image Eng_Arrow;
+    touchgfx::Image Tank1_Arrow;
+    touchgfx::TextureMapper Tank2_Arrow;
+    touchgfx::TextArea textArea6;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t TEXTAREA1_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar textArea1Buffer[TEXTAREA1_SIZE];
+    static const uint16_t TEXTAREA2_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar textArea2Buffer[TEXTAREA2_SIZE];
+    static const uint16_t TEXTAREA4_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar textArea4Buffer[TEXTAREA4_SIZE];
+    static const uint16_t TEXTAREA5_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar textArea5Buffer[TEXTAREA5_SIZE];
+    static const uint16_t TEXTAREA3_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar textArea3Buffer[TEXTAREA3_SIZE];
 
 private:
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<Screen3ViewBase, const touchgfx::AbstractButton&> buttonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 
