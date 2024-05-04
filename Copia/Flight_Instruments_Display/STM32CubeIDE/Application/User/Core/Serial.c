@@ -13,8 +13,8 @@
 TaskHandle_t taskHandler;
 
 
-uint8_t rx_buffer[100];
-
+uint8_t buffer_RX[64];
+uint8_t receivedData[64];
 
 uint16_t speed;
 float pitch;
@@ -75,85 +75,82 @@ void CreateSerialTask(){
 
 
 }
-void Serial_TX(void *pArg){
-
-//	char *data = "Hello there\n";
-//	CDC_Transmit_FS((uint8_t *) data, 100);
-//
-//	vTaskDelay(300);
-}
 
 
 
 void Serial_RX(void *pArg){
-	HAL_UART_Receive_DMA(&huart1, rx_buffer, 100);
+
+	uint8_t cmp = 0;
+
 	while (1) {
 
+		memcpy(receivedData, buffer_RX, 64);
 
+		if(receivedData[0] == 0x31){
 
-
-		//vTaskDelay(200);
-
-	}
-}
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-
-
-
-
-	HAL_UART_Receive_DMA(&huart1, rx_buffer, 100);
-	char *s = rx_buffer;
-	   token = strtok(s, delimiter);
-	   if (token != NULL) {
-		   speed = atoi(token);
-		   token = strtok(NULL, delimiter);
-		   if (token != NULL) {
-			   pitch = atof(token);
+			char *s = (char *)receivedData;
+			token = strtok(s, delimiter);
+			if (token != NULL) {
 			   token = strtok(NULL, delimiter);
-			   if (token != NULL) {
-				   roll = atof(token);
+				if (token != NULL) {
+				   speed = atoi(token);
 				   token = strtok(NULL, delimiter);
 				   if (token != NULL) {
-					   heading = atof(token);
-						token = strtok(NULL, delimiter);
+					   pitch = atof(token);
+					   token = strtok(NULL, delimiter);
 					   if (token != NULL) {
-						   altitude = atoi(token);
-							token = strtok(NULL, delimiter);
-							if (token != NULL) {
-								rpm = atoi(token);
+						   roll = atof(token);
+						   token = strtok(NULL, delimiter);
+						   if (token != NULL) {
+							   heading = atof(token);
 								token = strtok(NULL, delimiter);
-								if (token != NULL) {
-									Fuel_flow = atof(token);
+							   if (token != NULL) {
+								   altitude = atoi(token);
 									token = strtok(NULL, delimiter);
 									if (token != NULL) {
-										ENG_temp = atoi(token);
+										rpm = atoi(token);
 										token = strtok(NULL, delimiter);
 										if (token != NULL) {
-											Oil_p = atoi(token);
-											token = strtok(NULL, delimiter);
-											if (token != NULL) {
-												Oil_t = atoi(token);
-												token = strtok(NULL, delimiter);
-												if (token != NULL) {
-													Fuel_tank1 = atof(token);
-													token = strtok(NULL, delimiter);
-													if (token != NULL) {
-														Fuel_Tank2 = atof(token);
-													}
-												}
-											}
+											Fuel_flow = atof(token);
 										}
 									}
 								}
-							}
+						   }
 					   }
 				   }
-			   }
-		   }
-	   }
-	   //osMessageQueuePut(DataToDisplayHandle, &Telemetry, 0, 0);
+				}
+			}
 
+		}
+		if(receivedData[0] == 0x32){
+
+			char *d = (char *)receivedData;
+			token = strtok(d, delimiter);
+			if (token != NULL) {
+				token = strtok(NULL, delimiter);
+				if (token != NULL) {
+					ENG_temp = atoi(token);
+					token = strtok(NULL, delimiter);
+					if (token != NULL) {
+						Oil_p = atoi(token);
+						token = strtok(NULL, delimiter);
+						if (token != NULL) {
+							Oil_t = atoi(token);
+							token = strtok(NULL, delimiter);
+							if (token != NULL) {
+								Fuel_tank1 = atof(token);
+								token = strtok(NULL, delimiter);
+								if (token != NULL) {
+									Fuel_Tank2 = atof(token);
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+	}
 }
 
 

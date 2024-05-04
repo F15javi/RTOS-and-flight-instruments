@@ -329,7 +329,7 @@ uint8_t BSP_AUDIO_OUT_Stop(uint32_t Option)
     if(Option == CODEC_PDWN_HW)
     { 
       /* Wait at least 100us */
-      HAL_Delay(1);
+    	vTaskDelay(1);
     }
     /* Return AUDIO_OK when all operations are correctly done */
     return AUDIO_OK;
@@ -1005,7 +1005,7 @@ uint8_t BSP_AUDIO_IN_Stop(uint32_t Option)
     if(Option == CODEC_PDWN_HW)
     {
       /* Wait at least 100us */
-      HAL_Delay(1);
+    	vTaskDelay(1);
     }
     /* Return AUDIO_OK when all operations are correctly done */
     return AUDIO_OK;

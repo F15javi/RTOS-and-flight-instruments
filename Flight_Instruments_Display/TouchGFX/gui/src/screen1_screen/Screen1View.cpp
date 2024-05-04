@@ -1,11 +1,17 @@
 #include <gui/screen1_screen/Screen1View.hpp>
+#include "stm32f7xx_hal.h"
+#include <string.h>
 #include <math.h>
+
+
 
 Screen1View::Screen1View()
 {
+	//3° we do the inverse rotation
+
 
 }
-
+//float old_angle = 0;
 void Screen1View::setupScreen()
 {
     Screen1ViewBase::setupScreen();
@@ -30,7 +36,6 @@ float DegToRad(float angle){
 }
 
 void Screen1View::Update_Altitude(uint16_t value){
-
 	Unicode::snprintf(textArea2Buffer, TEXTAREA2_SIZE, "%d", value);
 	textArea2.invalidate();
 
@@ -46,20 +51,20 @@ void Screen1View::Update_Horizon(float value, float value2){
 
 	if(value >= 0){
 
-		textureMapper1.setBitmapPosition(0.0f,y);
+		textureMapper2.setBitmapPosition(0.0f,y);
 
 
 
 	}else{
-		textureMapper1.setBitmapPosition(0.0f,y);
+		textureMapper2.setBitmapPosition(0.0f,y);
 
 
 	}
 	//2° we rotate
-    textureMapper1.setAngles(0.0f, 0.0f, -rad);
+    textureMapper2.setAngles(0.0f, 0.0f, -rad);
 
 
-	textureMapper1.invalidate();
+	textureMapper2.invalidate();
 
 
 

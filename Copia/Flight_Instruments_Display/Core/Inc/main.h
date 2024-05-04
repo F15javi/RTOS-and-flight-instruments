@@ -38,7 +38,25 @@ extern UART_HandleTypeDef huart1;
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+#define AUDIO_OUT_BUFFER_SIZE                      8192
 
+
+
+
+typedef enum {
+  BUFFER_EMPTY = 0,
+  BUFFER_FULL,
+}WR_BUFFER_StateTypeDef;
+typedef enum {
+  BUFFER_OFFSET_NONE = 0,
+  BUFFER_OFFSET_HALF,
+  BUFFER_OFFSET_FULL,
+}BUFFER_StateTypeDef;
+typedef struct {
+  uint8_t buff[AUDIO_OUT_BUFFER_SIZE];
+  BUFFER_StateTypeDef state;
+  uint32_t fptr;
+}AUDIO_OUT_BufferTypeDef;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

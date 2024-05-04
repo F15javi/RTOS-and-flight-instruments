@@ -25,7 +25,6 @@
     ],
     "AdditionalFeatures": [
       "CWRVector",
-      "VectorFonts",
       "Video"
     ]
   },

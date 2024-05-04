@@ -20,7 +20,6 @@
 #include <fonts/ApplicationFontProvider.hpp>
 #include <gui/common/FrontendHeap.hpp>
 #include <BitmapDatabase.hpp>
-#include <touchgfx/VectorFontRendererImpl.hpp>
 #include <platform/driver/lcd/LCD16bpp.hpp>
 #include <STM32DMA.hpp>
 #include <TouchGFXHAL.hpp>
@@ -34,7 +33,6 @@ extern "C" void touchgfx_components_init();
 static STM32TouchController tc;
 static STM32DMA dma;
 static LCD16bpp display;
-static VectorFontRendererImpl vectorFontRenderer;
 static ApplicationFontProvider fontProvider;
 static Texts texts;
 static TouchGFXHAL hal(dma, display, tc, 480, 272);
@@ -44,8 +42,6 @@ void touchgfx_init()
     Bitmap::registerBitmapDatabase(BitmapDatabase::getInstance(), BitmapDatabase::getInstanceSize());
     TypedText::registerTexts(&texts);
     Texts::setLanguage(0);
-
-    display.setVectorFontRenderer(&vectorFontRenderer);
 
     FontManager::setFontProvider(&fontProvider);
 

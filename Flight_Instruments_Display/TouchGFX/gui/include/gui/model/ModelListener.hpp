@@ -16,10 +16,21 @@ public:
         model = m;
     }
     virtual void Update_Speed(uint16_t value) {}
-	virtual void Update_Altitude(uint16_t value) {}
-	virtual void Update_Horizon(float value, float value2) {}
-	virtual void Update_Roll(float value) {}
-	virtual void Update_Heading(float value) {}
+    virtual void Update_Altitude(uint16_t value) {}
+    virtual void Update_Horizon(float value, float value2) {}
+    virtual void Update_Roll(float value) {}
+
+    virtual void Update_Heading(float value) {}
+
+    virtual void Update_Rpm(uint16_t value) {}
+    virtual void Update_Fuel_Flow(float value){}
+    virtual void Update_Engine_Temp(uint16_t value){}
+    virtual void Update_Oil_Pressure(uint16_t value){}
+    virtual void Update_Oil_Temp(uint16_t value){}
+    virtual void Update_Fuel_Tank1(float value){}
+    virtual void Update_Fuel_Tank2(float value){}
+
+
 
 protected:
     Model* model;

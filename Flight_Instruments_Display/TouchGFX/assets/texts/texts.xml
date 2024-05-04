@@ -6,17 +6,80 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_1R7G" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_B1H7" Alignment="Left" TypographyId="Typography_00">
+        <Translation Language="GB">RPM</Translation>
+      </Text>
+      <Text Id="__SingleUse_SMIE" Alignment="Left" TypographyId="Typography_00">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_3GMH" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_T567" Alignment="Center" TypographyId="Typography_00">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_EOFK" Alignment="Left" TypographyId="Typography_00">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_V4AE" Alignment="Center" TypographyId="Default">
+      <Text Id="__SingleUse_OP2Z" Alignment="Center" TypographyId="Typography_00">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_N6R5" Alignment="Center" TypographyId="Default">
+      <Text Id="__SingleUse_X7R4" Alignment="Left" TypographyId="Typography_00">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_XWJ5" Alignment="Left" TypographyId="Typography_00">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_GZ6D" Alignment="Center" TypographyId="Typography_00">
         <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_2CY6" Alignment="Center" TypographyId="Typography_00">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_6JJE" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">ENG</Translation>
+      </Text>
+      <Text Id="__SingleUse_35L4" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">ENG</Translation>
+      </Text>
+      <Text Id="__SingleUse_VUZB" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">NAV</Translation>
+      </Text>
+      <Text Id="__SingleUse_K13B" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">3000</Translation>
+      </Text>
+      <Text Id="__SingleUse_SW4K" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_RM21" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">HOR</Translation>
+      </Text>
+      <Text Id="__SingleUse_95FV" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">360</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZJ2T" Alignment="Left" TypographyId="Typography_00">
+        <Translation Language="GB">HDG  &lt;value&gt;°</Translation>
+      </Text>
+      <Text Id="__SingleUse_6SRL" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">360</Translation>
+      </Text>
+      <Text Id="__SingleUse_3XSI" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;°</Translation>
+      </Text>
+      <Text Id="__SingleUse_2K4S" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">NAV</Translation>
+      </Text>
+      <Text Id="__SingleUse_W11F" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">HOR</Translation>
+      </Text>
+      <Text Id="__SingleUse_JBJZ" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_KKMT" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt; </Translation>
+      </Text>
+      <Text Id="__SingleUse_XSLJ" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_CXO7" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt; </Translation>
       </Text>
     </TextGroup>
   </Texts>

@@ -78,7 +78,7 @@
           </BeforeMake>
           <AfterMake>
             <RunUserProg1>0</RunUserProg1>
-            <RunUserProg2>1</RunUserProg2>
+            <RunUserProg2>0</RunUserProg2>
             <UserProg1Name />
             <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
@@ -3248,16 +3248,6 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Disable_semihosting</GroupName>
-          <Files>
-            <File>
-              <FileName>disable_semihosting.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\disable_semihosting.c</FilePath>
             </File>
           </Files>
         </Group>

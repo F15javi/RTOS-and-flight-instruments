@@ -24,6 +24,10 @@
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
+extern DMA_HandleTypeDef hdma_sdmmc1_rx;
+
+extern DMA_HandleTypeDef hdma_sdmmc1_tx;
+
 extern DMA_HandleTypeDef hdma_usart1_rx;
 
 /* Private typedef -----------------------------------------------------------*/
@@ -184,7 +188,40 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
-  if(hi2c->Instance==I2C3)
+  if(hi2c->Instance==I2C1)
+  {
+  /* USER CODE BEGIN I2C1_MspInit 0 */
+
+  /* USER CODE END I2C1_MspInit 0 */
+
+  /** Initializes the peripherals clock
+  */
+    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_I2C1;
+    PeriphClkInitStruct.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    /**I2C1 GPIO Configuration
+    PB8     ------> I2C1_SCL
+    PB9     ------> I2C1_SDA
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+    /* Peripheral clock enable */
+    __HAL_RCC_I2C1_CLK_ENABLE();
+  /* USER CODE BEGIN I2C1_MspInit 1 */
+
+  /* USER CODE END I2C1_MspInit 1 */
+  }
+  else if(hi2c->Instance==I2C3)
   {
   /* USER CODE BEGIN I2C3_MspInit 0 */
 
@@ -228,7 +265,27 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
 */
 void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
 {
-  if(hi2c->Instance==I2C3)
+  if(hi2c->Instance==I2C1)
+  {
+  /* USER CODE BEGIN I2C1_MspDeInit 0 */
+
+  /* USER CODE END I2C1_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_I2C1_CLK_DISABLE();
+
+    /**I2C1 GPIO Configuration
+    PB8     ------> I2C1_SCL
+    PB9     ------> I2C1_SDA
+    */
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_8);
+
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_9);
+
+  /* USER CODE BEGIN I2C1_MspDeInit 1 */
+
+  /* USER CODE END I2C1_MspDeInit 1 */
+  }
+  else if(hi2c->Instance==I2C3)
   {
   /* USER CODE BEGIN I2C3_MspDeInit 0 */
 
@@ -260,27 +317,11 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
 void HAL_LTDC_MspInit(LTDC_HandleTypeDef* hltdc)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
   if(hltdc->Instance==LTDC)
   {
   /* USER CODE BEGIN LTDC_MspInit 0 */
 
   /* USER CODE END LTDC_MspInit 0 */
-
-  /** Initializes the peripherals clock
-  */
-    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC;
-    PeriphClkInitStruct.PLLSAI.PLLSAIN = 384;
-    PeriphClkInitStruct.PLLSAI.PLLSAIR = 5;
-    PeriphClkInitStruct.PLLSAI.PLLSAIQ = 2;
-    PeriphClkInitStruct.PLLSAI.PLLSAIP = RCC_PLLSAIP_DIV2;
-    PeriphClkInitStruct.PLLSAIDivQ = 1;
-    PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_8;
-    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
-    {
-      Error_Handler();
-    }
-
     /* Peripheral clock enable */
     __HAL_RCC_LTDC_CLK_ENABLE();
 
@@ -533,6 +574,147 @@ void HAL_QSPI_MspDeInit(QSPI_HandleTypeDef* hqspi)
   /* USER CODE BEGIN QUADSPI_MspDeInit 1 */
 
   /* USER CODE END QUADSPI_MspDeInit 1 */
+  }
+
+}
+
+/**
+* @brief SD MSP Initialization
+* This function configures the hardware resources used in this example
+* @param hsd: SD handle pointer
+* @retval None
+*/
+void HAL_SD_MspInit(SD_HandleTypeDef* hsd)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+  if(hsd->Instance==SDMMC1)
+  {
+  /* USER CODE BEGIN SDMMC1_MspInit 0 */
+
+  /* USER CODE END SDMMC1_MspInit 0 */
+
+  /** Initializes the peripherals clock
+  */
+    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_SDMMC1|RCC_PERIPHCLK_CLK48;
+    PeriphClkInitStruct.Clk48ClockSelection = RCC_CLK48SOURCE_PLL;
+    PeriphClkInitStruct.Sdmmc1ClockSelection = RCC_SDMMC1CLKSOURCE_CLK48;
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    /* Peripheral clock enable */
+    __HAL_RCC_SDMMC1_CLK_ENABLE();
+
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+    /**SDMMC1 GPIO Configuration
+    PC12     ------> SDMMC1_CK
+    PD2     ------> SDMMC1_CMD
+    PC8     ------> SDMMC1_D0
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_8;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF12_SDMMC1;
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = GPIO_PIN_2;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF12_SDMMC1;
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+    /* SDMMC1 DMA Init */
+    /* SDMMC1_RX Init */
+    hdma_sdmmc1_rx.Instance = DMA2_Stream3;
+    hdma_sdmmc1_rx.Init.Channel = DMA_CHANNEL_4;
+    hdma_sdmmc1_rx.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    hdma_sdmmc1_rx.Init.PeriphInc = DMA_PINC_DISABLE;
+    hdma_sdmmc1_rx.Init.MemInc = DMA_MINC_ENABLE;
+    hdma_sdmmc1_rx.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+    hdma_sdmmc1_rx.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
+    hdma_sdmmc1_rx.Init.Mode = DMA_PFCTRL;
+    hdma_sdmmc1_rx.Init.Priority = DMA_PRIORITY_LOW;
+    hdma_sdmmc1_rx.Init.FIFOMode = DMA_FIFOMODE_ENABLE;
+    hdma_sdmmc1_rx.Init.FIFOThreshold = DMA_FIFO_THRESHOLD_FULL;
+    hdma_sdmmc1_rx.Init.MemBurst = DMA_MBURST_INC4;
+    hdma_sdmmc1_rx.Init.PeriphBurst = DMA_PBURST_INC4;
+    if (HAL_DMA_Init(&hdma_sdmmc1_rx) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    __HAL_LINKDMA(hsd,hdmarx,hdma_sdmmc1_rx);
+
+    /* SDMMC1_TX Init */
+    hdma_sdmmc1_tx.Instance = DMA2_Stream6;
+    hdma_sdmmc1_tx.Init.Channel = DMA_CHANNEL_4;
+    hdma_sdmmc1_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
+    hdma_sdmmc1_tx.Init.PeriphInc = DMA_PINC_DISABLE;
+    hdma_sdmmc1_tx.Init.MemInc = DMA_MINC_ENABLE;
+    hdma_sdmmc1_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+    hdma_sdmmc1_tx.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
+    hdma_sdmmc1_tx.Init.Mode = DMA_PFCTRL;
+    hdma_sdmmc1_tx.Init.Priority = DMA_PRIORITY_LOW;
+    hdma_sdmmc1_tx.Init.FIFOMode = DMA_FIFOMODE_ENABLE;
+    hdma_sdmmc1_tx.Init.FIFOThreshold = DMA_FIFO_THRESHOLD_FULL;
+    hdma_sdmmc1_tx.Init.MemBurst = DMA_MBURST_INC4;
+    hdma_sdmmc1_tx.Init.PeriphBurst = DMA_PBURST_INC4;
+    if (HAL_DMA_Init(&hdma_sdmmc1_tx) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    __HAL_LINKDMA(hsd,hdmatx,hdma_sdmmc1_tx);
+
+    /* SDMMC1 interrupt Init */
+    HAL_NVIC_SetPriority(SDMMC1_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(SDMMC1_IRQn);
+  /* USER CODE BEGIN SDMMC1_MspInit 1 */
+
+  /* USER CODE END SDMMC1_MspInit 1 */
+  }
+
+}
+
+/**
+* @brief SD MSP De-Initialization
+* This function freeze the hardware resources used in this example
+* @param hsd: SD handle pointer
+* @retval None
+*/
+void HAL_SD_MspDeInit(SD_HandleTypeDef* hsd)
+{
+  if(hsd->Instance==SDMMC1)
+  {
+  /* USER CODE BEGIN SDMMC1_MspDeInit 0 */
+
+  /* USER CODE END SDMMC1_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_SDMMC1_CLK_DISABLE();
+
+    /**SDMMC1 GPIO Configuration
+    PC12     ------> SDMMC1_CK
+    PD2     ------> SDMMC1_CMD
+    PC8     ------> SDMMC1_D0
+    */
+    HAL_GPIO_DeInit(GPIOC, GPIO_PIN_12|GPIO_PIN_8);
+
+    HAL_GPIO_DeInit(GPIOD, GPIO_PIN_2);
+
+    /* SDMMC1 DMA DeInit */
+    HAL_DMA_DeInit(hsd->hdmarx);
+    HAL_DMA_DeInit(hsd->hdmatx);
+
+    /* SDMMC1 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(SDMMC1_IRQn);
+  /* USER CODE BEGIN SDMMC1_MspDeInit 1 */
+
+  /* USER CODE END SDMMC1_MspDeInit 1 */
   }
 
 }
@@ -846,6 +1028,94 @@ void HAL_SDRAM_MspDeInit(SDRAM_HandleTypeDef* hsdram){
   /* USER CODE BEGIN SDRAM_MspDeInit 1 */
 
   /* USER CODE END SDRAM_MspDeInit 1 */
+}
+
+static uint32_t SAI2_client =0;
+
+void HAL_SAI_MspInit(SAI_HandleTypeDef* hsai)
+{
+
+  GPIO_InitTypeDef GPIO_InitStruct;
+/* SAI2 */
+    if(hsai->Instance==SAI2_Block_A)
+    {
+    /* Peripheral clock enable */
+    if (SAI2_client == 0)
+    {
+       __HAL_RCC_SAI2_CLK_ENABLE();
+    }
+    SAI2_client ++;
+
+    /**SAI2_A_Block_A GPIO Configuration
+    PI5     ------> SAI2_SCK_A
+    PI7     ------> SAI2_FS_A
+    PI6     ------> SAI2_SD_A
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_7|GPIO_PIN_6;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF10_SAI2;
+    HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
+
+    }
+    if(hsai->Instance==SAI2_Block_B)
+    {
+      /* Peripheral clock enable */
+      if (SAI2_client == 0)
+      {
+       __HAL_RCC_SAI2_CLK_ENABLE();
+      }
+    SAI2_client ++;
+
+    /**SAI2_B_Block_B GPIO Configuration
+    PG10     ------> SAI2_SD_B
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_10;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF10_SAI2;
+    HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+
+    }
+}
+
+void HAL_SAI_MspDeInit(SAI_HandleTypeDef* hsai)
+{
+/* SAI2 */
+    if(hsai->Instance==SAI2_Block_A)
+    {
+    SAI2_client --;
+    if (SAI2_client == 0)
+      {
+      /* Peripheral clock disable */
+       __HAL_RCC_SAI2_CLK_DISABLE();
+      }
+
+    /**SAI2_A_Block_A GPIO Configuration
+    PI5     ------> SAI2_SCK_A
+    PI7     ------> SAI2_FS_A
+    PI6     ------> SAI2_SD_A
+    */
+    HAL_GPIO_DeInit(GPIOI, GPIO_PIN_5|GPIO_PIN_7|GPIO_PIN_6);
+
+    }
+    if(hsai->Instance==SAI2_Block_B)
+    {
+    SAI2_client --;
+      if (SAI2_client == 0)
+      {
+      /* Peripheral clock disable */
+      __HAL_RCC_SAI2_CLK_DISABLE();
+      }
+
+    /**SAI2_B_Block_B GPIO Configuration
+    PG10     ------> SAI2_SD_B
+    */
+    HAL_GPIO_DeInit(GPIOG, GPIO_PIN_10);
+
+    }
 }
 
 /* USER CODE BEGIN 1 */

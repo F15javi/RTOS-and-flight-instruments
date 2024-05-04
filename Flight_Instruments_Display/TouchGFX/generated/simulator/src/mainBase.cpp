@@ -11,7 +11,6 @@
 #include <touchgfx/widgets/canvas/CWRVectorRenderer.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB565.hpp>
 #include <touchgfx/canvas_widget_renderer/CanvasWidgetRenderer.hpp>
-#include <touchgfx/VectorFontRendererImpl.hpp>
 #include <string.h>
 
 #ifdef __GNUC__
@@ -56,8 +55,6 @@ namespace touchgfx
     }
 }
 
-VectorFontRendererImpl vectorFontRendererImpl;
-
 void setupSimulator(int argc, char** argv, touchgfx::HAL& hal)
 {
     // Simulate hardware running at 60Hz generating a vsync every 16.6667 ms
@@ -67,7 +64,6 @@ void setupSimulator(int argc, char** argv, touchgfx::HAL& hal)
     // Initialize SDL
     bool sdl_init_result = static_cast<touchgfx::HALSDL2&>(hal).sdl_init(argc, argv);
     assert(sdl_init_result && "Error during SDL initialization");
-    HAL::lcd().setVectorFontRenderer(&vectorFontRendererImpl);
 }
 
 touchgfx::LCD& setupLCD()

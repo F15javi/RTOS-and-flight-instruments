@@ -20,12 +20,16 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "fatfs.h"
 #include "libjpeg.h"
 #include "app_touchgfx.h"
+#include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stm32746g_discovery_qspi.h>
+#include "../../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_audio.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -64,11 +68,19 @@ CRC_HandleTypeDef hcrc;
 
 DMA2D_HandleTypeDef hdma2d;
 
+I2C_HandleTypeDef hi2c1;
 I2C_HandleTypeDef hi2c3;
 
 LTDC_HandleTypeDef hltdc;
 
 QSPI_HandleTypeDef hqspi;
+
+SAI_HandleTypeDef hsai_BlockA2;
+SAI_HandleTypeDef hsai_BlockB2;
+
+SD_HandleTypeDef hsd1;
+DMA_HandleTypeDef hdma_sdmmc1_rx;
+DMA_HandleTypeDef hdma_sdmmc1_tx;
 
 UART_HandleTypeDef huart1;
 DMA_HandleTypeDef hdma_usart1_rx;
@@ -108,6 +120,7 @@ extern __IO float heading;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void PeriphCommonClock_Config(void);
 static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
@@ -118,6 +131,9 @@ static void MX_LTDC_Init(void);
 static void MX_QUADSPI_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_CRC_Init(void);
+static void MX_SDMMC1_SD_Init(void);
+static void MX_I2C1_Init(void);
+static void MX_SAI2_Init(void);
 void StartDefaultTask(void *argument);
 extern void TouchGFX_Task(void *argument);
 extern void videoTaskFunc(void *argument);
@@ -130,29 +146,7 @@ extern void videoTaskFunc(void *argument);
 /* USER CODE BEGIN 0 */
 
 
-int __io_putchar(int ch){
 
-	while (HAL_OK != HAL_UART_Transmit(&huart1, (uint8_t *) &ch, 1, 3000)){
-	  ;
-	}
-	return ch;
-
-}
-
-int __io_getchar(void){
-
-	uint8_t ch = 0;
-
-	  /* Clear the Overrun flag just before receiving the first character */
-	  __HAL_UART_CLEAR_OREFLAG(&huart1);
-
-	  /* Wait for reception of a character on the USART RX line and echo this
-	   * character on console */
-	  HAL_UART_Receive(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
-	  //HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
-	  return ch;
-
-}
 
 
 /* USER CODE END 0 */
@@ -188,6 +182,9 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
 
+/* Configure the peripherals common clocks */
+  PeriphCommonClock_Config();
+
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
@@ -203,10 +200,16 @@ int main(void)
   MX_LIBJPEG_Init();
   MX_USART1_UART_Init();
   MX_CRC_Init();
+  MX_SDMMC1_SD_Init();
+  MX_FATFS_Init();
+  MX_I2C1_Init();
+  MX_SAI2_Init();
   MX_TouchGFX_Init();
-  /* Call  	PreOsInit function */
+  /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
   /* USER CODE BEGIN 2 */
+  BSP_AUDIO_OUT_Init(OUTPUT_DEVICE_BOTH, 80, AUDIO_FREQUENCY_44K);
+  BSP_AUDIO_OUT_SetAudioFrameSlot(CODEC_AUDIOFRAME_SLOT_02);
 
   /* USER CODE END 2 */
 
@@ -242,6 +245,7 @@ int main(void)
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   CreateSerialTask();
+  CreateSoundTask();
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -286,7 +290,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLM = 25;
   RCC_OscInitStruct.PLL.PLLN = 432;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 5;
+  RCC_OscInitStruct.PLL.PLLQ = 9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -309,6 +313,31 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/**
+  * @brief Peripherals Common Clock Configuration
+  * @retval None
+  */
+void PeriphCommonClock_Config(void)
+{
+  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+
+  /** Initializes the peripherals clock
+  */
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC|RCC_PERIPHCLK_SAI2
+                              |RCC_PERIPHCLK_CLK48;
+  PeriphClkInitStruct.PLLSAI.PLLSAIN = 384;
+  PeriphClkInitStruct.PLLSAI.PLLSAIR = 5;
+  PeriphClkInitStruct.PLLSAI.PLLSAIQ = 2;
+  PeriphClkInitStruct.PLLSAI.PLLSAIP = RCC_PLLSAIP_DIV2;
+  PeriphClkInitStruct.PLLSAIDivQ = 1;
+  PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_8;
+  PeriphClkInitStruct.Sai2ClockSelection = RCC_SAI2CLKSOURCE_PLLSAI;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
@@ -383,6 +412,54 @@ static void MX_DMA2D_Init(void)
 }
 
 /**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.Timing = 0x20404768;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Analogue filter
+  */
+  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Digital filter
+  */
+  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
   * @brief I2C3 Initialization Function
   * @param None
   * @retval None
@@ -398,7 +475,7 @@ static void MX_I2C3_Init(void)
 
   /* USER CODE END I2C3_Init 1 */
   hi2c3.Instance = I2C3;
-  hi2c3.Init.Timing = 0x00404669;
+  hi2c3.Init.Timing = 0x20404768;
   hi2c3.Init.OwnAddress1 = 0;
   hi2c3.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c3.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -531,6 +608,109 @@ static void MX_QUADSPI_Init(void)
 }
 
 /**
+  * @brief SAI2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SAI2_Init(void)
+{
+
+  /* USER CODE BEGIN SAI2_Init 0 */
+
+  /* USER CODE END SAI2_Init 0 */
+
+  /* USER CODE BEGIN SAI2_Init 1 */
+
+  /* USER CODE END SAI2_Init 1 */
+  hsai_BlockA2.Instance = SAI2_Block_A;
+  hsai_BlockA2.Init.Protocol = SAI_FREE_PROTOCOL;
+  hsai_BlockA2.Init.AudioMode = SAI_MODEMASTER_TX;
+  hsai_BlockA2.Init.DataSize = SAI_DATASIZE_8;
+  hsai_BlockA2.Init.FirstBit = SAI_FIRSTBIT_MSB;
+  hsai_BlockA2.Init.ClockStrobing = SAI_CLOCKSTROBING_FALLINGEDGE;
+  hsai_BlockA2.Init.Synchro = SAI_ASYNCHRONOUS;
+  hsai_BlockA2.Init.OutputDrive = SAI_OUTPUTDRIVE_DISABLE;
+  hsai_BlockA2.Init.NoDivider = SAI_MASTERDIVIDER_ENABLE;
+  hsai_BlockA2.Init.FIFOThreshold = SAI_FIFOTHRESHOLD_EMPTY;
+  hsai_BlockA2.Init.AudioFrequency = SAI_AUDIO_FREQUENCY_44K;
+  hsai_BlockA2.Init.SynchroExt = SAI_SYNCEXT_DISABLE;
+  hsai_BlockA2.Init.MonoStereoMode = SAI_STEREOMODE;
+  hsai_BlockA2.Init.CompandingMode = SAI_NOCOMPANDING;
+  hsai_BlockA2.Init.TriState = SAI_OUTPUT_NOTRELEASED;
+  hsai_BlockA2.FrameInit.FrameLength = 8;
+  hsai_BlockA2.FrameInit.ActiveFrameLength = 1;
+  hsai_BlockA2.FrameInit.FSDefinition = SAI_FS_STARTFRAME;
+  hsai_BlockA2.FrameInit.FSPolarity = SAI_FS_ACTIVE_LOW;
+  hsai_BlockA2.FrameInit.FSOffset = SAI_FS_FIRSTBIT;
+  hsai_BlockA2.SlotInit.FirstBitOffset = 0;
+  hsai_BlockA2.SlotInit.SlotSize = SAI_SLOTSIZE_DATASIZE;
+  hsai_BlockA2.SlotInit.SlotNumber = 1;
+  hsai_BlockA2.SlotInit.SlotActive = 0x00000000;
+  if (HAL_SAI_Init(&hsai_BlockA2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  hsai_BlockB2.Instance = SAI2_Block_B;
+  hsai_BlockB2.Init.Protocol = SAI_FREE_PROTOCOL;
+  hsai_BlockB2.Init.AudioMode = SAI_MODESLAVE_RX;
+  hsai_BlockB2.Init.DataSize = SAI_DATASIZE_8;
+  hsai_BlockB2.Init.FirstBit = SAI_FIRSTBIT_MSB;
+  hsai_BlockB2.Init.ClockStrobing = SAI_CLOCKSTROBING_FALLINGEDGE;
+  hsai_BlockB2.Init.Synchro = SAI_SYNCHRONOUS;
+  hsai_BlockB2.Init.OutputDrive = SAI_OUTPUTDRIVE_DISABLE;
+  hsai_BlockB2.Init.FIFOThreshold = SAI_FIFOTHRESHOLD_EMPTY;
+  hsai_BlockB2.Init.SynchroExt = SAI_SYNCEXT_DISABLE;
+  hsai_BlockB2.Init.MonoStereoMode = SAI_STEREOMODE;
+  hsai_BlockB2.Init.CompandingMode = SAI_NOCOMPANDING;
+  hsai_BlockB2.Init.TriState = SAI_OUTPUT_NOTRELEASED;
+  hsai_BlockB2.FrameInit.FrameLength = 8;
+  hsai_BlockB2.FrameInit.ActiveFrameLength = 1;
+  hsai_BlockB2.FrameInit.FSDefinition = SAI_FS_STARTFRAME;
+  hsai_BlockB2.FrameInit.FSPolarity = SAI_FS_ACTIVE_LOW;
+  hsai_BlockB2.FrameInit.FSOffset = SAI_FS_FIRSTBIT;
+  hsai_BlockB2.SlotInit.FirstBitOffset = 0;
+  hsai_BlockB2.SlotInit.SlotSize = SAI_SLOTSIZE_DATASIZE;
+  hsai_BlockB2.SlotInit.SlotNumber = 1;
+  hsai_BlockB2.SlotInit.SlotActive = 0x00000000;
+  if (HAL_SAI_Init(&hsai_BlockB2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SAI2_Init 2 */
+
+  /* USER CODE END SAI2_Init 2 */
+
+}
+
+/**
+  * @brief SDMMC1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SDMMC1_SD_Init(void)
+{
+
+  /* USER CODE BEGIN SDMMC1_Init 0 */
+
+  /* USER CODE END SDMMC1_Init 0 */
+
+  /* USER CODE BEGIN SDMMC1_Init 1 */
+
+  /* USER CODE END SDMMC1_Init 1 */
+  hsd1.Instance = SDMMC1;
+  hsd1.Init.ClockEdge = SDMMC_CLOCK_EDGE_RISING;
+  hsd1.Init.ClockBypass = SDMMC_CLOCK_BYPASS_DISABLE;
+  hsd1.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
+  hsd1.Init.BusWide = SDMMC_BUS_WIDE_1B;
+  hsd1.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;
+  hsd1.Init.ClockDiv = 0;
+  /* USER CODE BEGIN SDMMC1_Init 2 */
+
+  /* USER CODE END SDMMC1_Init 2 */
+
+}
+
+/**
   * @brief USART1 Initialization Function
   * @param None
   * @retval None
@@ -576,8 +756,14 @@ static void MX_DMA_Init(void)
 
   /* DMA interrupt init */
   /* DMA2_Stream2_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 5, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
+  /* DMA2_Stream3_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream3_IRQn);
+  /* DMA2_Stream6_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream6_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream6_IRQn);
 
 }
 
@@ -695,6 +881,7 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
   __HAL_RCC_GPIOJ_CLK_ENABLE();
@@ -703,7 +890,6 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOI_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(VSYNC_FREQ_GPIO_Port, VSYNC_FREQ_Pin, GPIO_PIN_RESET);
@@ -726,6 +912,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(VSYNC_FREQ_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PC13 */
+  GPIO_InitStruct.Pin = GPIO_PIN_13;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LCD_BL_CTRL_Pin */
   GPIO_InitStruct.Pin = LCD_BL_CTRL_Pin;
@@ -772,6 +964,8 @@ static void MX_GPIO_Init(void)
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
 {
+  /* init code for USB_DEVICE */
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
   for(;;)

@@ -20,8 +20,8 @@
 
 
 
-void Serial_TX(char telemetry[100]) {
-    HANDLE serial = CreateFile(L"COM4", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
+void Serial_TX(char telemetry[64]) {
+    HANDLE serial = CreateFile(L"COM6", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
 
     if (serial != INVALID_HANDLE_VALUE) {
         DCB dcbSerialParams = { 0 };
@@ -37,10 +37,19 @@ void Serial_TX(char telemetry[100]) {
                 DWORD bytesWritten;
 
 
+                //char array1[64];
+                //char array2[64];
+                //const char data1[] = "1 111.11111 111.11111 111.11111 111.11111 111.11111 111.11111";
+                //const char data2[] = "2 222.22222 222.22222 222.22222 222.22222 222.22222 222.22222";
 
-                const char data[] = "111.11111 111.11111";
+                //memcpy(array1, data, 64);
 
-                WriteFile(serial, telemetry, 100, &bytesWritten, NULL);
+                //memcpy(array2, data + 64, 64);
+
+                WriteFile(serial, telemetry, 64, &bytesWritten, NULL);
+                //WriteFile(serial, telemetry, 100, &bytesWritten, NULL);
+                //WriteFile(serial, telemetry, 64, &bytesWritten, NULL);
+
                 printf("\n CreateFile failed with error %d.", GetLastError());
 
 
@@ -168,20 +177,28 @@ int main()
         int temp = (int)data[5][1];
         int OilP = (int)data[6][1];
         int OilT = (int)data[7][1];
-        char telemetry[100];
-        sprintf_s(telemetry, "%d %f %f %f %d %d %f %d %d %d %f %f", 
+        char telemetry1[64];
+        char telemetry2[64];
+
+        sprintf_s(telemetry1, "1 %d %f %f %f %d %d %f",
             speed,
             data[1][1], data[1][2], data[1][3],
             altitude,
             rpm,
-            data[4][1], 
+            data[4][1]);
+            
+        sprintf_s(telemetry2, "2 %d %d %d %f %f",
             temp,
             OilP,
             OilT,
             data[8][1], data[8][2]);
 
-        Serial_TX(telemetry);
-        Sleep(15);
+        Serial_TX(telemetry1);
+        Sleep(10);
+
+        Serial_TX(telemetry2);
+
+        //Sleep(15);
         //Serial_RX();
         //aircraft_control(xpIP, xpPort, port);
 

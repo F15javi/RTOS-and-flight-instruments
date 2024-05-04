@@ -735,7 +735,7 @@ uint16_t AUDIO_IO_Read(uint8_t Addr, uint16_t Reg)
   */
 void AUDIO_IO_Delay(uint32_t Delay)
 {
-  HAL_Delay(Delay);
+	vTaskDelay(Delay);
 }
 
 /********************************* LINK CAMERA ********************************/

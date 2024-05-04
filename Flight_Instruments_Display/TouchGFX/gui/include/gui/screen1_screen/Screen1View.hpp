@@ -17,7 +17,6 @@ public:
 	virtual void Update_Horizon(float value, float value2);
 	virtual void Update_Roll(float value);
 	virtual void Update_Heading(float value);
-
 protected:
 };
 

@@ -7,16 +7,27 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-//#include "usbd_cdc_if.h"
+
 #include "cmsis_os.h"
 
 TaskHandle_t taskHandler;
 
 
-uint8_t rx_buffer[100];
+uint8_t buffer_RX[64];
+uint8_t receivedData[64];
 
-
-
+uint16_t speed;
+float pitch;
+float roll;
+uint16_t altitude;
+float heading;
+uint16_t rpm;
+float Fuel_flow;
+uint16_t ENG_temp;
+uint16_t Oil_p;
+uint16_t Oil_t;
+float Fuel_tank1;
+float Fuel_Tank2;
 
 
 typedef struct{
@@ -25,104 +36,125 @@ typedef struct{
 		float roll;
 		uint16_t altitude;
 		float heading;
+		uint16_t rpm;
+		float Fuel_flow;
+		uint16_t ENG_temp;
+		uint16_t Oil_p;
+		uint16_t Oil_t;
+		float Fuel_tank1;
+		float Fuel_Tank2;
+
+
 	}RX_Data;
 
 RX_Data Telemetry;
 
 const char delimiter[] = " ";
-
 char *token;
+
 
 void Serial_RX(void *pArg);
 void Serial_TX(void *pArg);
 
 
-osMessageQueueId_t DataToDisplayHandle;
-	const osMessageQueueAttr_t DataToDisplay_attributes = {
-	  .name = "DataToDisplay"
-	};
+//osMessageQueueId_t DataToDisplayHandle;
+//	const osMessageQueueAttr_t DataToDisplay_attributes = {
+//	  .name = "DataToDisplay"
+//	};
+
+
 
 void CreateSerialTask(){
 
+	//DataToDisplayHandle = osMessageQueueNew (1, sizeof(RX_Data), &DataToDisplay_attributes);
 
-
-
-	DataToDisplayHandle = osMessageQueueNew (1, sizeof(RX_Data), &DataToDisplay_attributes);
-
+	//Check Serial output
 
 	xTaskCreate(Serial_RX, "Serial_Rx", 128, NULL, 1, NULL);
 	//xTaskCreate(Serial_TX, "Serial_Tx", 128, NULL, 1, NULL);
 
 
-
-
-}
-void Serial_TX(void *pArg){
-
-	//char *data = "Hello there\n";
-	//CDC_Transmit_FS((uint8_t *) data, 100);
-
-	vTaskDelay(300);
 }
 
 
 
 void Serial_RX(void *pArg){
 
+	uint8_t cmp = 0;
 
 	while (1) {
-	    //osSemaphoreWait(BinarySemaphoreUARTHandle, osWaitForever);
 
-		if(HAL_UART_Receive_DMA(&huart2, rx_buffer, 100) != HAL_OK)
-		  {
-		    Error_Handler();
+		memcpy(receivedData, buffer_RX, 64);
 
-		  }
-		if(huart2.hdmarx->ErrorCode == HAL_DMA_ERROR_NO_XFER) {
+		if(receivedData[0] == 0x31){
 
-		    Error_Handler();
-
-
-		  }
-
-
-	}
-}
-void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart){
-	Error_Handler();
-}
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	if(HAL_UART_Receive_DMA(&huart2, rx_buffer, 100) != HAL_OK)
-	{
-		Error_Handler();
-	}
-
-    if (huart->Instance == USART1){
-        //osSemaphoreRelease(BinarySemaphoreUARTHandle);
-    	char *s = rx_buffer;
-		   token = strtok(s, delimiter);
-		   if (token != NULL) {
-			   Telemetry.speed = atoi(token);
+			char *s = (char *)receivedData;
+			token = strtok(s, delimiter);
+			if (token != NULL) {
 			   token = strtok(NULL, delimiter);
-			   if (token != NULL) {
-				   Telemetry.pitch = atof(token);
+				if (token != NULL) {
+				   speed = atoi(token);
 				   token = strtok(NULL, delimiter);
 				   if (token != NULL) {
-					   Telemetry.roll = atof(token);
+					   pitch = atof(token);
 					   token = strtok(NULL, delimiter);
 					   if (token != NULL) {
-						   Telemetry.heading = atof(token);
-							token = strtok(NULL, delimiter);
+						   roll = atof(token);
+						   token = strtok(NULL, delimiter);
 						   if (token != NULL) {
-							   Telemetry.altitude = atoi(token);
+							   heading = atof(token);
+								token = strtok(NULL, delimiter);
+							   if (token != NULL) {
+								   altitude = atoi(token);
+									token = strtok(NULL, delimiter);
+									if (token != NULL) {
+										rpm = atoi(token);
+										token = strtok(NULL, delimiter);
+										if (token != NULL) {
+											Fuel_flow = atof(token);
+										}
+									}
+								}
 						   }
 					   }
 				   }
-			   }
-		   }
+				}
+			}
 
-	   osMessageQueuePut(DataToDisplayHandle, &Telemetry, 0, 0);
-	   vTaskDelay(15);
-    }
+		}
+		if(receivedData[0] == 0x32){
+
+			char *d = (char *)receivedData;
+			token = strtok(d, delimiter);
+			if (token != NULL) {
+				token = strtok(NULL, delimiter);
+				if (token != NULL) {
+					ENG_temp = atoi(token);
+					token = strtok(NULL, delimiter);
+					if (token != NULL) {
+						Oil_p = atoi(token);
+						token = strtok(NULL, delimiter);
+						if (token != NULL) {
+							Oil_t = atoi(token);
+							token = strtok(NULL, delimiter);
+							if (token != NULL) {
+								Fuel_tank1 = atof(token);
+								token = strtok(NULL, delimiter);
+								if (token != NULL) {
+									Fuel_Tank2 = atof(token);
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+	}
 }
+
+
+
+
+
+
