@@ -20,6 +20,8 @@ uint16_t speed;
 float pitch;
 float roll;
 uint16_t altitude;
+uint16_t rad_alt;
+
 float heading;
 uint16_t rpm;
 float Fuel_flow;
@@ -28,8 +30,8 @@ uint16_t Oil_p;
 uint16_t Oil_t;
 float Fuel_tank1;
 float Fuel_Tank2;
-
-
+float flapsPos;
+uint16_t vvi;
 typedef struct{
 		uint16_t speed;
 		float pitch;
@@ -142,13 +144,25 @@ void Serial_RX(void *pArg){
 								token = strtok(NULL, delimiter);
 								if (token != NULL) {
 									Fuel_Tank2 = atof(token);
+									token = strtok(NULL, delimiter);
+									if (token != NULL) {
+										rad_alt = atoi(token);
+										token = strtok(NULL, delimiter);
+										if (token != NULL) {
+											flapsPos = atof(token);
+											token = strtok(NULL, delimiter);
+											if (token != NULL) {
+												vvi = atoi(token);
+
+											}
+										}
+									}
 								}
 							}
 						}
 					}
 				}
 			}
-
 		}
 	}
 }

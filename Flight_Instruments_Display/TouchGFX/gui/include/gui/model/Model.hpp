@@ -1,5 +1,7 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
+#include "stm32f7xx_hal.h"
+#include "cmsis_os.h"
 
 class ModelListener;
 
@@ -14,6 +16,8 @@ public:
     }
 
     void tick();
+    void sendLandingState(uint8_t state);
+
 protected:
     ModelListener* modelListener;
 };

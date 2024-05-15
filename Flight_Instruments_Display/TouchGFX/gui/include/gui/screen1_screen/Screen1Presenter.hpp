@@ -32,6 +32,7 @@ public:
     virtual void Update_Roll(float value);
     virtual void Update_Heading(float value);
 
+    void askTosendData(uint8_t state);
 
 private:
     Screen1Presenter();

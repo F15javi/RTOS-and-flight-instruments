@@ -39,3 +39,7 @@ void Screen1Presenter::Update_Heading(float value){
 	view.Update_Heading(value);
 
 }
+void Screen1Presenter::askTosendData(uint8_t state)
+{
+	model->sendLandingState(state);
+}

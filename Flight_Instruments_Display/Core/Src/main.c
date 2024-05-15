@@ -108,6 +108,11 @@ const osThreadAttr_t videoTask_attributes = {
   .stack_size = 1000 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
+/* Definitions for GuiToTaskLanding */
+osMessageQueueId_t GuiToTaskLandingHandle;
+const osMessageQueueAttr_t GuiToTaskLanding_attributes = {
+  .name = "GuiToTaskLanding"
+};
 /* USER CODE BEGIN PV */
 static FMC_SDRAM_CommandTypeDef Command;
 extern __IO uint16_t altitude;
@@ -115,6 +120,7 @@ extern __IO uint8_t speed;
 extern __IO float pitch;
 extern __IO float roll;
 extern __IO float heading;
+
 
 /* USER CODE END PV */
 
@@ -227,6 +233,10 @@ int main(void)
   /* USER CODE BEGIN RTOS_TIMERS */
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
+
+  /* Create the queue(s) */
+  /* creation of GuiToTaskLanding */
+  GuiToTaskLandingHandle = osMessageQueueNew (16, sizeof(uint8_t), &GuiToTaskLanding_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -756,7 +766,7 @@ static void MX_DMA_Init(void)
 
   /* DMA interrupt init */
   /* DMA2_Stream2_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 5, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
   /* DMA2_Stream3_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 5, 0);

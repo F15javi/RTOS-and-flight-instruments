@@ -13,8 +13,9 @@
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/containers/SlideMenu.hpp>
 #include <touchgfx/widgets/ButtonWithLabel.hpp>
-#include <touchgfx/widgets/TextureMapper.hpp>
+#include <touchgfx/widgets/ToggleButton.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/TextureMapper.hpp>
 
 class Screen3ViewBase : public touchgfx::View<Screen3Presenter>
 {
@@ -22,6 +23,14 @@ public:
     Screen3ViewBase();
     virtual ~Screen3ViewBase();
     virtual void setupScreen();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void showFPS()
+    {
+        // Override and implement this function in Screen3
+    }
 
 protected:
     FrontendApplication& application() {
@@ -36,8 +45,11 @@ protected:
     touchgfx::Gauge gauge1;
     touchgfx::TextAreaWithOneWildcard textArea1;
     touchgfx::SlideMenu slideMenu1;
+    touchgfx::ButtonWithLabel ENG;
     touchgfx::ButtonWithLabel HOR;
     touchgfx::ButtonWithLabel NAV;
+    touchgfx::ToggleButton FPS;
+    touchgfx::TextArea textAreaFPS;
     touchgfx::TextAreaWithOneWildcard textArea2;
     touchgfx::TextAreaWithOneWildcard textArea4;
     touchgfx::TextAreaWithOneWildcard textArea5;

@@ -17,6 +17,8 @@
 #include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/widgets/RepeatButton.hpp>
 #include <touchgfx/containers/SlideMenu.hpp>
+#include <touchgfx/widgets/ToggleButton.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/ButtonWithLabel.hpp>
 
 class Screen2ViewBase : public touchgfx::View<Screen2Presenter>
@@ -34,6 +36,10 @@ public:
         // Override and implement this function in Screen2
     }
     virtual void down_hdg()
+    {
+        // Override and implement this function in Screen2
+    }
+    virtual void showFPS()
     {
         // Override and implement this function in Screen2
     }
@@ -63,8 +69,11 @@ protected:
     touchgfx::RepeatButton button_up;
     touchgfx::RepeatButton button_down;
     touchgfx::SlideMenu slideMenu1;
-    touchgfx::ButtonWithLabel HOR;
+    touchgfx::ToggleButton FPS;
+    touchgfx::TextArea textAreaFPS;
     touchgfx::ButtonWithLabel ENG;
+    touchgfx::ButtonWithLabel NAV;
+    touchgfx::ButtonWithLabel HOR;
 
     /*
      * Wildcard Buffers

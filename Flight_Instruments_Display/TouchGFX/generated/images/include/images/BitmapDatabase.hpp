@@ -24,6 +24,7 @@ const uint16_t BITMAP_LEFT_SLIDE_MENU_BUTTON_ID = 14;
 const uint16_t BITMAP_MENU_TOGGLE_BUTTON_01_ID = 15;
 const uint16_t BITMAP_MENU_TOGGLE_BUTTON_SELECTED_01_ID = 16;
 const uint16_t BITMAP_NEEDLE_ID = 17;
+const uint16_t BITMAP_SQUARE_ID = 18;
 
 namespace BitmapDatabase
 {

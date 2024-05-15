@@ -70,7 +70,37 @@ Screen1ViewBase::Screen1ViewBase() :
     slideMenu1.setAnimationEasingEquation(touchgfx::EasingEquations::cubicEaseInOut);
     slideMenu1.setAnimationDuration(18);
     slideMenu1.setExpandedStateTimeout(180);
-    NAV.setXY(-1, 0);
+    FPS.setXY(-1, 198);
+    FPS.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_SQUARE_ID));
+    FPS.setAction(buttonCallback);
+    slideMenu1.add(FPS);
+
+    textAreaFPS.setXY(4, 210);
+    textAreaFPS.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    textAreaFPS.setLinespacing(0);
+    textAreaFPS.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7O3F));
+    slideMenu1.add(textAreaFPS);
+
+    LND.setXY(-1, 148);
+    LND.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_SQUARE_ID));
+    LND.setAction(buttonCallback);
+    slideMenu1.add(LND);
+
+    textArea3.setXY(4, 160);
+    textArea3.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    textArea3.setLinespacing(0);
+    textArea3.setTypedText(touchgfx::TypedText(T___SINGLEUSE_QDA1));
+    slideMenu1.add(textArea3);
+
+    ENG.setXY(-1, 98);
+    ENG.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
+    ENG.setLabelText(touchgfx::TypedText(T___SINGLEUSE_6JJE));
+    ENG.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    ENG.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    ENG.setAction(buttonCallback);
+    slideMenu1.add(ENG);
+
+    NAV.setXY(-1, 49);
     NAV.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
     NAV.setLabelText(touchgfx::TypedText(T___SINGLEUSE_2K4S));
     NAV.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -78,13 +108,12 @@ Screen1ViewBase::Screen1ViewBase() :
     NAV.setAction(buttonCallback);
     slideMenu1.add(NAV);
 
-    ENG.setXY(-1, 50);
-    ENG.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
-    ENG.setLabelText(touchgfx::TypedText(T___SINGLEUSE_6JJE));
-    ENG.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    ENG.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    ENG.setAction(buttonCallback);
-    slideMenu1.add(ENG);
+    HOR.setXY(-1, -1);
+    HOR.setBitmaps(touchgfx::Bitmap(BITMAP_SQUARE_ID), touchgfx::Bitmap(BITMAP_SQUARE_ID));
+    HOR.setLabelText(touchgfx::TypedText(T___SINGLEUSE_R2HZ));
+    HOR.setLabelColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    HOR.setLabelColorPressed(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    slideMenu1.add(HOR);
 
     add(slideMenu1);
 }
@@ -122,5 +151,19 @@ void Screen1ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //When ENG clicked reset timer slideMenu1
         //reset expanded state timer on slideMenu1
         slideMenu1.resetExpandedStateTimer();
+    }
+    if (&src == &LND)
+    {
+        //Interaction5
+        //When LND clicked call virtual function
+        //Call GetLandingState
+        GetLandingState();
+    }
+    if (&src == &FPS)
+    {
+        //Interaction6
+        //When FPS clicked call virtual function
+        //Call showFPS
+        showFPS();
     }
 }

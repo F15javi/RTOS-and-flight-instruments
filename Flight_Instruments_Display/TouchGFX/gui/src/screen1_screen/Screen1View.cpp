@@ -2,6 +2,7 @@
 #include "stm32f7xx_hal.h"
 #include <string.h>
 #include <math.h>
+#include <touchgfx/Color.hpp>
 
 
 
@@ -76,7 +77,25 @@ void Screen1View::Update_Roll(float value){
 	//textureMapper1.setZAngle(DegToRad(value));
 
 }
-void Screen1View::Update_Heading(float value){
 
+void Screen1View::GetLandingState(){
+
+	uint8_t ButtonState;
+
+	if(LND.getState() == true){
+
+		textArea3.setColor(0);
+		ButtonState = 1;
+
+	}else{
+
+		textArea3.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+		ButtonState = 0;
+	}
+
+	presenter->askTosendData(ButtonState);
+
+}
+void Screen1View::Update_Heading(float value){
 
 }

@@ -132,6 +132,32 @@ Screen2ViewBase::Screen2ViewBase() :
     slideMenu1.setAnimationDuration(18);
     slideMenu1.setExpandedStateTimeout(180);
     slideMenu1.setStateChangedCallback(slideMenuStateChangedCallback);
+    FPS.setXY(-1, 150);
+    FPS.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_SQUARE_ID));
+    FPS.setAction(buttonCallback);
+    slideMenu1.add(FPS);
+
+    textAreaFPS.setXY(4, 162);
+    textAreaFPS.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    textAreaFPS.setLinespacing(0);
+    textAreaFPS.setTypedText(touchgfx::TypedText(T___SINGLEUSE_VXTM));
+    slideMenu1.add(textAreaFPS);
+
+    ENG.setXY(-1, 100);
+    ENG.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
+    ENG.setLabelText(touchgfx::TypedText(T___SINGLEUSE_35L4));
+    ENG.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    ENG.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    ENG.setAction(buttonCallback);
+    slideMenu1.add(ENG);
+
+    NAV.setXY(-1, 50);
+    NAV.setBitmaps(touchgfx::Bitmap(BITMAP_SQUARE_ID), touchgfx::Bitmap(BITMAP_SQUARE_ID));
+    NAV.setLabelText(touchgfx::TypedText(T___SINGLEUSE_KX09));
+    NAV.setLabelColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    NAV.setLabelColorPressed(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    slideMenu1.add(NAV);
+
     HOR.setXY(-1, 0);
     HOR.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
     HOR.setLabelText(touchgfx::TypedText(T___SINGLEUSE_W11F));
@@ -139,14 +165,6 @@ Screen2ViewBase::Screen2ViewBase() :
     HOR.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
     HOR.setAction(buttonCallback);
     slideMenu1.add(HOR);
-
-    ENG.setXY(-1, 50);
-    ENG.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
-    ENG.setLabelText(touchgfx::TypedText(T___SINGLEUSE_35L4));
-    ENG.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    ENG.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    ENG.setAction(buttonCallback);
-    slideMenu1.add(ENG);
 
     add(slideMenu1);
 }
@@ -194,6 +212,13 @@ void Screen2ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //When ENG clicked reset timer slideMenu1
         //reset expanded state timer on slideMenu1
         slideMenu1.resetExpandedStateTimer();
+    }
+    if (&src == &FPS)
+    {
+        //Interaction7
+        //When FPS clicked call virtual function
+        //Call showFPS
+        showFPS();
     }
 }
 

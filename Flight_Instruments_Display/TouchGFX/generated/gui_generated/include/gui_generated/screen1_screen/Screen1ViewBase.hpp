@@ -12,6 +12,8 @@
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/containers/SlideMenu.hpp>
+#include <touchgfx/widgets/ToggleButton.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/ButtonWithLabel.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
@@ -20,6 +22,18 @@ public:
     Screen1ViewBase();
     virtual ~Screen1ViewBase();
     virtual void setupScreen();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void GetLandingState()
+    {
+        // Override and implement this function in Screen1
+    }
+    virtual void showFPS()
+    {
+        // Override and implement this function in Screen1
+    }
 
 protected:
     FrontendApplication& application() {
@@ -38,8 +52,13 @@ protected:
     touchgfx::Image image2_1;
     touchgfx::Image image3;
     touchgfx::SlideMenu slideMenu1;
-    touchgfx::ButtonWithLabel NAV;
+    touchgfx::ToggleButton FPS;
+    touchgfx::TextArea textAreaFPS;
+    touchgfx::ToggleButton LND;
+    touchgfx::TextArea textArea3;
     touchgfx::ButtonWithLabel ENG;
+    touchgfx::ButtonWithLabel NAV;
+    touchgfx::ButtonWithLabel HOR;
 
     /*
      * Wildcard Buffers

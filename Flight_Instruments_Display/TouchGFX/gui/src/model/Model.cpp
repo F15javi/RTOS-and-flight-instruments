@@ -1,9 +1,8 @@
 #include <gui/model/Model.hpp>
 #include <gui/model/ModelListener.hpp>
-
+#include "main.h"
 #include "stm32f7xx_hal.h"
 #include "cmsis_os.h"
-#include "main.h"
 
 extern __IO uint16_t speed;
 extern __IO float pitch;
@@ -17,20 +16,11 @@ extern __IO uint16_t Oil_p;
 extern __IO uint16_t Oil_t;
 extern __IO float Fuel_tank1;
 extern __IO float Fuel_Tank2;
-//typedef struct{
-//				uint16_t speed;
-//				float pitch;
-//				float roll;
-//				uint16_t altitude;
-//				float heading;
-//			}RX_Data;
-//
-//extern "C"{
-//
-//	extern osMessageQueueId_t DataToDisplayHandle;
-//
-//
-//	}
+
+
+extern osMessageQueueId_t GuiToTaskLandingHandle;
+
+
 
 
 Model::Model() : modelListener(0)
@@ -56,18 +46,11 @@ void Model::tick()
 		modelListener->Update_Oil_Temp(Oil_t);
 		modelListener->Update_Fuel_Tank1(Fuel_tank1);
 		modelListener->Update_Fuel_Tank2(Fuel_Tank2);
+}
+void Model::sendLandingState(uint8_t state){
 
-
-	//RX_Data Telemetry;
-
-		//Get data from the Display queue
-//		if (osMessageQueueGet(DataToDisplayHandle, &Telemetry, 0U, 0) == osOK)
-//			{
-//			// send data to presenter
-//
-//
-//			}
-
+	uint8_t msg = state;
+	osMessageQueuePut(GuiToTaskLandingHandle, &msg, NULL, 0);
 
 
 }

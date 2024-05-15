@@ -48,6 +48,13 @@ Screen3ViewBase::Screen3ViewBase() :
     slideMenu1.setAnimationEasingEquation(touchgfx::EasingEquations::cubicEaseInOut);
     slideMenu1.setAnimationDuration(18);
     slideMenu1.setExpandedStateTimeout(180);
+    ENG.setXY(-1, 99);
+    ENG.setBitmaps(touchgfx::Bitmap(BITMAP_SQUARE_ID), touchgfx::Bitmap(BITMAP_SQUARE_ID));
+    ENG.setLabelText(touchgfx::TypedText(T___SINGLEUSE_5GCO));
+    ENG.setLabelColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    ENG.setLabelColorPressed(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    slideMenu1.add(ENG);
+
     HOR.setXY(-1, 0);
     HOR.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID));
     HOR.setLabelText(touchgfx::TypedText(T___SINGLEUSE_RM21));
@@ -63,6 +70,17 @@ Screen3ViewBase::Screen3ViewBase() :
     NAV.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
     NAV.setAction(buttonCallback);
     slideMenu1.add(NAV);
+
+    FPS.setXY(-1, 149);
+    FPS.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_TOGGLE_BUTTON_01_ID), touchgfx::Bitmap(BITMAP_SQUARE_ID));
+    FPS.setAction(buttonCallback);
+    slideMenu1.add(FPS);
+
+    textAreaFPS.setXY(4, 161);
+    textAreaFPS.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    textAreaFPS.setLinespacing(0);
+    textAreaFPS.setTypedText(touchgfx::TypedText(T___SINGLEUSE_OX4I));
+    slideMenu1.add(textAreaFPS);
 
     add(slideMenu1);
 
@@ -171,5 +189,12 @@ void Screen3ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //When NAV clicked reset timer slideMenu1
         //reset expanded state timer on slideMenu1
         slideMenu1.resetExpandedStateTimer();
+    }
+    if (&src == &FPS)
+    {
+        //Interaction5
+        //When FPS clicked call virtual function
+        //Call showFPS
+        showFPS();
     }
 }

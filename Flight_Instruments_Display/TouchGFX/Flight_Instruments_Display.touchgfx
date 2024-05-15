@@ -117,9 +117,84 @@
             "ExpandedStateTimeout": 3000,
             "Components": [
               {
+                "Type": "ToggleButton",
+                "Name": "FPS",
+                "X": -1,
+                "Y": 198,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "square.png",
+                "Released": "menu_toggle_button_01.png"
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textAreaFPS",
+                "X": 4,
+                "Y": 210,
+                "Width": 38,
+                "Height": 24,
+                "TextId": "__SingleUse_7O3F",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "ToggleButton",
+                "Name": "LND",
+                "X": -1,
+                "Y": 148,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "square.png",
+                "Released": "menu_toggle_button_01.png"
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textArea3",
+                "X": 4,
+                "Y": 160,
+                "Width": 41,
+                "Height": 24,
+                "TextId": "__SingleUse_QDA1",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "ENG",
+                "X": -1,
+                "Y": 98,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "menu_toggle_button_01.png",
+                "Released": "menu_toggle_button_01.png",
+                "TextId": "__SingleUse_6JJE",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0"
+              },
+              {
                 "Type": "ButtonWithLabel",
                 "Name": "NAV",
                 "X": -1,
+                "Y": 49,
                 "Width": 50,
                 "Height": 50,
                 "Pressed": "menu_toggle_button_01.png",
@@ -139,24 +214,14 @@
               },
               {
                 "Type": "ButtonWithLabel",
-                "Name": "ENG",
+                "Name": "HOR",
                 "X": -1,
-                "Y": 50,
+                "Y": -1,
                 "Width": 50,
                 "Height": 50,
-                "Pressed": "menu_toggle_button_01.png",
-                "Released": "menu_toggle_button_01.png",
-                "TextId": "__SingleUse_6JJE",
-                "ReleasedColor": {
-                  "Red": 255,
-                  "Green": 255,
-                  "Blue": 255
-                },
-                "PressedColor": {
-                  "Red": 255,
-                  "Green": 255,
-                  "Blue": 255
-                },
+                "Pressed": "square.png",
+                "Released": "square.png",
+                "TextId": "__SingleUse_R2HZ",
                 "TextRotation": "0"
               }
             ]
@@ -209,6 +274,28 @@
             "Action": {
               "Type": "ActionResetTimer",
               "ActionComponent": "slideMenu1"
+            }
+          },
+          {
+            "InteractionName": "Interaction5",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "LND"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "GetLandingState"
+            }
+          },
+          {
+            "InteractionName": "Interaction6",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "FPS"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "showFPS"
             }
           }
         ]
@@ -435,14 +522,41 @@
             "ExpandedStateTimeout": 3000,
             "Components": [
               {
-                "Type": "ButtonWithLabel",
-                "Name": "HOR",
+                "Type": "ToggleButton",
+                "Name": "FPS",
                 "X": -1,
+                "Y": 150,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "square.png",
+                "Released": "menu_toggle_button_01.png"
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textAreaFPS",
+                "X": 4,
+                "Y": 162,
+                "Width": 38,
+                "Height": 24,
+                "TextId": "__SingleUse_VXTM",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "ENG",
+                "X": -1,
+                "Y": 100,
                 "Width": 50,
                 "Height": 50,
                 "Pressed": "menu_toggle_button_01.png",
                 "Released": "menu_toggle_button_01.png",
-                "TextId": "__SingleUse_W11F",
+                "TextId": "__SingleUse_35L4",
                 "ReleasedColor": {
                   "Red": 255,
                   "Green": 255,
@@ -457,14 +571,25 @@
               },
               {
                 "Type": "ButtonWithLabel",
-                "Name": "ENG",
+                "Name": "NAV",
                 "X": -1,
                 "Y": 50,
                 "Width": 50,
                 "Height": 50,
+                "Pressed": "square.png",
+                "Released": "square.png",
+                "TextId": "__SingleUse_KX09",
+                "TextRotation": "0"
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "HOR",
+                "X": -1,
+                "Width": 50,
+                "Height": 50,
                 "Pressed": "menu_toggle_button_01.png",
                 "Released": "menu_toggle_button_01.png",
-                "TextId": "__SingleUse_35L4",
+                "TextId": "__SingleUse_W11F",
                 "ReleasedColor": {
                   "Red": 255,
                   "Green": 255,
@@ -550,6 +675,17 @@
               "Type": "ActionResetTimer",
               "ActionComponent": "slideMenu1"
             }
+          },
+          {
+            "InteractionName": "Interaction7",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "FPS"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "showFPS"
+            }
           }
         ]
       },
@@ -627,6 +763,18 @@
             "Components": [
               {
                 "Type": "ButtonWithLabel",
+                "Name": "ENG",
+                "X": -1,
+                "Y": 99,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "square.png",
+                "Released": "square.png",
+                "TextId": "__SingleUse_5GCO",
+                "TextRotation": "0"
+              },
+              {
+                "Type": "ButtonWithLabel",
                 "Name": "HOR",
                 "X": -1,
                 "Width": 50,
@@ -667,6 +815,32 @@
                   "Blue": 255
                 },
                 "TextRotation": "0"
+              },
+              {
+                "Type": "ToggleButton",
+                "Name": "FPS",
+                "X": -1,
+                "Y": 149,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "square.png",
+                "Released": "menu_toggle_button_01.png"
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textAreaFPS",
+                "X": 4,
+                "Y": 161,
+                "Width": 38,
+                "Height": 24,
+                "TextId": "__SingleUse_OX4I",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "AutoSize": true
               }
             ]
           },
@@ -872,6 +1046,17 @@
             "Action": {
               "Type": "ActionResetTimer",
               "ActionComponent": "slideMenu1"
+            }
+          },
+          {
+            "InteractionName": "Interaction5",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "FPS"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "showFPS"
             }
           }
         ]
