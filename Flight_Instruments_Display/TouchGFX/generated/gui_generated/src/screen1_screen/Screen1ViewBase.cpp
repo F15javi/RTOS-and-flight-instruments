@@ -116,6 +116,22 @@ Screen1ViewBase::Screen1ViewBase() :
     slideMenu1.add(HOR);
 
     add(slideMenu1);
+
+    fps_text.setPosition(367, 12, 110, 24);
+    fps_text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    fps_text.setLinespacing(0);
+    Unicode::snprintf(fps_textBuffer, FPS_TEXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_8ADT).getText());
+    fps_text.setWildcard(fps_textBuffer);
+    fps_text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_TAYT));
+    add(fps_text);
+
+    ms.setPosition(367, 36, 110, 24);
+    ms.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    ms.setLinespacing(0);
+    Unicode::snprintf(msBuffer, MS_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_2T0O).getText());
+    ms.setWildcard(msBuffer);
+    ms.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UTB7));
+    add(ms);
 }
 
 Screen1ViewBase::~Screen1ViewBase()

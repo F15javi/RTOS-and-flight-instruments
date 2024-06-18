@@ -6,6 +6,18 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_2T0O" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_8ADT" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_UTB7" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">ms &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_TAYT" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">fps &lt;value&gt;</Translation>
+      </Text>
       <Text Id="__SingleUse_OX4I" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">FPS</Translation>
       </Text>

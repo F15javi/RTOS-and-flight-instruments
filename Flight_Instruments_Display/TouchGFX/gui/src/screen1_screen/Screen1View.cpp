@@ -96,6 +96,31 @@ void Screen1View::GetLandingState(){
 	presenter->askTosendData(ButtonState);
 
 }
+void Screen1View::showFPS(uint8_t value){
+
+	uint8_t fps = 0;
+	if(FPS.getState() == true){
+
+		fps_text.setVisible(true);
+		ms.setVisible(true);
+
+		if(value != 0){
+			fps = 1000/value;
+		}
+		Unicode::snprintf(fps_textBuffer, FPS_TEXT_SIZE, "%d", fps);
+		Unicode::snprintf(msBuffer, MS_SIZE, "%d", value);
+
+		fps_text.invalidate();
+		ms.invalidate();
+	}else{
+
+		fps_text.setVisible(false);
+		ms.setVisible(false);
+	}
+
+
+}
 void Screen1View::Update_Heading(float value){
 
 }
+

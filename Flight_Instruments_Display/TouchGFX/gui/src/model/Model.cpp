@@ -17,6 +17,8 @@ extern __IO uint16_t Oil_t;
 extern __IO float Fuel_tank1;
 extern __IO float Fuel_Tank2;
 
+extern __IO uint8_t avgFps;
+extern __IO uint8_t avgDelay;
 
 extern osMessageQueueId_t GuiToTaskLandingHandle;
 
@@ -46,6 +48,8 @@ void Model::tick()
 		modelListener->Update_Oil_Temp(Oil_t);
 		modelListener->Update_Fuel_Tank1(Fuel_tank1);
 		modelListener->Update_Fuel_Tank2(Fuel_Tank2);
+		modelListener->showFPS(avgDelay);
+
 }
 void Model::sendLandingState(uint8_t state){
 

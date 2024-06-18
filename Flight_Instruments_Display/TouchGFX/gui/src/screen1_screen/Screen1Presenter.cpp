@@ -43,3 +43,7 @@ void Screen1Presenter::askTosendData(uint8_t state)
 {
 	model->sendLandingState(state);
 }
+void Screen1Presenter::showFPS(uint8_t value){
+	view.showFPS(value);
+}
+

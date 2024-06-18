@@ -256,6 +256,7 @@ int main(void)
   /* add threads, ... */
   CreateSerialTask();
   CreateSoundTask();
+  CreateRenderTask();
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */

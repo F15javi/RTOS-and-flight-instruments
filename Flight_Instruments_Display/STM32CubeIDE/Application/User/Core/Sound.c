@@ -54,7 +54,7 @@ void play_wav_file(char *file) {
 	res = f_open(&SDFile, file, FA_READ);
 
 	//Read the header of the Wav file
-	f_read(&SDFile, &header, 40, (void *)&bytesread);
+	f_read(&SDFile, &header, 44, (void *)&bytesread);
 
 	while(1){
 		/* Get Data from USB Flash Disk */

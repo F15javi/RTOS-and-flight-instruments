@@ -225,6 +225,36 @@
                 "TextRotation": "0"
               }
             ]
+          },
+          {
+            "Type": "TextArea",
+            "Name": "fps_text",
+            "X": 367,
+            "Y": 12,
+            "Width": 110,
+            "Height": 24,
+            "TextId": "__SingleUse_TAYT",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_8ADT",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "ms",
+            "X": 367,
+            "Y": 36,
+            "Width": 110,
+            "Height": 24,
+            "TextId": "__SingleUse_UTB7",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_2T0O",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
           }
         ],
         "Interactions": [
