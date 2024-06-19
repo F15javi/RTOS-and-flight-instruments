@@ -154,6 +154,22 @@ Screen3ViewBase::Screen3ViewBase() :
     textArea6.setLinespacing(0);
     textArea6.setTypedText(touchgfx::TypedText(T___SINGLEUSE_B1H7));
     add(textArea6);
+
+    fps_text3.setPosition(93, 224, 110, 24);
+    fps_text3.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    fps_text3.setLinespacing(0);
+    Unicode::snprintf(fps_text3Buffer, FPS_TEXT3_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_021T).getText());
+    fps_text3.setWildcard(fps_text3Buffer);
+    fps_text3.setTypedText(touchgfx::TypedText(T___SINGLEUSE_9E14));
+    add(fps_text3);
+
+    ms3.setPosition(93, 248, 110, 24);
+    ms3.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    ms3.setLinespacing(0);
+    Unicode::snprintf(ms3Buffer, MS3_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_5T14).getText());
+    ms3.setWildcard(ms3Buffer);
+    ms3.setTypedText(touchgfx::TypedText(T___SINGLEUSE_5P41));
+    add(ms3);
 }
 
 Screen3ViewBase::~Screen3ViewBase()

@@ -229,8 +229,8 @@
           {
             "Type": "TextArea",
             "Name": "fps_text",
-            "X": 367,
-            "Y": 12,
+            "X": 93,
+            "Y": 224,
             "Width": 110,
             "Height": 24,
             "TextId": "__SingleUse_TAYT",
@@ -244,8 +244,8 @@
           {
             "Type": "TextArea",
             "Name": "ms",
-            "X": 367,
-            "Y": 36,
+            "X": 93,
+            "Y": 248,
             "Width": 110,
             "Height": 24,
             "TextId": "__SingleUse_UTB7",
@@ -633,6 +633,36 @@
                 "TextRotation": "0"
               }
             ]
+          },
+          {
+            "Type": "TextArea",
+            "Name": "fps_text2",
+            "X": 93,
+            "Y": 223,
+            "Width": 110,
+            "Height": 24,
+            "TextId": "__SingleUse_6IKG",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_5ELS",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "ms2",
+            "X": 93,
+            "Y": 247,
+            "Width": 110,
+            "Height": 24,
+            "TextId": "__SingleUse_4HC5",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_28D9",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
           }
         ],
         "Interactions": [
@@ -1027,6 +1057,36 @@
               "Blue": 106
             },
             "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "fps_text3",
+            "X": 93,
+            "Y": 224,
+            "Width": 110,
+            "Height": 24,
+            "TextId": "__SingleUse_9E14",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_021T",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "ms3",
+            "X": 93,
+            "Y": 248,
+            "Width": 110,
+            "Height": 24,
+            "TextId": "__SingleUse_5P41",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_5T14",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
           }
         ],
         "Interactions": [

@@ -167,6 +167,22 @@ Screen2ViewBase::Screen2ViewBase() :
     slideMenu1.add(HOR);
 
     add(slideMenu1);
+
+    fps_text2.setPosition(93, 223, 110, 24);
+    fps_text2.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    fps_text2.setLinespacing(0);
+    Unicode::snprintf(fps_text2Buffer, FPS_TEXT2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_5ELS).getText());
+    fps_text2.setWildcard(fps_text2Buffer);
+    fps_text2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_6IKG));
+    add(fps_text2);
+
+    ms2.setPosition(93, 247, 110, 24);
+    ms2.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    ms2.setLinespacing(0);
+    Unicode::snprintf(ms2Buffer, MS2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_28D9).getText());
+    ms2.setWildcard(ms2Buffer);
+    ms2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_4HC5));
+    add(ms2);
 }
 
 Screen2ViewBase::~Screen2ViewBase()

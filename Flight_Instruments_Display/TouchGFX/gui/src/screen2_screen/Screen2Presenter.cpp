@@ -21,6 +21,10 @@ void Screen2Presenter::Update_Heading(float value){
 	view.Update_Heading(value);
 
 }
+void Screen2Presenter::showFPS(uint8_t value){
+	view.showFPS(value);
+}
+
 //void Screen2Presenter::up_hdg(){
 //
 //}void Screen2Presenter::down_hdg(){

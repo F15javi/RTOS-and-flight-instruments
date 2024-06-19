@@ -16,6 +16,7 @@ public:
 	virtual void Update_Heading(float value);
 	virtual void down_hdg();
 	virtual void up_hdg();
+	virtual void showFPS(uint8_t value);
 
 
 protected:

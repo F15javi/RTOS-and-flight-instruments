@@ -61,6 +61,8 @@ protected:
     touchgfx::Image Tank1_Arrow;
     touchgfx::TextureMapper Tank2_Arrow;
     touchgfx::TextArea textArea6;
+    touchgfx::TextAreaWithOneWildcard fps_text3;
+    touchgfx::TextAreaWithOneWildcard ms3;
 
     /*
      * Wildcard Buffers
@@ -75,6 +77,10 @@ protected:
     touchgfx::Unicode::UnicodeChar textArea5Buffer[TEXTAREA5_SIZE];
     static const uint16_t TEXTAREA3_SIZE = 20;
     touchgfx::Unicode::UnicodeChar textArea3Buffer[TEXTAREA3_SIZE];
+    static const uint16_t FPS_TEXT3_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar fps_text3Buffer[FPS_TEXT3_SIZE];
+    static const uint16_t MS3_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar ms3Buffer[MS3_SIZE];
 
 private:
 

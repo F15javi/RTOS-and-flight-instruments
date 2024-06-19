@@ -86,3 +86,27 @@ void Screen2View::Update_Heading(float value){
 
 
 }
+void Screen2View::showFPS(uint8_t value){
+
+	uint8_t fps = 0;
+	if(FPS.getState() == true){
+
+		fps_text2.setVisible(true);
+		ms2.setVisible(true);
+
+		if(value != 0){
+			fps = 1000/value;
+		}
+		Unicode::snprintf(fps_text2Buffer, FPS_TEXT2_SIZE, "%d", fps);
+		Unicode::snprintf(ms2Buffer, MS2_SIZE, "%d", value);
+
+		fps_text2.invalidate();
+		ms2.invalidate();
+	}else{
+
+		fps_text2.setVisible(false);
+		ms2.setVisible(false);
+	}
+
+
+}

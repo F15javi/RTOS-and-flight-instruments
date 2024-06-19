@@ -27,6 +27,8 @@ public:
 
     virtual ~Screen2Presenter() {}
     virtual void Update_Heading(float value);
+	virtual void showFPS(uint8_t value);
+
 //    virtual void up_hdg();
 //    virtual void down_hdg();
 

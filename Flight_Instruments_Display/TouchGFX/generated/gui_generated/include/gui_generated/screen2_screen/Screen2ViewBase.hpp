@@ -74,6 +74,8 @@ protected:
     touchgfx::ButtonWithLabel ENG;
     touchgfx::ButtonWithLabel NAV;
     touchgfx::ButtonWithLabel HOR;
+    touchgfx::TextAreaWithOneWildcard fps_text2;
+    touchgfx::TextAreaWithOneWildcard ms2;
 
     /*
      * Wildcard Buffers
@@ -82,6 +84,10 @@ protected:
     touchgfx::Unicode::UnicodeChar textArea1Buffer[TEXTAREA1_SIZE];
     static const uint16_t TEXTAREA2_SIZE = 20;
     touchgfx::Unicode::UnicodeChar textArea2Buffer[TEXTAREA2_SIZE];
+    static const uint16_t FPS_TEXT2_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar fps_text2Buffer[FPS_TEXT2_SIZE];
+    static const uint16_t MS2_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar ms2Buffer[MS2_SIZE];
 
 private:
 

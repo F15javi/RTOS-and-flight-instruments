@@ -98,3 +98,27 @@ void Screen3View::Update_Fuel_Tank2(float value){
 
 
 }
+void Screen3View::showFPS(uint8_t value){
+
+	uint8_t fps = 0;
+	if(FPS.getState() == true){
+
+		fps_text3.setVisible(true);
+		ms3.setVisible(true);
+
+		if(value != 0){
+			fps = 1000/value;
+		}
+		Unicode::snprintf(fps_text3Buffer, FPS_TEXT3_SIZE, "%d", fps);
+		Unicode::snprintf(ms3Buffer, MS3_SIZE, "%d", value);
+
+		fps_text3.invalidate();
+		ms3.invalidate();
+	}else{
+
+		fps_text3.setVisible(false);
+		ms3.setVisible(false);
+	}
+
+
+}

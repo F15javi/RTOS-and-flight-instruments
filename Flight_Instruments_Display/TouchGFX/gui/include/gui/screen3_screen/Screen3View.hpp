@@ -19,6 +19,8 @@ public:
 	virtual void Update_Oil_Temp(uint16_t value);
 	virtual void Update_Fuel_Tank1(float value);
 	virtual void Update_Fuel_Tank2(float value);
+	virtual void showFPS(uint8_t value);
+
 protected:
 };
 

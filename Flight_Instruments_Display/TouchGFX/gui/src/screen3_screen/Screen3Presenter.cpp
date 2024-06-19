@@ -44,3 +44,6 @@ void Screen3Presenter::Update_Fuel_Tank2(float value){
 	view.Update_Fuel_Tank2(value);
 
 }
+void Screen3Presenter::showFPS(uint8_t value){
+	view.showFPS(value);
+}

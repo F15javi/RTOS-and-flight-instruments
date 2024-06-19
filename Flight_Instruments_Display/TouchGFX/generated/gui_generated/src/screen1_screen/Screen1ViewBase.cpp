@@ -117,7 +117,7 @@ Screen1ViewBase::Screen1ViewBase() :
 
     add(slideMenu1);
 
-    fps_text.setPosition(367, 12, 110, 24);
+    fps_text.setPosition(93, 224, 110, 24);
     fps_text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     fps_text.setLinespacing(0);
     Unicode::snprintf(fps_textBuffer, FPS_TEXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_8ADT).getText());
@@ -125,7 +125,7 @@ Screen1ViewBase::Screen1ViewBase() :
     fps_text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_TAYT));
     add(fps_text);
 
-    ms.setPosition(367, 36, 110, 24);
+    ms.setPosition(93, 248, 110, 24);
     ms.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     ms.setLinespacing(0);
     Unicode::snprintf(msBuffer, MS_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_2T0O).getText());
